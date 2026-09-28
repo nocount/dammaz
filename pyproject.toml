@@ -9,6 +9,9 @@ dependencies = [
 ]
 
 [dependency-groups]
+corpus = [
+    "pyarrow>=25.0.1",
+]
 dev = [
     "pytest>=8.0",
 ]

@@ -213,6 +213,10 @@ class Translator:
 
     # -- per document ------------------------------------------------------------
     def _doc(self, doc, stats: Stats) -> str:
+        # words used as names in this paragraph: tagged PROPN, or capitalized
+        # mid-sentence. A sentence-initial "Lily" tagged ADJ is then still a name.
+        self._doc_names = {t.text for t in doc if t.text[:1].isupper() and (
+            t.pos_ == "PROPN" or (not t.is_sent_start and t.i > 0 and not t.nbor(-1).is_punct))}
         sents = []
         for sent in doc.sents:
             sents.append(self._sentence(sent, stats))
@@ -439,6 +443,13 @@ class Translator:
                 for bp, dz in self.by_lemma[lemma]:
                     if bp == p:
                         return Out(words=[(dz, tags)])
+        # a capitalized word mid-sentence that isn't in the lexicon is a name
+        # the tagger missed ("Lily" tagged ADJ)
+        prev = t.nbor(-1) if t.i > t.sent.start else None
+        if t.text[:1].isupper() and (
+                (prev is not None and not prev.is_punct and not t.is_sent_start)
+                or t.text in getattr(self, "_doc_names", ())):
+            return Out(words=[(t.text, ())], kind="name")
         # closed-class words spaCy tagged as content (many/ADJ, others/NOUN)
         fb = self.function_fallback.get(t.lower_) or self.function_fallback.get(lemma)
         if fb:
@@ -449,6 +460,8 @@ class Translator:
             if pos == "ADV":
                 tags = tags + ("ADV",)
             return Out(words=[(stem, tags)], kind="loan")
+        if t.text.isalpha():                     # closed-class word missing from function.yaml
+            return Out(words=[(loan(lemma, "NOUN"), ())], kind="loan")
         return Out(words=[(t.text, ())], kind="unknown")
 
     # -- 3. verb groups ----------------------------------------------------------------

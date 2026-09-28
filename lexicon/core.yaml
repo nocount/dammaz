@@ -1157,3 +1157,4 @@ entries:
   - {dz: krekriz, en: ["regular/ADJ"], origin: invented}
   - {dz: vonthrung, en: ["melt/VERB"], origin: invented}
   - {dz: trabon, en: ["cupboard/NOUN"], origin: invented}
+  - {dz: brik, en: ["next/ADJ"], origin: derived, base: "bre+ORD", notes: "near + ordinal: the next one in order"}

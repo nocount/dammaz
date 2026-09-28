@@ -23,6 +23,20 @@ the dwarf old forge-PAST a axe strong in the mountain
 "The old dwarf forged a strong axe in the mountain."
 ```
 
+## Status (updated 2026-09-27)
+
+| Phase | State | Where |
+|---|---|---|
+| 1. Phonology | **Done.** Sound approved. | `spec/phonology.md`, `dammaz.wordgen` |
+| 2. Grammar | **Done** (draft v0.1, all §12 decisions made; formal `uzar` and diminutive `-it` added). | `spec/grammar.md`, `lexicon/function.yaml` |
+| 3. Lexicon | **Gate met.** 1,155 content words + 113 function words, 97.08% TinyStories coverage. | `lexicon/core.yaml`, `reports/coverage_tinystories.md` |
+| 4. Translator | **Done.** 39/40 grammar examples exact; 0 unknown tokens; 2.65% loans before filtering; ~10K words/s per process. | `dammaz.translate`, `.gloss`, `.validate`, `.loan` |
+| 5. Corpus | **Tooling built and tested; the full run is pending** (to be done on the desktop). | `tools/corpus.py`, `docs/corpus_runbook.md` |
+| 6. Learning materials | Not started. | — |
+
+The sketches in the phase sections below were written before the work. Where the
+two differ, the spec files and the status notes win.
+
 ---
 
 ## Why this beats the Neo-Khuzdul route for dwarfgpt
@@ -288,34 +302,88 @@ with `_sm` + `nlp.pipe` across cores).
 
 ---
 
-## Phase 5: Corpus generation (week 4–5, handoff to dwarfgpt)
+## Phase 5: Corpus generation (handoff to dwarfgpt)
 
-**Deliverable:** versioned shards consumed by dwarfgpt's tokenizer and pretraining phases.
+**Deliverable:** versioned, validated Dammaz shards that dwarfgpt's tokenizer and
+pretraining phases consume, plus parallel en/dz pairs for SFT.
 
-**Sources, in order:**
-1. **TinyStories**: simple narrative, highest coverage, first shards.
-2. **Dwarf-genre English, written by Claude in English.** Use the 9 genre buckets from
-   the dwarfgpt plan (mining, lineages, oaths/curses, sagas, songs, smithing,
-   riddles, greetings, chronicles). Prompt with a **restricted vocabulary** (the
-   lexicon's English side), then translate deterministically. This gives dwarf
-   flavor without any model ever writing Dammaz. Estimated cost is about $20–60 via
-   the Batch API.
-3. **Broader English** (Simple Wikipedia / FineWeb-EDU slices), filtered to
-   sentences whose loan rate is ≤3%. This adds diversity.
+**How to run it on any machine:** [`docs/corpus_runbook.md`](docs/corpus_runbook.md).
+In short:
 
-**Output format:** JSONL `{id, en, dz, source, lexicon_version, coverage, loan_rate}`.
-- Monolingual `dz` shards are for pretraining.
-- Parallel pairs are for SFT: translate either direction, "say this in Dammaz",
-  vocabulary lookups.
+```
+fetch_data.py all  ->  corpus.py translate  ->  corpus.py pack
+```
 
-**Quality controls:**
-- dedupe
-- drop sentences with parse failures or loan_rate >3%
-- random 200-sentence audit per source that you read with glosses
-- the validator must pass 100%
+This is fully resumable, parallel across cores, and stamped with a lexicon/code
+fingerprint.
 
-Volume is not a constraint. The dwarfgpt target of 30–80M Dammaz tokens is a small
-slice of TinyStories.
+### 5a. TinyStories (ready to run)
+
+- **Input:** `TinyStoriesV2-GPT4-train.txt` (2.2 GB, about 2.7M stories, about 470M words).
+  Translating all of it takes roughly 2–3 hours on 8 workers.
+- **Measured on 2,000 validation stories** with the current lexicon:
+
+  | | Loan rate | Stories kept |
+  |---|---|---|
+  | Before filtering | 2.65% (median story 2.1%) | — |
+  | Per-story cap 5% (**the default**) | **1.9%** | 82% |
+  | Per-story cap 3% | 1.2% | 63% |
+
+  The unknown token count was 0.
+- **Filters** (`corpus.py pack`):
+  - loan rate ≤ 5% per story
+  - ≥ 20 words
+  - no unknown tokens
+  - exact dedupe on normalized English
+  - 5% held out for validation, chosen by a hash of the English text, so it's stable across re-packs
+- **Output:**
+
+  | Path | Contents |
+  |---|---|
+  | `packed/dz/{train,val}/shard_*.parquet` | A `text` column, row groups of 1024, the nanochat pretraining layout. |
+  | `packed/parallel/{train,val}.jsonl` | `{id, en, dz}` pairs |
+  | `pack_manifest.json` | fingerprint, git commit, input SHA-256, filters, counts |
+  | `REPORT.md` | stats, plus the top 100 loans. That's the worklist for an optional lexicon batch 3. |
+
+- **Volume:** dwarfgpt's target of 30–80M Dammaz tokens is roughly the first
+  15–40% of the packed train split. The mix ratio is chosen on the dwarfgpt side.
+
+### 5b. Dwarf-genre English (not built yet; needs an API budget decision)
+
+Claude writes short English texts in the dwarf genres, and they're then translated
+deterministically, so no model ever writes Dammaz. The genres are the 9 buckets from
+the dwarfgpt plan: mining, lineages, oaths/curses, sagas, songs, smithing, riddles,
+greetings and chronicles.
+
+- **Vocabulary:** prompts are restricted to the lexicon's English side (the
+  `lexicon status` word list, plus the dwarf extras), so the loan rate stays low.
+- **Cost:** about $20–60 via the Batch API, for a few million words.
+- **Tooling:** would be `tools/genre.py`, writing TinyStories-format text into
+  `data/raw/genre.txt`. `corpus.py translate --source genre` then handles the rest
+  unchanged.
+
+**Decision needed from you before building it:** the budget, and whether genre text is a
+separate shard set (recommended, so its share can be tuned in the mix) or folded into
+TinyStories.
+
+### 5c. Broader English (later, optional)
+
+Simple Wikipedia or FineWeb-EDU slices, filtered by the same loan-rate cap. The
+current lexicon is TinyStories-shaped, so expect much higher loan rates here until
+the lexicon grows an extended tier.
+
+### Freezing the language for a run
+
+A corpus is tied to one fingerprint. The workflow is:
+
+1. finish any lexicon edits
+2. commit and push
+3. note `python -m dammaz.lexicon fingerprint`
+4. run
+
+`corpus.py translate` refuses to add shards made with a different fingerprint to an
+existing output directory. Changing the language later is cheap: re-run into a new
+directory, since translation is deterministic.
 
 ---
 
@@ -360,13 +428,13 @@ These are generated from the lexicon and translator, so they stay in sync automa
 
 ## Milestones
 
-| When | Milestone | Gate |
+| Milestone | Gate | Status |
 |---|---|---|
-| Week 1 | Phonology spec + `wordgen` + ~20 sample sentences | You approve the sound |
-| Week 1–2 | `grammar.md` v0.1 + function words + first ~150 core words | Hand-translate 20 sentences with no spec gaps |
-| Week 2–3 | Core 500 approved, extended tier to ~1.5K, `coverage.py` | ≥97% TinyStories coverage |
-| Week 3–4 | Translator + gloss + validator + 100-sentence golden set | ≥95% golden exact match, <3% loans |
-| Week 4–5 | Lexicon `v1.0` frozen; TinyStories + genre shards generated | Audit passes; handed to dwarfgpt Phase 4 |
+| Phonology spec + `wordgen` + ~20 sample sentences | You approve the sound | ✅ approved |
+| `grammar.md` v0.1 + function words + first ~150 core words | Hand-translate 20 sentences with no spec gaps | ✅ 39 spec examples are machine-checked instead |
+| Core 500 approved, extended tier to ~1.5K, `coverage.py` | ≥97% TinyStories coverage | ✅ 97.08% (1,155 words) |
+| Translator + gloss + validator + golden set | ≥95% golden exact match, <3% loans | ✅ 97.5% exact, 2.65% loans. The golden set is the spec's 40 examples; your 100 hand-translated sentences are still open. |
+| TinyStories shards generated (+ genre shards) | Audit passes; handed to dwarfgpt Phase 4 | ⏳ tooling ready; run on the desktop via the runbook |
 
 ---
 
@@ -375,17 +443,29 @@ These are generated from the lexicon and translator, so they stay in sync automa
 1. **Name of the language.** "Dammaz" (Khazalid for *grudge*) as a working name is
    fun but is itself a GW word. Consider an invented name built from our own lexicon
    (e.g. `<our word for dwarf>` + `lid`/tongue-style suffix) for the public release.
-2. **Base-10 vs. base-12 number words.** Base 12 is very dwarvish, but translation
-   would have to convert English numbers.
-3. **2nd-person pronoun, and whether to keep a formal/informal split** (e.g. for
-   elders/kings). It's flavorful, but the English source doesn't mark it.
-4. **Runes.** Should there be a Dammaz rune script (display-only), and should it
+2. **Runes.** Should there be a Dammaz rune script (display-only), and should it
    reuse the Klinkarun idea?
-5. **Perfect aspect.** Is collapsing "has done" into past OK, or do you want `ad`
-   (Khazalid "did/done") as a perfect particle?
+3. **Dwarf-genre budget** (Phase 5b): how much API spend, and a separate shard set or not.
+4. **Transformer parser.** `en_core_web_trf` would fix the small model's rarer tagging
+   errors (e.g. *beardling* read as a verb), at maybe 5–10× the translation time. It's
+   worth an A/B on 1,000 stories before a final corpus.
+
+Resolved since the first draft:
+
+| Question | Resolution |
+|---|---|
+| Number base | Base 10 |
+| Formal *you* | `uzar` |
+| Perfect aspect | Merged into the past |
+| Diminutive | `-it` |
 
 ## Immediate next steps
 
-1. Analyze the reference lists (phonotactic statistics) and draft `spec/phonology.md`.
-2. Build `wordgen.py` and produce the ~20 sample sentences for the sound check.
-3. Draft the function-word list with you (the ~150 words everything else hangs on).
+1. **On the desktop:** follow [`docs/corpus_runbook.md`](docs/corpus_runbook.md),
+   i.e. set up, fetch, dry run, full TinyStories run, pack, sanity checks.
+2. **Hand off** `packed/` to dwarfgpt and start its Phase 0 (nanochat fork +
+   baseline) and Phase 4 (tokenizer) there.
+3. **Optional, any time:** lexicon batch 3 from the `REPORT.md` loan list
+   (`tools/review.py propose`), which pushes the loan rate below ~2% before filtering. It
+   needs a fresh corpus run afterwards (new fingerprint).
+4. **Decide Phase 5b** (dwarf-genre text): budget and shard layout.

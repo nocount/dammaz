@@ -18,27 +18,29 @@ the dwarf old forge-PST a axe strong in the mountain
   (`dammaz.wordgen`), and made a sound-check sample
   ([`samples/sound_check_v0.md`](samples/sound_check_v0.md)).
   **Sound approved 2026-09-27.**
-- [/] **Phase 2: grammar.** Draft v0.1 of [`spec/grammar.md`](spec/grammar.md),
+- [x] **Phase 2: grammar.** Draft v0.1 of [`spec/grammar.md`](spec/grammar.md),
   with ~110 function words in [`lexicon/function.yaml`](lexicon/function.yaml)
   and the suffix rules in `dammaz.morphology`. Every example in the spec is
   checked by the tests. §12 decisions reviewed 2026-09-27 (formal *you* added).
-- [/] **Phase 3: lexicon.** Measured TinyStories ([`reports/coverage_tinystories.md`](reports/coverage_tinystories.md)):
-  function words + grammar alone cover 58% of word tokens, and ~1,160 content
-  senses reach the 97% gate. Batch 1 is reviewed and applied: **641 words / 674
-  senses, 94.1% coverage**. Batch 2 ([`lexicon/review/core_batch02.csv`](lexicon/review/core_batch02.csv),
-  540 senses) takes it to **97.1%** once reviewed and applied (see [`lexicon/review/README.md`](lexicon/review/README.md)).
+- [x] **Phase 3: lexicon.** 1,155 content words + 113 function words;
+  **97.08%** TinyStories token coverage (the gate), from two reviewed batches
+  ([`reports/coverage_tinystories.md`](reports/coverage_tinystories.md),
+  [`lexicon/review/README.md`](lexicon/review/README.md)).
 - [x] **Phase 4: translator.** `dammaz.translate` (English → Dammaz on spaCy
   parses), `dammaz.gloss` (Dammaz → interlinear gloss), `dammaz.validate`, and
   the loanword fallback `dammaz.loan`. Every example in `spec/grammar.md` is a
-  golden test (39/40; the one gap is a parser limit). On 300 TinyStories:
-  0 unknown tokens, 5.6% loans (≈3% after batch 2), ~6,800 English words/s per
-  process.
-- [ ] Phase 5: corpus generation for dwarfgpt
+  golden test (39/40; the one gap is a parser limit). On 2,000 TinyStories:
+  0 unknown tokens, 2.65% loans before filtering, ~10K English words/s per process.
+- [/] **Phase 5: corpus.** `tools/fetch_data.py` + `tools/corpus.py`
+  (resumable parallel translation, fingerprinted, packed to Parquet + parallel
+  JSONL) are built and tested. **Full run pending:** see
+  [`docs/corpus_runbook.md`](docs/corpus_runbook.md).
 
 ## Layout
 
 ```
 spec/                     normative specs: phonology.md, grammar.md (+ analysis report)
+docs/corpus_runbook.md    how to generate the corpus on any machine
 lexicon/
   function.yaml           function words (draft)
   phrases.yaml            multi-word expressions (once upon a time, a lot of...)
@@ -63,7 +65,9 @@ tools/
   analyze_phonology.py    source_words.tsv -> spec/phonology_analysis.md + source_stats.json
   coverage.py             corpus -> lemma worklist + coverage report (needs --group nlp)
   review.py               propose review batches / apply decisions
-  translate_corpus.py     corpus -> parallel en/dz JSONL + loan/throughput summary
+  translate_corpus.py     quick sample: corpus -> parallel en/dz JSONL + loan summary
+  fetch_data.py           download TinyStories into data/raw/ (resumable, hashed)
+  corpus.py               Phase 5: translate (sharded, resumable) / report / pack
 reports/                  generated coverage reports
 references/               source links; raw/ is gitignored (local copies only)
 tests/
@@ -93,8 +97,9 @@ uv run python -m dammaz.gloss "Ta dawi dhal drashad un az krang."
 uv run python -m dammaz.validate "Ta dawi dhal drashad un az krang."
 ```
 
-Translate a sample of TinyStories to parallel JSONL (needs
-`data/raw/TinyStoriesV2-GPT4-valid.txt`, see Phase 3):
+Build the training corpus: follow [`docs/corpus_runbook.md`](docs/corpus_runbook.md).
+For a quick sample of TinyStories as parallel JSONL (after
+`uv run python tools/fetch_data.py tinystories-valid`):
 
 ```bash
 uv run --group nlp python tools/translate_corpus.py data/raw/TinyStoriesV2-GPT4-valid.txt --limit 300 --out data/dz/sample300.jsonl

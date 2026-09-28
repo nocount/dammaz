@@ -17,6 +17,7 @@ CLI::
     uv run python -m dammaz.lexicon check     # validate; exit 1 on errors
     uv run python -m dammaz.lexicon build     # validate + write build/lexicon.json
     uv run python -m dammaz.lexicon status    # coverage against lexicon/targets/
+    uv run python -m dammaz.lexicon fingerprint   # version hashes stamped on corpora
 """
 
 from __future__ import annotations
@@ -273,6 +274,37 @@ def validate(content: tuple[Entry, ...] | None = None,
 
 
 # ---------------------------------------------------------------------------
+# fingerprint: which exact language version produced a corpus
+# ---------------------------------------------------------------------------
+
+FINGERPRINT_FILES = ("function.yaml", "core.yaml", "extended.yaml", "phrases.yaml",
+                     "targets/corrections.yaml")
+CODE_FILES = ("translate.py", "morphology.py", "english.py", "loan.py", "phonology.py",
+              "lexicon.py")
+
+
+def _hash_files(paths: list[Path], labels: list[str]) -> str:
+    import hashlib
+    h = hashlib.sha256()
+    for path, label in zip(paths, labels):
+        if path.exists():
+            # normalize line endings so Windows (CRLF) and Linux checkouts agree
+            h.update(label.encode() + b"\0" + path.read_bytes().replace(b"\r\n", b"\n") + b"\0")
+    return h.hexdigest()[:12]
+
+
+def fingerprint() -> dict[str, str]:
+    """Short hashes of the lexicon data and of the translator code. Two corpora
+    with the same fingerprint were produced by the same language + pipeline."""
+    src = Path(__file__).resolve().parent
+    return {
+        "lexicon": _hash_files([LEXICON_DIR / f for f in FINGERPRINT_FILES],
+                               list(FINGERPRINT_FILES)),
+        "code": _hash_files([src / f for f in CODE_FILES], list(CODE_FILES)),
+    }
+
+
+# ---------------------------------------------------------------------------
 # build + status
 # ---------------------------------------------------------------------------
 
@@ -315,6 +347,9 @@ def main(argv: list[str] | None = None) -> None:
     cmd = (argv or sys.argv[1:] or ["check"])[0]
     if cmd == "status":
         print(status())
+        return
+    if cmd == "fingerprint":
+        print(json.dumps(fingerprint()))
         return
     rep = validate()
     for w in rep.warnings:

@@ -75,7 +75,7 @@ entries:
   - {dz: naraz, en: [nowhere],                  cat: correlative, origin: derived}
   - {dz: zidur, en: [now],                      cat: correlative, origin: derived}
   - {dz: zukur, en: [then],                     cat: correlative, origin: derived}
-  - {dz: worur, en: [when, while, once (conj)],              cat: correlative, origin: derived}
+  - {dz: worur, en: [when, while, whilst, once (conj)],              cat: correlative, origin: derived}
   - {dz: salur, en: [sometime, sometimes, ever], cat: correlative, origin: derived}
   - {dz: gomur, en: [always, whenever],                   cat: correlative, origin: derived}
   - {dz: narur, en: [never],                    cat: correlative, origin: derived}
@@ -112,13 +112,13 @@ entries:
   # --- prepositions ---------------------------------------------------------------
   - {dz: a,      en: [of],                                 cat: preposition, origin: borrowed, from: "Khazalid a 'of, with, to'"}
   - {dz: bin,    en: [in, "on", at, into, onto, inside, upon, during, within],     cat: preposition, origin: borrowed, from: "Khazalid bin 'in, on, beside'"}
-  - {dz: dra,    en: [to, toward, towards, for, in order to],       cat: preposition, origin: invented,
+  - {dz: dra,    en: [to, toward, towards, onwards, for, in order to],       cat: preposition, origin: invented,
      notes: "direction, recipient, beneficiary, purpose"}
   - {dz: rof,    en: [from, by (agent), than, out of, "off", since],     cat: preposition, origin: invented}
   - {dz: zol,    en: [with],                               cat: preposition, origin: invented}
   - {dz: narzol, en: [without, except],                            cat: preposition, origin: derived, notes: "nar + zol"}
   - {dz: unga,   en: [under, beneath, below, down, underneath],              cat: preposition, origin: invented}
-  - {dz: khro,   en: [over, above, on top of, up, atop],             cat: preposition, origin: invented}
+  - {dz: khro,   en: [over, above, on top of, up, atop, beyond],             cat: preposition, origin: invented}
   - {dz: gez,    en: [before],                             cat: preposition, origin: invented}
   - {dz: rul,    en: [after],                              cat: preposition, origin: invented}
   - {dz: thruth, en: [through, across, along, throughout],                    cat: preposition, origin: invented}
@@ -140,7 +140,7 @@ entries:
   - {dz: og,   en: [and, plus],             cat: conjunction, origin: invented}
   - {dz: ba,   en: [but, though, although, yet],             cat: conjunction, origin: borrowed, from: "Zharralid ba 'but'"}
   - {dz: vel,  en: [or],              cat: conjunction, origin: invented}
-  - {dz: os,   en: [because],         cat: conjunction, origin: invented}
+  - {dz: os,   en: [because, cause, "'cause"],         cat: conjunction, origin: invented}
   - {dz: mur,  en: [if, whether],     cat: conjunction, origin: invented,
      notes: "was dun until 2026-09-27: one letter from vun (come)"}
   - {dz: tand, en: [until, till],           cat: conjunction, origin: invented}
