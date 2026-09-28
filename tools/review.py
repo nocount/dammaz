@@ -378,6 +378,8 @@ def apply(path: Path, into: str, dry_run: bool = False) -> None:
             print("ERROR:", e)
         raise SystemExit("not written: fix the decisions above and re-run apply")
 
+    for w in rep.warnings:
+        print("warning:", w)
     if dry_run:
         print(f"dry run: {len(final)} senses -> {len(merged)} words valid "
               f"({len(rep.warnings)} warnings, {rejected} rejected); nothing written")

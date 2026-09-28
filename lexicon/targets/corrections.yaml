@@ -15,6 +15,7 @@ alias:
   ok/INTJ: okay/INTJ
   okay/ADJ: okay/INTJ
   well/ADV: good/ADJ              # 'did well' = good + ADV
+  axis/NOUN: axe/NOUN             # spaCy lemmatizes 'axes' as 'axis'
 
 # Not lexicon material: names mis-tagged as words, idiom fragments handled by
 # the translator's phrase table ("of course", "once upon a time").

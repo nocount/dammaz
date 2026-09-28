@@ -1,0 +1,11 @@
+# Local copies of fan-compiled Warhammer lexicons (used only for phonotactic
+# statistics / reference). Not ours to redistribute — see references/sources.md.
+references/raw/
+
+__pycache__/
+.venv/
+.pytest_cache/
+build/
+
+# Downloaded corpora (TinyStories etc.) - large, regenerable
+data/

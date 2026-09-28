@@ -1,0 +1,19 @@
+# Multi-word English expressions the translator replaces as a unit.
+# Keys: lowercase English token sequences (as spaCy tokenizes them).
+# Values: Dammaz output. {lemma/POS} is replaced by that sense's lexicon word,
+# {lemma/POS+TAG} by an inflected form, so phrases follow lexicon changes.
+
+phrases:
+  once upon a time: "gez drur zengi"          # "before many days"
+  a long time ago: "gez drur zengi"
+  a lot of: "drur"
+  lots of: "drur"
+  a little bit: "kud"
+  in front of: "gez"
+  next to: "bre"
+  out of: "rof"
+  instead of: "vang"
+  all of a sudden: "{sudden/ADJ+ADV}"
+  in order to: "dra"
+  of course: "ai"
+  each other: "um keb"

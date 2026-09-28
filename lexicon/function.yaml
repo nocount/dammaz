@@ -50,9 +50,9 @@ entries:
   - {dz: zid, en: [this, these],          cat: determiner, origin: invented}
   - {dz: zuk, en: [that, those],          cat: determiner, origin: invented}
   - {dz: wor, en: [which, what],          cat: determiner, origin: invented, notes: "question series"}
-  - {dz: sal, en: [some, any],            cat: determiner, origin: invented}
+  - {dz: sal, en: [some, any, either],            cat: determiner, origin: invented}
   - {dz: gom, en: [all, every, each],     cat: determiner, origin: invented}
-  - {dz: nar, en: ["no", none],             cat: determiner, origin: borrowed, from: "Khazalid nar 'no, not'"}
+  - {dz: nar, en: ["no", none, neither, nor],             cat: determiner, origin: borrowed, from: "Khazalid nar 'no, not'"}
 
   # correlatives (derived; see grammar.md §5 table). Listed so the translator can map them.
   - {dz: zidak, en: [this thing],               cat: correlative, origin: derived}
@@ -116,7 +116,7 @@ entries:
      notes: "direction, recipient, beneficiary, purpose"}
   - {dz: rof,    en: [from, by (agent), than, out of, "off", since],     cat: preposition, origin: invented}
   - {dz: zol,    en: [with],                               cat: preposition, origin: invented}
-  - {dz: narzol, en: [without],                            cat: preposition, origin: derived, notes: "nar + zol"}
+  - {dz: narzol, en: [without, except],                            cat: preposition, origin: derived, notes: "nar + zol"}
   - {dz: unga,   en: [under, beneath, below, down, underneath],              cat: preposition, origin: invented}
   - {dz: khro,   en: [over, above, on top of, up, atop],             cat: preposition, origin: invented}
   - {dz: gez,    en: [before],                             cat: preposition, origin: invented}
@@ -164,3 +164,5 @@ entries:
      notes: "was khal until 2026-09-27: one letter from khaz"}
   - {dz: dret, en: [must, have to, need to], cat: verb, origin: invented}
   - {dz: narg, en: [want],            cat: verb, origin: invented}
+  - {dz: zhaf, en: [let, allow],      cat: verb, origin: invented,
+     notes: "let's V = ut V and let me V = or an V are grammar (6.8); zhaf is let = allow"}

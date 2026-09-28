@@ -199,13 +199,13 @@ It is a derivational suffix, so the plural comes after it (`dawit → dawiti`):
 ```dz
 Ta dawit glokad bral.
 the dwarf-DIM drink-PST ale
-"The little dwarf drank ale."
+"The beardling drank ale."
 ```
 
 ```dz
-Ora zakit an truk zol ut.
-I-POSS brother-DIM FUT go with we
-"My little brother will go with us."
+Ora glangit an truk zol ut.
+I-POSS dog-DIM FUT go with we
+"My puppy will go with us."
 ```
 
 **Lexicalized vs. productive.** English words that are diminutives (*puppy*, *kitten*,
@@ -461,12 +461,14 @@ go NEG go we go
 ```
 
 A **formal imperative** keeps its subject, `uzar` + plain verb. It's a polite
-request, like *please* or *would you*:
+request, like *please* or *would you*. The translator produces it from *please* +
+imperative when the speaker addresses someone owed `uzar` (§4.1); the *please* is
+absorbed into `uzar`:
 
 ```dz
-Uzar vun bin uzara khaz.
-you.FML come in your.FML hall
-"Please come into your hall."
+Ora rik, uzar vun bin uzara khaz.
+I-POSS king you.FML come in your.FML hall
+"My king, please come into your hall."
 ```
 
 ---
@@ -546,8 +548,8 @@ The `wor-` word goes first, then ordinary statement order. There is **no** `wan`
 in these questions.
 
 ```dz
-Woraz uz truk?
-which-PLACE you go
+Woraz uz truken?
+which-PLACE you go-PROG
 "Where are you going?"
 ```
 
@@ -635,9 +637,9 @@ if you go I FUT go
 ```
 
 ```dz
-Ut skrafad tand ta grobin trukad.
-we fight-PST until the goblin-PL go-PST
-"We fought until the goblins left."
+Ut skrafad tand ta grobin vunad.
+we fight-PST until the goblin-PL come-PST
+"We fought until the goblins came."
 ```
 
 ### 8.7 Coordination
@@ -738,8 +740,8 @@ English can't recover them:
 - *he / she / it*
 - *I / me* (and all other case pairs)
 - *went / was going / has gone / had gone*
-- *could* as past ability vs. as a hypothetical (the translator uses context and
-  defaults to past ability in past-tense narrative)
+- *could* as past ability vs. as a hypothetical (the translator always renders it
+  as past ability, `throkad`)
 - *a* vs. *one*
 - *singular they* vs. plural *they*
 - emphatic *do*
@@ -748,9 +750,28 @@ Dammaz also marks something English doesn't: **formality**. English *you* is
 translated as:
 
 - `uzar` when the addressee is owed respect (§4.1)
-- otherwise `af` when the source is plainly plural (*you all*, *you two*, or
-  addressing a group)
+- otherwise `af` when the source is plainly plural (*you all*, *you guys*, *you two*,
+  *you both*); *all* and *guys* are absorbed into `af`
 - otherwise `uz`
+
+### Translator conventions
+
+These choices are made by `dammaz.translate` where English leaves a gap. Each one
+is deterministic, so the same English always gives the same Dammaz.
+
+| English | Dammaz | Why |
+|---|---|---|
+| *let me V* | `or an V` | An offer ("I will V"). *let's V* = `ut V` (§6.8). |
+| *let* X *V* (allow) | `zhaf X V` | `zhaf` "let, allow" is a grammar verb. |
+| Bare auxiliary: *Yes, I can.* / *I did.* / *She will.* | `throk` / *do*-`ad` / `an` *do* | Dammaz repeats a verb: the modal verb, or the lexicon's word for *do*. |
+| *as* + clause (*as they walked*) | `worur` | Temporal *as* = *while*. *as* + noun (*as a gift*) = `lak`. |
+| Dummy *it* | dropped | Only before *be* + a weather/time word: *dark, cold, hot, sunny, rainy, windy, late, early, night, day, morning, time…* |
+| Formal address | `uzar` | Inside quotes that contain a respect cue (*king, queen, lord, lady, sir, madam, majesty, highness, elder, master, grandfather, grandmother*), or a whole unquoted sentence with a cue and *you/your/please*. |
+| *please* + imperative in formal address | `uzar V` | The *please* is absorbed (§6.8). Elsewhere *please* is an ordinary word. |
+| Kinship words used as names (*Dad said*, *Mummy!*) | translated, capitalized (`Nong kvizad`) | Real names (*Lily*, *Tom*) pass through untouched. |
+| *first, second… tenth* | numeral + `-ik` | `unik`, `tufik`… (§9). |
+| *once upon a time*, *a lot of*, *next to*… | phrase table | `lexicon/phrases.yaml`. |
+| A word not in the lexicon | **loanword** | English spelling re-spelled in the Dammaz alphabet + a class ending: noun `-uz`, verb `-ash`, adjective `-rak` (`banana → bananuz`, `juggle → zhuglash`). This follows the Zharralid precedent (*victraz*). Loans are counted, and the corpus filter caps them. |
 
 ---
 
