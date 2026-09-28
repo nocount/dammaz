@@ -1,7 +1,7 @@
-"""Deterministic English -> Dammaz loanwords for lemmas not in the lexicon.
+"""Deterministic English -> Klazan loanwords for lemmas not in the lexicon.
 
 Zharralid already does this (victory -> victraz, dominate -> domitash). The
-rule: re-spell the English lemma in the Dammaz alphabet, then add a class
+rule: re-spell the English lemma in the Klazan alphabet, then add a class
 ending so the part of speech is audible:
 
     NOUN  -uz     banana -> bananuz
@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import re
 
-from dammaz.phonology import VOWELS
+from klazan.phonology import VOWELS
 
 LOAN_ENDINGS = {"NOUN": "uz", "VERB": "ash", "ADJ": "rak"}
 
@@ -37,7 +37,7 @@ def respell(lemma: str) -> str:
         w = w[:-1]                                   # silent final e
     for a, b in _SPELL:
         w = w.replace(a, b)
-    w = w.replace("tsh", "sh")                       # ch -> sh (no 'ch' in Dammaz)
+    w = w.replace("tsh", "sh")                       # ch -> sh (no 'ch' in Klazan)
     w = re.sub(r"y(?=[^aeiou]|$)", "i", w)           # vowel y -> i
     w = re.sub(r"([aeiou])[aeiou]+", r"\1", w)       # no vowel sequences
     w = re.sub(r"([^aeiou])\1+", r"\1", w)           # no doubled consonants

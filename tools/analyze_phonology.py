@@ -2,8 +2,8 @@
 
 Reads  references/raw/source_words.tsv   (from tools/extract_source_words.py)
 Writes spec/phonology_analysis.md        human-readable report
-       src/dammaz/data/source_stats.json aggregated counts only (no word list),
-                                          used by dammaz.wordgen as its
+       src/klazan/data/source_stats.json aggregated counts only (no word list),
+                                          used by klazan.wordgen as its
                                           "sounds dwarvish" model
 
     uv run python tools/analyze_phonology.py
@@ -16,12 +16,12 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from dammaz.phonology import has_geminate, segment, shape
+from klazan.phonology import has_geminate, segment, shape
 
 ROOT = Path(__file__).resolve().parents[1]
 WORDS = ROOT / "references" / "raw" / "source_words.tsv"
 REPORT = ROOT / "spec" / "phonology_analysis.md"
-STATS = ROOT / "src" / "dammaz" / "data" / "source_stats.json"
+STATS = ROOT / "src" / "klazan" / "data" / "source_stats.json"
 
 SOURCES = ("khazalid", "zharralid")
 

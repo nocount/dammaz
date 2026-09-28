@@ -1,8 +1,8 @@
 from collections import Counter
 
-from dammaz.lexicon import function_words
-from dammaz.morphology import inflect
-from dammaz.phonology import check_root
+from klazan.lexicon import function_words
+from klazan.morphology import inflect
+from klazan.phonology import check_root
 
 WORDS = function_words()
 BY_CAT: dict[str, list] = {}
@@ -11,12 +11,12 @@ for w in WORDS:
 
 
 def test_forms_are_unique():
-    dupes = [dz for dz, n in Counter(w.dz for w in WORDS).items() if n > 1]
+    dupes = [kz for kz, n in Counter(w.kz for w in WORDS).items() if n > 1]
     assert not dupes
 
 
 def test_invented_forms_are_legal_roots():
-    bad = {w.dz: check_root(w.dz) for w in WORDS if w.origin == "invented" and check_root(w.dz)}
+    bad = {w.kz: check_root(w.kz) for w in WORDS if w.origin == "invented" and check_root(w.kz)}
     assert not bad
 
 
@@ -31,18 +31,18 @@ def test_no_duplicate_english_within_a_category():
 
 
 def test_possessives_are_pronoun_plus_poss():
-    pronouns = [w.dz for w in BY_CAT["pronoun"] if w.dz != "keb"]
-    assert sorted(inflect(p, "POSS") for p in pronouns) == sorted(w.dz for w in BY_CAT["possessive"])
+    pronouns = [w.kz for w in BY_CAT["pronoun"] if w.kz != "keb"]
+    assert sorted(inflect(p, "POSS") for p in pronouns) == sorted(w.kz for w in BY_CAT["possessive"])
 
 
 def test_correlative_table_is_complete_and_regular():
-    bases = [w.dz for w in BY_CAT["determiner"]]
+    bases = [w.kz for w in BY_CAT["determiner"]]
     table = {inflect(b, t) for b in bases for t in ("THING", "AGT", "PLACE", "TIME", "ADV")}
     table |= {inflect("wor", "REASON"), inflect("zuk", "REASON")}
-    assert table == {w.dz for w in BY_CAT["correlative"]}
+    assert table == {w.kz for w in BY_CAT["correlative"]}
 
 
 def test_formal_you_is_greater_you():
     assert inflect("uz", "CMP") == "uzar"
     assert inflect("uzar", "POSS") == "uzara"
-    assert {"uzar", "uzara"} <= {w.dz for w in WORDS}
+    assert {"uzar", "uzara"} <= {w.kz for w in WORDS}

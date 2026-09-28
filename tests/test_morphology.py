@@ -1,6 +1,6 @@
 import pytest
 
-from dammaz.morphology import inflect
+from klazan.morphology import inflect
 
 
 @pytest.mark.parametrize("root, tags, form", [
@@ -60,5 +60,5 @@ def test_diminutive(root, tags, form):
 
 
 def test_roots_cannot_end_in_diminutive():
-    from dammaz.phonology import check_root
+    from klazan.phonology import check_root
     assert any("reserved suffix '-it'" in p for p in check_root("zakit"))

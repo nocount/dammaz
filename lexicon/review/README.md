@@ -1,7 +1,7 @@
 # Reviewing a lexicon batch
 
 Each batch is a CSV that opens in Excel. One row = one English sense
-(`lemma` + part of speech) and the Dammaz word proposed for it. Rows are in
+(`lemma` + part of speech) and the Klazan word proposed for it. Rows are in
 frequency order (`rank` 1 = the most common content word in TinyStories), so the
 top of the sheet matters most.
 
@@ -15,7 +15,7 @@ top of the sheet matters most.
 | `rank`, `count` | frequency rank / raw count in TinyStories (blank for dwarf-genre extras) |
 | `english`, `pos` | the English sense (NOUN, VERB, ADJ, ADV, INTJ) |
 | `example` | the first TinyStories sentence it appeared in |
-| `proposed` | the proposed Dammaz word |
+| `proposed` | the proposed Klazan word |
 | `origin` | `invented` (generated), `borrowed` (Khazalid), `derived` (root + suffix), `shared` (same word as another sense) |
 | `from_or_base` | for borrowed: the source; for derived: the base (e.g. `@friend/NOUN+LIKE` = friend + `-rak`); for shared: which sense it shares with |
 | `alt1`–`alt3` | alternative generated words; each one is safe to pick on its own |
@@ -59,7 +59,7 @@ in `lexicon/core.yaml`, which you can also edit by hand afterwards.
 Check progress against the coverage target:
 
 ```bash
-uv run python -m dammaz.lexicon status
+uv run python -m klazan.lexicon status
 ```
 
 ## Tips for skimming

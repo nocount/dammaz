@@ -1,7 +1,7 @@
 # Sound check v0
 
 **Purpose:** read these aloud and decide whether this is the sound you want.
-**Nothing here is final.** The words are placeholders picked from `dammaz.wordgen`
+**Nothing here is final.** The words are placeholders picked from `klazan.wordgen`
 output to show the sound; the real lexicon comes in Phase 3. The grammar is the
 Romance-lite draft from `PLAN.md` Phase 2.
 

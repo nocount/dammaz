@@ -1,4 +1,4 @@
-"""English -> Dammaz translation (the normative implementation of grammar.md).
+"""English -> Klazan translation (the normative implementation of grammar.md).
 
     >>> t = Translator()
     >>> t.translate("The old dwarf forged a strong axe.")
@@ -7,10 +7,10 @@
 How it works, per sentence of a spaCy parse:
 
 1. **Phrases** (lexicon/phrases.yaml) are matched first and replace their tokens.
-2. **Lexical choice**: every token gets a Dammaz word and a list of suffix
+2. **Lexical choice**: every token gets a Klazan word and a list of suffix
    tags: function words by rule (§4-5), content words from the lexicon, with
-   adverb and participle folding (dammaz.english), and a loanword fallback
-   (dammaz.loan).
+   adverb and participle folding (klazan.english), and a loanword fallback
+   (klazan.loan).
 3. **Verb groups** (§6): auxiliaries collapse into ``nai`` / ``an`` / ``sar`` +
    a tensed first verb, *do*-support is dropped, and questions get ``wan``.
 4. **Linearization**: the dependency tree is written out in English order,
@@ -33,10 +33,10 @@ from pathlib import Path
 
 import yaml
 
-from dammaz.english import ly_base, participle_verb
-from dammaz.lexicon import LEXICON_DIR, function_words, load_content
-from dammaz.loan import loan
-from dammaz.morphology import inflect
+from klazan.english import ly_base, participle_verb
+from klazan.lexicon import LEXICON_DIR, function_words, load_content
+from klazan.loan import loan
+from klazan.morphology import inflect
 
 # --- closed-class tables (grammar.md §4-5, lexicon/function.yaml) -------------
 
@@ -79,7 +79,7 @@ OPENING_PUNCT = {"(",}
 
 @dataclass
 class Stats:
-    tokens: int = 0            # Dammaz word tokens produced
+    tokens: int = 0            # Klazan word tokens produced
     loans: int = 0
     names: int = 0
     unknown: int = 0           # passed through unchanged (translator gap)
@@ -123,13 +123,13 @@ class Translator:
 
     @cached_property
     def content(self) -> dict[tuple[str, str], str]:
-        return {s: e.dz for e in load_content(lexicon_dir=self.lexicon_dir) for s in e.senses}
+        return {s: e.kz for e in load_content(lexicon_dir=self.lexicon_dir) for s in e.senses}
 
     @cached_property
     def by_lemma(self) -> dict[str, list[tuple[str, str]]]:
         out: dict[str, list[tuple[str, str]]] = {}
-        for (lemma, pos), dz in self.content.items():
-            out.setdefault(lemma, []).append((pos, dz))
+        for (lemma, pos), kz in self.content.items():
+            out.setdefault(lemma, []).append((pos, kz))
         return out
 
     @cached_property
@@ -140,7 +140,7 @@ class Translator:
             for e in w.en:
                 e = e.split(" (")[0].lower()
                 if " " not in e:
-                    out.setdefault(e, w.dz)
+                    out.setdefault(e, w.kz)
         return out
 
     @cached_property
@@ -151,17 +151,17 @@ class Translator:
                 for e in w.en:
                     e = e.split(" (")[0].lower()
                     if " " not in e:
-                        out.setdefault(e, w.dz)
+                        out.setdefault(e, w.kz)
         return out
 
     @cached_property
     def function_verbs(self) -> dict[str, str]:
         out = {}
         for w in function_words():
-            if w.cat == "verb" and w.dz not in ("zu", "throk", "dret"):
+            if w.cat == "verb" and w.kz not in ("zu", "throk", "dret"):
                 for e in w.en:
                     if " " not in e:
-                        out.setdefault(e, w.dz)
+                        out.setdefault(e, w.kz)
         return out
 
     @cached_property
@@ -175,16 +175,16 @@ class Translator:
     def phrases(self) -> list[tuple[list[str], str]]:
         raw = yaml.safe_load((self.lexicon_dir / "phrases.yaml").read_text(encoding="utf-8"))
         out = []
-        for eng, dz in raw["phrases"].items():
-            dz = re.sub(r"\{([^}]+)\}", lambda m: self._phrase_word(m.group(1)), dz)
-            out.append((eng.split(), dz))
+        for eng, kz in raw["phrases"].items():
+            kz = re.sub(r"\{([^}]+)\}", lambda m: self._phrase_word(m.group(1)), kz)
+            out.append((eng.split(), kz))
         return sorted(out, key=lambda p: -len(p[0]))
 
     def _phrase_word(self, spec: str) -> str:
         sense, *tags = spec.split("+")
         lemma, pos = sense.rsplit("/", 1)
-        dz = self.content.get((lemma, pos)) or loan(lemma, pos)
-        return inflect(dz, *tags)
+        kz = self.content.get((lemma, pos)) or loan(lemma, pos)
+        return inflect(kz, *tags)
 
     # -- public API ------------------------------------------------------------
     def translate(self, text: str) -> str:
@@ -199,7 +199,7 @@ class Translator:
         return "\n".join(out), stats
 
     def translate_many(self, texts, batch_size: int = 256, n_process: int = 1):
-        """Yield (dammaz, stats) per input text, parsing all paragraphs of all
+        """Yield (klazan, stats) per input text, parsing all paragraphs of all
         texts in one spaCy pipe (much faster than one call per text)."""
         texts = list(texts)
         paras = [(ti, p) for ti, text in enumerate(texts) for p in text.split("\n")]
@@ -247,10 +247,10 @@ class Translator:
         low = [t.lower_ for t in toks]
         i = 0
         while i < len(toks):
-            for words, dz in self.phrases:
+            for words, kz in self.phrases:
                 if low[i:i + len(words)] == words and not any(
                         toks[j].i in consumed for j in range(i, i + len(words))):
-                    outs[toks[i].i] = Out(words=[(w, ()) for w in dz.split()])
+                    outs[toks[i].i] = Out(words=[(w, ()) for w in kz.split()])
                     for j in range(i + 1, i + len(words)):
                         outs[toks[j].i] = Out(words=[])
                     consumed |= {toks[j].i for j in range(i, i + len(words))}
@@ -336,8 +336,8 @@ class Translator:
         if low in REFLEXIVES:
             return Out(words=[(REFLEXIVES[low], ()), ("keb", ())])
         if tag == "PRP$" or (low in ("mine", "yours", "hers", "ours", "theirs") and pos == "PRON"):
-            dz = POSSESSIVES.get(low, "eka")
-            return Out(words=[("uzara" if formal and dz == "uza" else dz, ())])
+            kz = POSSESSIVES.get(low, "eka")
+            return Out(words=[("uzara" if formal and kz == "uza" else kz, ())])
         if low in ("all", "guys") and t.i > 0 and t.nbor(-1).lower_ == "you":
             return Out(words=[])                 # "you all" -> af
         if tag == "PRP" or (pos == "PRON" and low in PRONOUNS):
@@ -396,9 +396,9 @@ class Translator:
         if pos in ("DET", "ADP", "CCONJ", "SCONJ", "PART", "PRON") or (
                 pos in ("ADV", "INTJ") and (low in self.function or lemma in self.function)
                 and not self._content_word(lemma, pos)):
-            dz = self.function.get(low) or self.function.get(lemma)
-            if dz:
-                return Out(words=[(dz, ())])
+            kz = self.function.get(low) or self.function.get(lemma)
+            if kz:
+                return Out(words=[(kz, ())])
         return self._content(t)
 
     def _content_word(self, lemma: str, pos: str) -> str | None:
@@ -440,9 +440,9 @@ class Translator:
             order = {"NOUN": ("VERB", "ADJ"), "VERB": ("NOUN", "ADJ"),
                      "ADJ": ("NOUN", "VERB"), "INTJ": ("ADJ", "NOUN", "VERB")}[pos]
             for p in order:
-                for bp, dz in self.by_lemma[lemma]:
+                for bp, kz in self.by_lemma[lemma]:
                     if bp == p:
-                        return Out(words=[(dz, tags)])
+                        return Out(words=[(kz, tags)])
         # a capitalized word mid-sentence that isn't in the lexicon is a name
         # the tagger missed ("Lily" tagged ADJ)
         prev = t.nbor(-1) if t.i > t.sent.start else None
@@ -579,7 +579,7 @@ class Translator:
 
     def _elliptical_aux(self, v, negs, outs: dict[int, Out]) -> None:
         """A bare auxiliary as the predicate: "Yes, I can." / "I did." / "She will."
-        Dammaz repeats a verb: throk (can), dret (must), or the verb 'do'."""
+        Klazan repeats a verb: throk (can), dret (must), or the verb 'do'."""
         do = self.content.get(("do", "VERB")) or loan("do", "VERB")
         low, lemma = v.lower_, v.lemma_.lower()
         past = v.tag_ == "VBD"

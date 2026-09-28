@@ -1,9 +1,9 @@
-"""Translate an English story corpus into Dammaz, as parallel JSONL.
+"""Translate an English story corpus into Klazan, as parallel JSONL.
 
     uv run --group nlp python tools/translate_corpus.py data/raw/TinyStoriesV2-GPT4-valid.txt \\
-        --limit 300 --out data/dz/tinystories_sample.jsonl
+        --limit 300 --out data/kz/tinystories_sample.jsonl
 
-Each output line: {"id", "source", "en", "dz", "lexicon_version", "words",
+Each output line: {"id", "source", "en", "kz", "lexicon_version", "words",
 "loans", "loan_rate", "unknown"}. A summary (loan rate, most frequent loans =
 the lexicon's to-do list, any unknown tokens = translator gaps, throughput) is
 printed at the end. Phase 5 builds the training shards on top of this.
@@ -24,8 +24,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from coverage import iter_stories  # noqa: E402
 
-from dammaz import __version__  # noqa: E402
-from dammaz.translate import Stats, Translator  # noqa: E402
+from klazan import __version__  # noqa: E402
+from klazan.translate import Stats, Translator  # noqa: E402
 
 
 def main() -> None:
@@ -43,11 +43,11 @@ def main() -> None:
     t0 = time.time()
     args.out.parent.mkdir(parents=True, exist_ok=True)
     with args.out.open("w", encoding="utf-8") as f:
-        for i, (en, (dz, st)) in enumerate(zip(stories, tr.translate_many(
+        for i, (en, (kz, st)) in enumerate(zip(stories, tr.translate_many(
                 stories, n_process=args.processes))):
             total.add(st)
             f.write(json.dumps({
-                "id": f"{args.source}-{i}", "source": args.source, "en": en, "dz": dz,
+                "id": f"{args.source}-{i}", "source": args.source, "en": en, "kz": kz,
                 "lexicon_version": __version__, "words": st.tokens, "loans": st.loans,
                 "loan_rate": round(st.loan_rate, 4), "unknown": st.unknown,
             }, ensure_ascii=False) + "\n")
@@ -55,7 +55,7 @@ def main() -> None:
     en_words = sum(len(s.split()) for s in stories)
     print(f"{len(stories)} stories, {en_words:,} English words in {dt:.1f}s "
           f"({en_words / dt:,.0f} words/s)")
-    print(f"Dammaz words: {total.tokens:,}; loans {total.loans:,} ({total.loan_rate:.2%}); "
+    print(f"Klazan words: {total.tokens:,}; loans {total.loans:,} ({total.loan_rate:.2%}); "
           f"names {total.names:,}; unknown {total.unknown:,}")
     print("top loans:", ", ".join(f"{w} {n}" for w, n in total.loan_words.most_common(40)))
     if total.unknown:

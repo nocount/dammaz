@@ -1,6 +1,6 @@
 import pytest
 
-from dammaz.phonology import check_root, segment, shape
+from klazan.phonology import check_root, segment, shape
 
 
 @pytest.mark.parametrize("word, segs", [

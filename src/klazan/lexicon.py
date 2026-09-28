@@ -1,23 +1,23 @@
 """Load, validate and compile the lexicon (source of truth: lexicon/*.yaml).
 
 Files:
-    lexicon/function.yaml   closed class (grammar.md); entries with dz/en/cat
-    lexicon/core.yaml       content words, tier 1   } entries with dz/en/origin
+    lexicon/function.yaml   closed class (grammar.md); entries with kz/en/cat
+    lexicon/core.yaml       content words, tier 1   } entries with kz/en/origin
     lexicon/extended.yaml   content words, tier 2   }
 
-A content entry is one Dammaz word with one or more English senses written
+A content entry is one Klazan word with one or more English senses written
 ``lemma/POS`` (POS in NOUN VERB ADJ ADV INTJ)::
 
-    - {dz: drash,   en: [forge/VERB],                  origin: invented}
-    - {dz: drashki, en: [smith/NOUN, blacksmith/NOUN], origin: derived, base: drash+AGT}
-    - {dz: dawi,    en: [dwarf/NOUN],                  origin: borrowed, from: "Khazalid dawi"}
+    - {kz: drash,   en: [forge/VERB],                  origin: invented}
+    - {kz: drashki, en: [smith/NOUN, blacksmith/NOUN], origin: derived, base: drash+AGT}
+    - {kz: dawi,    en: [dwarf/NOUN],                  origin: borrowed, from: "Khazalid dawi"}
 
 CLI::
 
-    uv run python -m dammaz.lexicon check     # validate; exit 1 on errors
-    uv run python -m dammaz.lexicon build     # validate + write build/lexicon.json
-    uv run python -m dammaz.lexicon status    # coverage against lexicon/targets/
-    uv run python -m dammaz.lexicon fingerprint   # version hashes stamped on corpora
+    uv run python -m klazan.lexicon check     # validate; exit 1 on errors
+    uv run python -m klazan.lexicon build     # validate + write build/lexicon.json
+    uv run python -m klazan.lexicon status    # coverage against lexicon/targets/
+    uv run python -m klazan.lexicon fingerprint   # version hashes stamped on corpora
 """
 
 from __future__ import annotations
@@ -60,14 +60,14 @@ def _strings(entry: dict, key: str) -> tuple[str, ...]:
     vals = entry[key]
     bad = [v for v in vals if not isinstance(v, str)]
     if bad:
-        raise ValueError(f"{entry['dz']}: non-string {key} values {bad} "
+        raise ValueError(f"{entry['kz']}: non-string {key} values {bad} "
                          "(quote yes/no/on/off/true/false in the YAML)")
     return tuple(vals)
 
 
 @dataclass(frozen=True)
 class FunctionWord:
-    dz: str
+    kz: str
     en: tuple[str, ...]
     cat: str
     origin: str
@@ -81,7 +81,7 @@ class FunctionWord:
 
 @dataclass(frozen=True)
 class Entry:
-    dz: str
+    kz: str
     senses: tuple[tuple[str, str], ...]        # ((lemma, POS), ...)
     origin: str
     tier: str
@@ -108,20 +108,20 @@ def _load_yaml(path: Path) -> list[dict]:
 @cache
 def function_words() -> tuple[FunctionWord, ...]:
     return tuple(
-        FunctionWord(dz=e["dz"], en=_strings(e, "en"), cat=e["cat"], origin=e["origin"],
+        FunctionWord(kz=e["kz"], en=_strings(e, "en"), cat=e["cat"], origin=e["origin"],
                      source=e.get("from", ""), notes=e.get("notes", ""))
         for e in _load_yaml(LEXICON_DIR / "function.yaml")
     )
 
 
 def function_word_map() -> dict[str, FunctionWord]:
-    return {w.dz: w for w in function_words()}
+    return {w.kz: w for w in function_words()}
 
 
-def _parse_sense(s: str, dz: str) -> tuple[str, str]:
+def _parse_sense(s: str, kz: str) -> tuple[str, str]:
     lemma, _, pos = s.rpartition("/")
     if not lemma or pos not in CONTENT_POS:
-        raise ValueError(f"{dz}: bad sense {s!r} (want lemma/POS, POS in {CONTENT_POS})")
+        raise ValueError(f"{kz}: bad sense {s!r} (want lemma/POS, POS in {CONTENT_POS})")
     return lemma, pos
 
 
@@ -131,8 +131,8 @@ def load_content(files: tuple[str, ...] = CONTENT_FILES,
     for name in files:
         for e in _load_yaml((lexicon_dir or LEXICON_DIR) / name):
             out.append(Entry(
-                dz=e["dz"],
-                senses=tuple(_parse_sense(s, e["dz"]) for s in _strings(e, "en")),
+                kz=e["kz"],
+                senses=tuple(_parse_sense(s, e["kz"]) for s in _strings(e, "en")),
                 origin=e["origin"], tier=name.removesuffix(".yaml"),
                 source=e.get("from", ""), base=e.get("base", ""), notes=e.get("notes", ""),
             ))
@@ -166,19 +166,19 @@ def _within_one(a: str, b: str) -> bool:
 
 def paradigm(entry: Entry) -> dict[str, tuple[str, ...]]:
     """All inflected forms of a content entry: form -> tags."""
-    from dammaz.morphology import inflect
+    from klazan.morphology import inflect
     forms: dict[str, tuple[str, ...]] = {}
     for pos in sorted(entry.pos):
         for tags in PARADIGM[pos]:
-            forms[inflect(entry.dz, *tags)] = tags
+            forms[inflect(entry.kz, *tags)] = tags
     return forms
 
 
 def validate(content: tuple[Entry, ...] | None = None,
              functions: tuple[FunctionWord, ...] | None = None) -> Report:
-    from dammaz.morphology import inflect
-    from dammaz.phonology import check_root
-    from dammaz.wordgen import PROFANE_EXACT, PROFANE_SUBSTR, _english
+    from klazan.morphology import inflect
+    from klazan.phonology import check_root
+    from klazan.wordgen import PROFANE_EXACT, PROFANE_SUBSTR, _english
 
     content = load_content() if content is None else content
     functions = function_words() if functions is None else functions
@@ -191,61 +191,61 @@ def validate(content: tuple[Entry, ...] | None = None,
     # 1. unique spellings across the whole lexicon
     seen: dict[str, str] = {}
     for w in functions:
-        seen[w.dz] = "function"
+        seen[w.kz] = "function"
     for e in content:
-        if e.dz in seen:
-            rep.errors.append(f"{e.dz}: spelling already used ({seen[e.dz]})")
-        seen[e.dz] = e.tier
+        if e.kz in seen:
+            rep.errors.append(f"{e.kz}: spelling already used ({seen[e.kz]})")
+        seen[e.kz] = e.tier
 
     # 2. each English lemma/POS maps to exactly one content word
     sense_owner: dict[tuple[str, str], str] = {}
     for e in content:
         for s in e.senses:
-            if s in sense_owner and sense_owner[s] != e.dz:
-                rep.errors.append(f"{s[0]}/{s[1]}: mapped to both {sense_owner[s]} and {e.dz}")
-            sense_owner[s] = e.dz
+            if s in sense_owner and sense_owner[s] != e.kz:
+                rep.errors.append(f"{s[0]}/{s[1]}: mapped to both {sense_owner[s]} and {e.kz}")
+            sense_owner[s] = e.kz
 
-    by_dz = {e.dz: e for e in content} | {w.dz: w for w in functions}
+    by_kz = {e.kz: e for e in content} | {w.kz: w for w in functions}
     n_borrowed = sum(w.origin == "borrowed" for w in functions)
     for e in content:
         # 3. origin rules
         if e.origin not in ORIGINS:
-            rep.errors.append(f"{e.dz}: unknown origin {e.origin!r}")
+            rep.errors.append(f"{e.kz}: unknown origin {e.origin!r}")
         elif e.origin == "invented":
-            if problems := check_root(e.dz):
-                rep.errors.append(f"{e.dz}: illegal root ({'; '.join(problems)})")
-            if e.dz in english:
-                rep.errors.append(f"{e.dz}: invented root is an English word")
+            if problems := check_root(e.kz):
+                rep.errors.append(f"{e.kz}: illegal root ({'; '.join(problems)})")
+            if e.kz in english:
+                rep.errors.append(f"{e.kz}: invented root is an English word")
         elif e.origin == "borrowed":
             n_borrowed += 1
             if not e.source:
-                rep.errors.append(f"{e.dz}: borrowed word needs a 'from'")
+                rep.errors.append(f"{e.kz}: borrowed word needs a 'from'")
         elif e.origin == "derived":
             root, *tags = e.base.split("+") if e.base else ("",)
-            if root not in by_dz:
-                rep.errors.append(f"{e.dz}: base root {root!r} is not in the lexicon")
+            if root not in by_kz:
+                rep.errors.append(f"{e.kz}: base root {root!r} is not in the lexicon")
             else:
                 try:
-                    if inflect(root, *tags) != e.dz:
-                        rep.errors.append(f"{e.dz}: {e.base} gives {inflect(root, *tags)!r}")
+                    if inflect(root, *tags) != e.kz:
+                        rep.errors.append(f"{e.kz}: {e.base} gives {inflect(root, *tags)!r}")
                 except ValueError as err:
-                    rep.errors.append(f"{e.dz}: bad derivation {e.base!r} ({err})")
-            if e.dz in english:
-                rep.warnings.append(f"{e.dz} ({e.base}) is an English word")
-        if profane(e.dz):
-            rep.errors.append(f"{e.dz}: profane")
+                    rep.errors.append(f"{e.kz}: bad derivation {e.base!r} ({err})")
+            if e.kz in english:
+                rep.warnings.append(f"{e.kz} ({e.base}) is an English word")
+        if profane(e.kz):
+            rep.errors.append(f"{e.kz}: profane")
 
     if n_borrowed > MAX_BORROWED:
         rep.warnings.append(f"{n_borrowed} borrowed words (budget {MAX_BORROWED})")
 
     # 4. roots of 3+ letters must be >1 edit apart (derived words are exempt:
     #    they're transparent). Function words count as roots here.
-    roots = sorted({e.dz for e in content if e.origin != "derived"}
-                   | {w.dz for w in functions if w.origin != "derived"})
+    roots = sorted({e.kz for e in content if e.origin != "derived"}
+                   | {w.kz for w in functions if w.origin != "derived"})
     by_len: dict[int, list[str]] = defaultdict(list)
     for r in roots:
         by_len[len(r)].append(r)
-    content_roots = {e.dz for e in content if e.origin != "derived"}
+    content_roots = {e.kz for e in content if e.origin != "derived"}
     for r in roots:
         if len(r) < 3:
             continue
@@ -260,8 +260,8 @@ def validate(content: tuple[Entry, ...] | None = None,
     form_owner: dict[str, str] = {}
     for e in content:
         for form, tags in paradigm(e).items():
-            label = f"{e.dz}+{'+'.join(tags)}"
-            if form in seen and form != e.dz:
+            label = f"{e.kz}+{'+'.join(tags)}"
+            if form in seen and form != e.kz:
                 rep.errors.append(f"{label} = {form!r}, which is already a lexicon word")
             if form in form_owner and form_owner[form] != label:
                 rep.errors.append(f"{label} and {form_owner[form]} both give {form!r}")
@@ -312,11 +312,11 @@ def build(path: Path = BUILD) -> Path:
     content = load_content()
     rep = validate(content)
     if not rep.ok:
-        raise SystemExit("lexicon has errors; run `python -m dammaz.lexicon check`")
+        raise SystemExit("lexicon has errors; run `python -m klazan.lexicon check`")
     en_index: dict[str, str] = {}
     for e in content:
         for lemma, pos in e.senses:
-            en_index[f"{lemma}/{pos}"] = e.dz
+            en_index[f"{lemma}/{pos}"] = e.kz
     out = {
         "function": [asdict(w) for w in function_words()],
         "content": [asdict(e) | {"forms": paradigm(e)} for e in content],

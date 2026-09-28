@@ -1,4 +1,4 @@
-"""Generate and rank candidate Dammaz roots.
+"""Generate and rank candidate Klazan roots.
 
 Two parts:
 
@@ -18,14 +18,14 @@ Candidates are then filtered:
 * identical to a Khazalid/Zharralid word -> dropped (borrowing is a deliberate
   lexicon decision, not an accident). Needs references/raw/source_words.tsv;
   skipped with a warning if absent.
-* within edit distance 1 of an existing Dammaz word -> dropped
+* within edit distance 1 of an existing Klazan word -> dropped
 * within edit distance 1 of a common English word or a source word -> flagged
   (kept, but shown so a human can judge)
 
 CLI::
 
-    uv run python -m dammaz.wordgen -n 30 --syllables 2
-    uv run python -m dammaz.wordgen --score karak grund zhorvash
+    uv run python -m klazan.wordgen -n 30 --syllables 2
+    uv run python -m klazan.wordgen --score karak grund zhorvash
 """
 
 from __future__ import annotations
@@ -44,7 +44,7 @@ from functools import cache
 from importlib import resources
 from pathlib import Path
 
-from dammaz.phonology import check_root, segment, spec
+from klazan.phonology import check_root, segment, spec
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE_WORDS = ROOT / "references" / "raw" / "source_words.tsv"
@@ -66,7 +66,7 @@ PROFANE_SUBSTR = ("fuck", "shit", "cunt", "nig", "fag", "kkk", "rape", "nazi",
 
 @cache
 def _stats() -> dict:
-    return json.loads(resources.files("dammaz.data").joinpath("source_stats.json")
+    return json.loads(resources.files("klazan.data").joinpath("source_stats.json")
                       .read_text(encoding="utf-8"))
 
 
@@ -251,7 +251,7 @@ class WordGen:
         if word in self.source_exact:
             return "identical to a Khazalid/Zharralid word"
         if word in self.existing_exact or self.existing.near(word):
-            return "too close to an existing Dammaz word"
+            return "too close to an existing Klazan word"
         return None
 
     def flags(self, word: str) -> list[str]:
@@ -293,7 +293,7 @@ class WordGen:
 
 
 def segment_nuclei(word: str) -> list[str]:
-    from dammaz.phonology import shape
+    from klazan.phonology import shape
     return list(shape(word).nuclei)
 
 

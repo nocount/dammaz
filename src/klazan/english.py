@@ -1,6 +1,6 @@
 """English-side normalization shared by tools/coverage.py and the translator.
 
-Dammaz expresses some English word classes through other words, so they need
+Klazan expresses some English word classes through other words, so they need
 no lexicon entry of their own:
 
 * adverbs      quickly -> quick/ADJ + ADV (-ul);  run fast -> fast/ADJ + ADV

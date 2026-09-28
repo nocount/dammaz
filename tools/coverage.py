@@ -5,13 +5,13 @@ Every word token is put in one bucket:
     number    NUM / digits: handled by numerals (grammar.md §9)
     name      PROPN: passes through unchanged
     function  covered by lexicon/function.yaml (category-compatible POS)
-    absorbed  English grammar that Dammaz expresses without a word of its own
+    absorbed  English grammar that Klazan expresses without a word of its own
               (do-support, perfect 'have', 'will' -> an, 'to' before verbs...)
     content   needs a lexicon entry; keyed by (lemma, POS)
     fgap      a closed-class word (ADP, PART, ...) NOT covered by function.yaml
 
 '-ly' adverbs are folded into their adjective (quickly -> quick/ADJ), because
-Dammaz derives them with -ul. Punctuation, whitespace and symbols are ignored.
+Klazan derives them with -ul. Punctuation, whitespace and symbols are ignored.
 
 Writes (default names for TinyStories):
     lexicon/targets/<name>_lemmas.tsv   content worklist, ranked, with coverage
@@ -34,8 +34,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import yaml  # noqa: E402
 
-from dammaz.english import ly_base, participle_verb  # noqa: E402
-from dammaz.lexicon import function_words  # noqa: E402
+from klazan.english import ly_base, participle_verb  # noqa: E402
+from klazan.lexicon import function_words  # noqa: E402
 
 CORRECTIONS = ROOT / "lexicon" / "targets" / "corrections.yaml"
 
@@ -58,7 +58,7 @@ CAT_POS = {
     "verb": {"VERB", "AUX"},
 }
 
-# English grammar words Dammaz absorbs into structure (grammar.md §6, §11).
+# English grammar words Klazan absorbs into structure (grammar.md §6, §11).
 ABSORBED = {
     ("be", "AUX"), ("have", "AUX"), ("do", "AUX"), ("will", "AUX"), ("would", "AUX"),
     ("shall", "AUX"), ("should", "AUX"), ("may", "AUX"), ("might", "AUX"),
@@ -174,7 +174,7 @@ def main() -> None:
             buckets["absorbed"] += n
 
     # Fold adverbs into their adjective: -ly adverbs (quickly -> quick) and
-    # flat adverbs with the same lemma (run fast -> fast/ADJ). Dammaz derives
+    # flat adverbs with the same lemma (run fast -> fast/ADJ). Klazan derives
     # both with -ul, so they need no entry of their own.
     folded = 0
     for (lemma, pos), c in list(content.items()):
@@ -188,7 +188,7 @@ def main() -> None:
                 break
 
     # Fold participle adjectives into their verb (scared -> scare/VERB,
-    # amazing -> amaze/VERB): Dammaz uses the verb's PST/PROG form (§6.5).
+    # amazing -> amaze/VERB): Klazan uses the verb's PST/PROG form (§6.5).
     verbs = {l for (l, p) in content if p == "VERB"}
     part_folded = 0
     for (lemma, pos), c in list(content.items()):

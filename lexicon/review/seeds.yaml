@@ -1,72 +1,72 @@
 # Hand-curated starting points for tools/propose.py. Anything not seeded here
-# gets a freshly generated root (dammaz.wordgen). Nothing in this file is final:
+# gets a freshly generated root (klazan.wordgen). Nothing in this file is final:
 # every seeded word still goes through the review CSV.
 #
 # Sense keys are lemma/POS. Each value is one of:
-#   {dz: X, origin: invented|borrowed, from: "..."}   a fixed word
+#   {kz: X, origin: invented|borrowed, from: "..."}   a fixed word
 #   {base: "@lemma/POS+TAG"}                          derived from another sense's word
-#   {base: "root+TAG"}                                derived from a known Dammaz root
+#   {base: "root+TAG"}                                derived from a known Klazan root
 #   {same: lemma/POS}                                 share another sense's word (synonym)
 
 senses:
   # --- borrowed from Khazalid (content words; budget: see lexicon.MAX_BORROWED) ---
-  dwarf/NOUN:    {dz: dawi,   origin: borrowed, from: "Khazalid dawi 'dwarfs'"}
-  mountain/NOUN: {dz: karak,  origin: borrowed, from: "Khazalid karak 'mountain, stronghold'"}
-  axe/NOUN:      {dz: az,     origin: borrowed, from: "Khazalid az 'war axe'"}
-  hall/NOUN:     {dz: khaz,   origin: borrowed, from: "Khazalid khaz 'underground hall'"}
-  hammer/NOUN:   {dz: grund,  origin: borrowed, from: "Khazalid grund 'hammer'"}
-  king/NOUN:     {dz: rik,    origin: borrowed, from: "Khazalid rik 'king, lord'"}
-  queen/NOUN:    {dz: rinn,   origin: borrowed, from: "Khazalid rinn 'lady dwarf, king's consort'"}
-  grudge/NOUN:   {dz: dammaz, origin: borrowed, from: "Khazalid dammaz 'grudge'"}
-  goblin/NOUN:   {dz: grobi,  origin: borrowed, from: "Khazalid grobi 'goblin'"}
-  elf/NOUN:      {dz: elgi,   origin: borrowed, from: "Khazalid elgi 'elves, unbearded'"}
-  man/NOUN:      {dz: umgi,   origin: borrowed, from: "Khazalid umgi 'humans, manlings'"}
+  dwarf/NOUN:    {kz: dawi,   origin: borrowed, from: "Khazalid dawi 'dwarfs'"}
+  mountain/NOUN: {kz: karak,  origin: borrowed, from: "Khazalid karak 'mountain, stronghold'"}
+  axe/NOUN:      {kz: az,     origin: borrowed, from: "Khazalid az 'war axe'"}
+  hall/NOUN:     {kz: khaz,   origin: borrowed, from: "Khazalid khaz 'underground hall'"}
+  hammer/NOUN:   {kz: grund,  origin: borrowed, from: "Khazalid grund 'hammer'"}
+  king/NOUN:     {kz: rik,    origin: borrowed, from: "Khazalid rik 'king, lord'"}
+  queen/NOUN:    {kz: rinn,   origin: borrowed, from: "Khazalid rinn 'lady dwarf, king's consort'"}
+  grudge/NOUN:   {kz: dammaz, origin: borrowed, from: "Khazalid dammaz 'grudge'"}
+  goblin/NOUN:   {kz: grobi,  origin: borrowed, from: "Khazalid grobi 'goblin'"}
+  elf/NOUN:      {kz: elgi,   origin: borrowed, from: "Khazalid elgi 'elves, unbearded'"}
+  man/NOUN:      {kz: umgi,   origin: borrowed, from: "Khazalid umgi 'humans, manlings'"}
   human/NOUN:    {same: man/NOUN}
-  dragon/NOUN:   {dz: drakk,  origin: borrowed, from: "Khazalid drakk 'dragon'"}
-  book/NOUN:     {dz: kron,   origin: borrowed, from: "Khazalid kron 'book, record'"}
-  beard/NOUN:    {dz: tromm,  origin: borrowed, from: "Khazalid tromm 'beard; respect due to age'"}
-  anvil/NOUN:    {dz: grong,  origin: borrowed, from: "Khazalid grong 'anvil'"}
+  dragon/NOUN:   {kz: drakk,  origin: borrowed, from: "Khazalid drakk 'dragon'"}
+  book/NOUN:     {kz: kron,   origin: borrowed, from: "Khazalid kron 'book, record'"}
+  beard/NOUN:    {kz: tromm,  origin: borrowed, from: "Khazalid tromm 'beard; respect due to age'"}
+  anvil/NOUN:    {kz: grong,  origin: borrowed, from: "Khazalid grong 'anvil'"}
   mine/VERB:     {same: dig/VERB}
 
   # --- kept from the approved sound check (samples/sound_check_v0.md) ----------
-  old/ADJ:       {dz: dhal,   origin: invented}
-  strong/ADJ:    {dz: krang,  origin: invented}
-  deep/ADJ:      {dz: orn,    origin: invented}
-  big/ADJ:       {dz: gorz,   origin: invented}
-  dark/ADJ:      {dz: skom,   origin: invented}
-  forge/VERB:    {dz: drash,  origin: invented}
-  drink/VERB:    {dz: glok,   origin: invented}
-  remember/VERB: {dz: unguz,  origin: invented}
-  come/VERB:     {dz: vun,    origin: invented}
-  see/VERB:      {dz: thiz,   origin: invented}
-  speak/VERB:    {dz: kend,   origin: invented}
+  old/ADJ:       {kz: dhal,   origin: invented}
+  strong/ADJ:    {kz: krang,  origin: invented}
+  deep/ADJ:      {kz: orn,    origin: invented}
+  big/ADJ:       {kz: gorz,   origin: invented}
+  dark/ADJ:      {kz: skom,   origin: invented}
+  forge/VERB:    {kz: drash,  origin: invented}
+  drink/VERB:    {kz: glok,   origin: invented}
+  remember/VERB: {kz: unguz,  origin: invented}
+  come/VERB:     {kz: vun,    origin: invented}
+  see/VERB:      {kz: thiz,   origin: invented}
+  speak/VERB:    {kz: kend,   origin: invented}
   talk/VERB:     {same: speak/VERB}
-  make/VERB:     {dz: drand,  origin: invented}
-  slay/VERB:     {dz: khurk,  origin: invented}
+  make/VERB:     {kz: drand,  origin: invented}
+  slay/VERB:     {kz: khurk,  origin: invented}
   kill/VERB:     {same: slay/VERB}
-  fight/VERB:    {dz: skraf,  origin: invented}
-  go/VERB:       {dz: truk,   origin: invented}
-  know/VERB:     {dz: zork,   origin: invented}
-  work/VERB:     {dz: krez,   origin: invented}
-  ale/NOUN:      {dz: bral,   origin: invented}
+  fight/VERB:    {kz: skraf,  origin: invented}
+  go/VERB:       {kz: truk,   origin: invented}
+  know/VERB:     {kz: zork,   origin: invented}
+  work/VERB:     {kz: krez,   origin: invented}
+  ale/NOUN:      {kz: bral,   origin: invented}
   beer/NOUN:     {same: ale/NOUN}
-  brother/NOUN:  {dz: zaka,   origin: invented}
-  gold/NOUN:     {dz: gleth,  origin: invented}
-  clan/NOUN:     {dz: thaluk, origin: invented}
-  ancestor/NOUN: {dz: urdak,  origin: invented}
-  enemy/NOUN:    {dz: skreka, origin: invented}
-  fire/NOUN:     {dz: dhrak,  origin: invented}
-  tunnel/NOUN:   {dz: skung,  origin: invented}
+  brother/NOUN:  {kz: zaka,   origin: invented}
+  gold/NOUN:     {kz: gleth,  origin: invented}
+  clan/NOUN:     {kz: thaluk, origin: invented}
+  ancestor/NOUN: {kz: urdak,  origin: invented}
+  enemy/NOUN:    {kz: skreka, origin: invented}
+  fire/NOUN:     {kz: dhrak,  origin: invented}
+  tunnel/NOUN:   {kz: skung,  origin: invented}
   promise/NOUN:  {same: oath/NOUN}
-  stone/NOUN:    {dz: kurm,   origin: invented}
+  stone/NOUN:    {kz: kurm,   origin: invented}
   rock/NOUN:     {same: stone/NOUN}
-  iron/NOUN:     {dz: zath,   origin: invented}
-  song/NOUN:     {dz: iza,    origin: invented}
-  road/NOUN:     {dz: gont,   origin: invented}
+  iron/NOUN:     {kz: zath,   origin: invented}
+  song/NOUN:     {kz: iza,    origin: invented}
+  road/NOUN:     {kz: gont,   origin: invented}
   path/NOUN:     {same: road/NOUN}
   door/NOUN:     {same: gate/NOUN}
-  day/NOUN:      {dz: zeng,   origin: invented}
-  night/NOUN:    {dz: mulok,  origin: invented}
+  day/NOUN:      {kz: zeng,   origin: invented}
+  night/NOUN:    {kz: mulok,  origin: invented}
 
   # --- derived (grammar.md §2) ----------------------------------------------------
   sing/VERB:      {base: "@song/NOUN+VBZ"}

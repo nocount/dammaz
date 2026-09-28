@@ -1,18 +1,18 @@
-# Dammaz grammar (v0.1, draft)
+# Klazan grammar (v0.1, draft)
 
-This is the **normative** grammar. The translator (`dammaz.translate`), the
+This is the **normative** grammar. The translator (`klazan.translate`), the
 glosser and the validator implement exactly what this document says, and
 anything they do that isn't written here is a bug in one or the other. It
 supersedes the Phase 2 sketch in `PLAN.md`.
 
 | | Lives in |
 |---|---|
-| Suffix mechanics | [`src/dammaz/morphology.py`](../src/dammaz/morphology.py) |
+| Suffix mechanics | [`src/klazan/morphology.py`](../src/klazan/morphology.py) |
 | Function words | [`lexicon/function.yaml`](../lexicon/function.yaml) |
 | Sounds and spelling | [`phonology.md`](phonology.md) |
 
 **Examples** use the placeholder vocabulary in
-[`samples/vocab_v0.yaml`](../samples/vocab_v0.yaml). Every `dz` example block is
+[`samples/vocab_v0.yaml`](../samples/vocab_v0.yaml). Every `kz` example block is
 checked by `tests/test_grammar_examples.py`: each word must be known, each
 `word-TAG` gloss must match what `morphology.inflect` produces, and the gloss must
 have one entry per word.
@@ -45,14 +45,14 @@ have one entry per word.
 - **Suffixes only**, each with one job, attached in a fixed order (§2).
 - **No irregular forms.** Even the copula `zu` is regular (`zu`, past `zad`).
 
-```dz
+```kz
 Ta dawi dhal drashad un az krang bin ta karak.
 the dwarf old forge-PST a axe strong in the mountain
 "The old dwarf forged a strong axe in the mountain."
 ```
 
 In glosses, `forge-PST` means "the word for *forge* + the past suffix". Written
-Dammaz never hyphenates suffixes.
+Klazan never hyphenates suffixes.
 
 ---
 
@@ -91,7 +91,7 @@ Any number of derivational suffixes come first, then at most one degree
 suffix, then at most one inflection. There is never more than one inflectional
 suffix, so a plural past is impossible, and a past-tense noun isn't a thing.
 
-```dz
+```kz
 Ta drashkin krez.
 the forge-AGT-PL work
 "The smiths work."
@@ -129,13 +129,13 @@ produce the same spelling, or if a form is an English or profane word
 
 Things that *count or point* go before the noun. Things that *describe* go after it.
 
-```dz
+```kz
 ta tuf azi krang
 the two axe-PL strong
 "the two strong axes"
 ```
 
-```dz
+```kz
 zid khaz orn a ta rik
 this hall deep of the king
 "this deep hall of the king"
@@ -159,13 +159,13 @@ Plural is marked on the noun, always, even after numerals and quantifiers:
 The possessed thing comes first, then `a` + the possessor. English `'s` is
 rewritten this way.
 
-```dz
+```kz
 Ta grund a ta rik zu gorz.
 the hammer of the king be big
 "The king's hammer is big."
 ```
 
-```dz
+```kz
 ta az a Borin
 the axe of Borin
 "Borin's axe"
@@ -196,13 +196,13 @@ It is a derivational suffix, so the plural comes after it (`dawit → dawiti`):
 | child → *kid* | young/informal |
 | mom → *mommy* | affectionate (hypocoristic) |
 
-```dz
+```kz
 Ta dawit glokad bral.
 the dwarf-DIM drink-PST ale
 "The beardling drank ale."
 ```
 
-```dz
+```kz
 Ora glangit an truk zol ut.
 I-POSS dog-DIM FUT go with we
 "My puppy will go with us."
@@ -235,7 +235,7 @@ The same stem can't also be a root: roots never end in `-it` (`phonology.md`).
 - **Dummy subjects** (*it* in *it is dark*, *there* in *there was a dwarf*) are
   dropped, and the sentence starts with the verb (§6.3).
 
-```dz
+```kz
 Or thizad ora keb bin ta gleth.
 I see-PST I-POSS self in the gold
 "I saw myself in the gold."
@@ -255,13 +255,13 @@ form of address, for **one person or many**, like German *Sie*. Its possessive i
 | Strangers of rank | |
 | The words of an oath | |
 
-```dz
+```kz
 Uzar zu ta rik a zid karak.
 you.FML be the king of this mountain
 "You are the king of this mountain."
 ```
 
-```dz
+```kz
 Ora rik, wan uzar narg uzara az?
 I-POSS king Q you.FML want your.FML axe
 "My king, do you want your axe?"
@@ -282,7 +282,7 @@ Phase 4 will make the exact list and scope rules precise.
 ## 5. Correlatives: this / that / which / some / all / no
 
 Six bases combine with five suffixes into one regular table. This is the
-Dammaz version of *this, here, now, what, where, when, nobody, never…* The bare
+Klazan version of *this, here, now, what, where, when, nobody, never…* The bare
 base is a determiner (`zid az` "this axe", `wor az` "which axe").
 
 | Base | + `-ak` thing | + `-ki` person | + `-az` place | + `-ur` time | + `-ul` manner |
@@ -302,13 +302,13 @@ conjunction `os` "because".
 - **No double negatives.** A `nar-` word already negates. English *not ... any-*
   becomes either `nai ... sal-` or a `nar-` word, whichever the English used:
 
-  ```dz
+  ```kz
   Or nai thiz salak.
   I NEG see some-THING
   "I don't see anything."
   ```
 
-  ```dz
+  ```kz
   Or thiz narak.
   I see no-THING
   "I see nothing."
@@ -333,19 +333,19 @@ conjunction `os` "because".
 
 Verbs never agree with their subject: `or truk`, `ek truk`, `um truk`.
 
-```dz
+```kz
 Ta grobin vunad rof ta skungi skom.
 the goblin-PL come-PST from the tunnel-PL dark
 "The goblins came from the dark tunnels."
 ```
 
-```dz
+```kz
 Ta skrekan khurken uta zakan!
 the enemy-PL slay-PROG we-POSS brother-PL
 "The enemies are slaying our brothers!"
 ```
 
-```dz
+```kz
 Ut an unguz ta dammaz.
 we FUT remember the grudge
 "We will remember the grudge."
@@ -356,7 +356,7 @@ we FUT remember the grudge
 `zu` is regular: present `zu`, past `zad`, future `an zu`, conditional
 `sar zu`. It links a subject to an adjective, noun or place:
 
-```dz
+```kz
 Ta khaz a ta rik zad orn.
 the hall of the king be-PST deep
 "The hall of the king was deep."
@@ -367,16 +367,16 @@ not `ek zu truken`.
 
 ### 6.3 Existentials and dummy subjects: verb first
 
-*There is/was ...* and weather-type *it is ...* have no subject in Dammaz. The
+*There is/was ...* and weather-type *it is ...* have no subject in Klazan. The
 sentence simply starts with the verb:
 
-```dz
+```kz
 Zad un dawi dhal.
 be-PST a dwarf old
 "There was an old dwarf."
 ```
 
-```dz
+```kz
 Zu skom.
 be dark
 "It is dark."
@@ -384,10 +384,10 @@ be dark
 
 ### 6.4 Verb chains: modals and "want to"
 
-The Dammaz modals are ordinary verbs: `throk` "can", `dret` "must, have to",
+The Klazan modals are ordinary verbs: `throk` "can", `dret` "must, have to",
 `narg` "want", `harg` "have". They take a **plain** verb directly, with no "to":
 
-```dz
+```kz
 Or narg truk dra ta karak.
 I want go to the mountain
 "I want to go to the mountain."
@@ -399,7 +399,7 @@ I want go to the mountain
 
 **Purpose** uses `dra` + plain verb ("in order to"):
 
-```dz
+```kz
 Ek trukad dra ta karak dra krez.
 he go-PST to the mountain to work
 "He went to the mountain to work."
@@ -410,13 +410,13 @@ he go-PST to the mountain to work
 The past form after a noun works like an English past participle, and the
 progressive works like an *-ing* participle:
 
-```dz
+```kz
 ta az drashad
 the axe forge-PST
 "the forged axe"
 ```
 
-```dz
+```kz
 ta dawi gloken
 the dwarf drink-PROG
 "the drinking dwarf"
@@ -426,7 +426,7 @@ the dwarf drink-PROG
 
 `zu` + past form. The agent is introduced with `rof` "from/by":
 
-```dz
+```kz
 Ta az zad drashad rof ta dawi.
 the axe be-PST forge-PST by the dwarf
 "The axe was forged by the dwarf."
@@ -437,13 +437,13 @@ the axe be-PST forge-PST by the dwarf
 `nai` goes directly before the **first** verbal element: the verb itself, a
 modal, or the `an` / `sar` particle. There is no *do*-support.
 
-```dz
+```kz
 Ta drashki nai kend dra ta elgin.
 the forge-AGT NEG speak to the elf-PL
 "The smith does not speak to the elves."
 ```
 
-```dz
+```kz
 Or nai an truk.
 I NEG FUT go
 "I will not go."
@@ -454,7 +454,7 @@ I NEG FUT go
 The imperative is the plain verb with no subject. *Let's* is the `ut` + plain verb.
 Negative imperatives use `nai`:
 
-```dz
+```kz
 Truk! Nai truk! Ut truk!
 go NEG go we go
 "Go! Don't go! Let's go!"
@@ -465,7 +465,7 @@ request, like *please* or *would you*. The translator produces it from *please* 
 imperative when the speaker addresses someone owed `uzar` (§4.1); the *please* is
 absorbed into `uzar`:
 
-```dz
+```kz
 Ora rik, uzar vun bin uzara khaz.
 I-POSS king you.FML come in your.FML hall
 "My king, please come into your hall."
@@ -489,13 +489,13 @@ I-POSS king you.FML come in your.FML hall
 - **Comparative:** `-ar`, and "than" is `rof`.
 - **Superlative:** `ta` + the comparative, as in Romance (*el más grande*).
 
-```dz
+```kz
 Ta karak zu gorzar rof ta khaz.
 the mountain be big-CMP than the hall
 "The mountain is bigger than the hall."
 ```
 
-```dz
+```kz
 Zid karak zu ta gorzar.
 this mountain be the big-CMP
 "This mountain is the biggest."
@@ -509,7 +509,7 @@ Manner adverbs are adjective + `-ul`: `krangul` "strongly", `dhalul` "in the old
 way". Adverbs keep the position they had in the English sentence. The `-ul`
 adverb normally ends the verb phrase:
 
-```dz
+```kz
 Ek drashad ta az krangul.
 he forge-PST the axe strong-ADV
 "He forged the axe strongly."
@@ -524,7 +524,7 @@ he forge-PST the axe strong-ADV
 The order is **S V O**. An indirect object always comes *after* the direct object,
 with `dra`. English *gave him the axe* becomes "gave the axe to him":
 
-```dz
+```kz
 Um saldad ta az dra ek.
 they give-PST the axe to he
 "They gave him the axe."
@@ -534,7 +534,7 @@ they give-PST the axe to he
 
 Put `wan` in front of an ordinary statement. There is no inversion and no *do*.
 
-```dz
+```kz
 Wan uz thiz ta gleth?
 Q you see the gold
 "Do you see the gold?"
@@ -547,19 +547,19 @@ Answers are `ai` "yes" and `na` "no".
 The `wor-` word goes first, then ordinary statement order. There is **no** `wan`
 in these questions.
 
-```dz
+```kz
 Woraz uz truken?
 which-PLACE you go-PROG
 "Where are you going?"
 ```
 
-```dz
+```kz
 Worki drashad ta az?
 which-AGT forge-PST the axe
 "Who forged the axe?"
 ```
 
-```dz
+```kz
 Wor az uz narg?
 which axe you want
 "Which axe do you want?"
@@ -569,7 +569,7 @@ which axe you want
 *where is ...*, *who was ...*), `zu`/`zad` comes right after the question word,
 just as in English:
 
-```dz
+```kz
 Woraz zu ta az?
 which-PLACE be the axe
 "Where is the axe?"
@@ -580,13 +580,13 @@ which-PLACE be the axe
 A relative clause is `zo` + a clause with a gap, placed after the noun and its
 adjectives. The same `zo` is used for people and things (*who, which, that*):
 
-```dz
+```kz
 ta dawi zo drashad ta az
 the dwarf REL forge-PST the axe
 "the dwarf who forged the axe"
 ```
 
-```dz
+```kz
 ta az zo ta dawi drashad
 the axe REL the dwarf forge-PST
 "the axe that the dwarf forged"
@@ -595,7 +595,7 @@ the axe REL the dwarf forge-PST
 **Prepositions are never stranded or fronted.** Keep the preposition in place
 and fill the gap with a pronoun:
 
-```dz
+```kz
 ta dawi zo or kendad zol ek
 the dwarf REL I speak-PST with he
 "the dwarf I spoke with"
@@ -609,7 +609,7 @@ the dwarf REL I speak-PST with he
 "That"-clauses also use `zo`, and it is **never omitted**, even where English
 drops *that*:
 
-```dz
+```kz
 Or zork zo ek zu krang.
 I know that he be strong
 "I know (that) he is strong."
@@ -630,13 +630,13 @@ These conjunctions introduce a full clause:
 
 The clause can come before or after the main clause, as in English:
 
-```dz
+```kz
 Mur uz truk, or an truk.
 if you go I FUT go
 "If you go, I will go."
 ```
 
-```dz
+```kz
 Ut skrafad tand ta grobin vunad.
 we fight-PST until the goblin-PL come-PST
 "We fought until the goblins came."
@@ -646,7 +646,7 @@ we fight-PST until the goblin-PL come-PST
 
 `og` "and", `vel` "or" and `ba` "but" join words, phrases and clauses:
 
-```dz
+```kz
 Kurm og zath, bral og iza.
 stone and iron ale and song
 "Stone and iron, ale and song."
@@ -673,7 +673,7 @@ Base 10.
   `ta khaz tufik` "the second hall", `unik` "first".
 - **Digits pass through** unchanged: `3 azi`.
 
-```dz
+```kz
 Ta rik harg tuf-zer thra azi.
 the king have two-ten three axe-PL
 "The king has twenty-three axes."
@@ -691,9 +691,9 @@ the king have two-ten three axe-PL
 
 ---
 
-## 11. English → Dammaz: translator summary
+## 11. English → Klazan: translator summary
 
-| English | Dammaz | § |
+| English | Klazan | § |
 |---|---|---|
 | *the / a, an / one* | `ta` / `un` / `un` | 3.2 |
 | adjective + noun | noun + adjective | 3.1 |
@@ -730,9 +730,9 @@ the king have two-ten three axe-PL
 | *the dwarf I spoke with* | `ta dawi zo or kendad zol ek` | 8.4 |
 | *I know (that) S* | `Or zork zo S` | 8.5 |
 | *not ... anything* / *nothing* | `nai ... salak` / `narak` | 5 |
-| number words / digits | Dammaz numerals / unchanged | 9 |
+| number words / digits | Klazan numerals / unchanged | 9 |
 
-### What Dammaz does not distinguish
+### What Klazan does not distinguish
 
 These English distinctions are deliberately dropped, so a round trip back to
 English can't recover them:
@@ -746,7 +746,7 @@ English can't recover them:
 - *singular they* vs. plural *they*
 - emphatic *do*
 
-Dammaz also marks something English doesn't: **formality**. English *you* is
+Klazan also marks something English doesn't: **formality**. English *you* is
 translated as:
 
 - `uzar` when the addressee is owed respect (§4.1)
@@ -756,14 +756,14 @@ translated as:
 
 ### Translator conventions
 
-These choices are made by `dammaz.translate` where English leaves a gap. Each one
-is deterministic, so the same English always gives the same Dammaz.
+These choices are made by `klazan.translate` where English leaves a gap. Each one
+is deterministic, so the same English always gives the same Klazan.
 
-| English | Dammaz | Why |
+| English | Klazan | Why |
 |---|---|---|
 | *let me V* | `or an V` | An offer ("I will V"). *let's V* = `ut V` (§6.8). |
 | *let* X *V* (allow) | `zhaf X V` | `zhaf` "let, allow" is a grammar verb. |
-| Bare auxiliary: *Yes, I can.* / *I did.* / *She will.* | `throk` / *do*-`ad` / `an` *do* | Dammaz repeats a verb: the modal verb, or the lexicon's word for *do*. |
+| Bare auxiliary: *Yes, I can.* / *I did.* / *She will.* | `throk` / *do*-`ad` / `an` *do* | Klazan repeats a verb: the modal verb, or the lexicon's word for *do*. |
 | *as* + clause (*as they walked*) | `worur` | Temporal *as* = *while*. *as* + noun (*as a gift*) = `lak`. |
 | Dummy *it* | dropped | Only before *be* + a weather/time word: *dark, cold, hot, sunny, rainy, windy, late, early, night, day, morning, time…* |
 | Formal address | `uzar` | Inside quotes that contain a respect cue (*king, queen, lord, lady, sir, madam, majesty, highness, elder, master, grandfather, grandmother*), or a whole unquoted sentence with a cue and *you/your/please*. |
@@ -771,7 +771,7 @@ is deterministic, so the same English always gives the same Dammaz.
 | Kinship words used as names (*Dad said*, *Mummy!*) | translated, capitalized (`Nong kvizad`) | Real names (*Lily*, *Tom*) pass through untouched. |
 | *first, second… tenth* | numeral + `-ik` | `unik`, `tufik`… (§9). |
 | *once upon a time*, *a lot of*, *next to*… | phrase table | `lexicon/phrases.yaml`. |
-| A word not in the lexicon | **loanword** | English spelling re-spelled in the Dammaz alphabet + a class ending: noun `-uz`, verb `-ash`, adjective `-rak` (`banana → bananuz`, `juggle → zhuglash`). This follows the Zharralid precedent (*victraz*). Loans are counted, and the corpus filter caps them. |
+| A word not in the lexicon | **loanword** | English spelling re-spelled in the Klazan alphabet + a class ending: noun `-uz`, verb `-ash`, adjective `-rak` (`banana → bananuz`, `juggle → zhuglash`). This follows the Zharralid precedent (*victraz*). Loans are counted, and the corpus filter caps them. |
 
 ---
 

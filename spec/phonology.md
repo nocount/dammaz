@@ -1,7 +1,7 @@
-# Dammaz phonology and orthography (v0.1, draft)
+# Klazan phonology and orthography (v0.1, draft)
 
-The machine-readable version is [`src/dammaz/data/phonology.yaml`](../src/dammaz/data/phonology.yaml).
-`dammaz.phonology.check_root()` enforces it. The measurements behind the choices are in
+The machine-readable version is [`src/klazan/data/phonology.yaml`](../src/klazan/data/phonology.yaml).
+`klazan.phonology.check_root()` enforces it. The measurements behind the choices are in
 [`phonology_analysis.md`](phonology_analysis.md).
 
 ## Design summary
@@ -71,7 +71,7 @@ The most frequent meanings get the shortest forms:
 
 ## Word generation
 
-`dammaz.wordgen` samples roots slot by slot. Frequencies come from the measured
+`klazan.wordgen` samples roots slot by slot. Frequencies come from the measured
 Khazalid/Zharralid statistics, blended 70/30 and re-weighted by the `style` knobs
 in the yaml. Every candidate must then pass these checks:
 
@@ -81,7 +81,7 @@ in the yaml. Every candidate must then pass these checks:
 | Dwarvishness | A segment-trigram model trained on the source words scores each word. The score is reported as a 0–100 percentile against typical generator output, and candidates below 30 are dropped. Selection above that floor is *random*, not top-ranked, so the Zharralid-flavored words aren't crowded out. |
 | Not English | Not in the wordfreq top 50K, and not profane or a sound-alike. |
 | Not a copy | Not identical to any Khazalid/Zharralid word. Borrowing is a deliberate lexicon decision. |
-| Distinct | Edit distance ≥2 from every existing Dammaz word. |
+| Distinct | Edit distance ≥2 from every existing Klazan word. |
 | Soft flags | Shown to the reviewer, not rejected: within one edit of a common English word (5+ letters only) or of a source word (4+ letters only). |
 
 ## Open items

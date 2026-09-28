@@ -1,6 +1,6 @@
-# Dammaz phonology: normative, machine-readable. spec/phonology.md explains it.
+# Klazan phonology: normative, machine-readable. spec/phonology.md explains it.
 #
-# LEGALITY lives here (what a native Dammaz root may look like).
+# LEGALITY lives here (what a native Klazan root may look like).
 # FREQUENCIES come from source_stats.json (measured on Khazalid/Zharralid) and
 # are re-weighted by the style knobs below. Borrowed words are exempt from
 # legality checks (they keep their source spelling, e.g. `dammaz`).

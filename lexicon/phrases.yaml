@@ -1,6 +1,6 @@
 # Multi-word English expressions the translator replaces as a unit.
 # Keys: lowercase English token sequences (as spaCy tokenizes them).
-# Values: Dammaz output. {lemma/POS} is replaced by that sense's lexicon word,
+# Values: Klazan output. {lemma/POS} is replaced by that sense's lexicon word,
 # {lemma/POS+TAG} by an inflected form, so phrases follow lexicon changes.
 
 phrases:

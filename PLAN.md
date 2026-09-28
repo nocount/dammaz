@@ -1,9 +1,9 @@
-# Dammaz: plan for a homebrew dwarf language for dwarfgpt
+# Klazan: plan for a homebrew dwarf language for dwarfgpt
 
-**Goal:** a dwarf language, working name *Dammaz*, that (1) sounds like a blend of
+**Goal:** a dwarf language, *Klazan* (working name *Dammaz* until 2026-09-28), that (1) sounds like a blend of
 Khazalid and Zharralid, (2) is quick for a human to learn because its grammar
 sits close to English and Romance languages, and (3) is **fully machine-generable**.
-A deterministic English→Dammaz translator can turn any English corpus into
+A deterministic English→Klazan translator can turn any English corpus into
 unlimited, perfectly consistent synthetic training data for dwarfgpt.
 
 **Decisions locked so far (2026-09-27):**
@@ -13,7 +13,7 @@ unlimited, perfectly consistent synthetic training data for dwarfgpt.
 | Grammar | "Romance-lite": SVO, articles, adjectives **after** nouns, `X a Y` = "X of Y", tense via verb suffixes. No grammatical gender, no noun cases, no irregulars (or as few as possible). |
 | Vocabulary | Copy the *sound palette* and *suffix system*. Borrow only about 30–60 iconic words (dawi, karak, az, khaz, grund, rik, dammaz…). Invent the rest. |
 | Sound | Blend: a Khazalid core (hard k/g/r/z, gr-/dr-/kh-/thr-, closed syllables) plus Zharralid's sh/zh, `-ash`, and some open vowel endings (-a, -u, -o) so it flows aloud. |
-| Data generation | Deterministic, rule-based English→Dammaz translation of existing English corpora. No LLM writes Dammaz directly. |
+| Data generation | Deterministic, rule-based English→Klazan translation of existing English corpora. No LLM writes Klazan directly. |
 
 Target sentence shape (from the design discussion):
 
@@ -27,10 +27,10 @@ the dwarf old forge-PAST a axe strong in the mountain
 
 | Phase | State | Where |
 |---|---|---|
-| 1. Phonology | **Done.** Sound approved. | `spec/phonology.md`, `dammaz.wordgen` |
+| 1. Phonology | **Done.** Sound approved. | `spec/phonology.md`, `klazan.wordgen` |
 | 2. Grammar | **Done** (draft v0.1, all §12 decisions made; formal `uzar` and diminutive `-it` added). | `spec/grammar.md`, `lexicon/function.yaml` |
 | 3. Lexicon | **Gate met.** 1,155 content words + 113 function words, 97.08% TinyStories coverage. | `lexicon/core.yaml`, `reports/coverage_tinystories.md` |
-| 4. Translator | **Done.** 39/40 grammar examples exact; 0 unknown tokens; 2.65% loans before filtering; ~10K words/s per process. | `dammaz.translate`, `.gloss`, `.validate`, `.loan` |
+| 4. Translator | **Done.** 39/40 grammar examples exact; 0 unknown tokens; 2.65% loans before filtering; ~10K words/s per process. | `klazan.translate`, `.gloss`, `.validate`, `.loan` |
 | 5. Corpus | **Tooling built and tested; the full run is pending** (to be done on the desktop). | `tools/corpus.py`, `docs/corpus_runbook.md` |
 | 6. Learning materials | Not started. | — |
 
@@ -47,7 +47,7 @@ two differ, the spec files and the status notes win.
   along with its BLEU gates, becomes unnecessary.
 - **Unlimited, near-free data.** TinyStories alone is about 470M English tokens, and
   translating it costs CPU time rather than API spend.
-- **Exact evaluation.** Every Dammaz word is either in the lexicon or produced by a
+- **Exact evaluation.** Every Klazan word is either in the lexicon or produced by a
   documented rule, so a "grammar checker" is a parser, not a heuristic.
 - **Cheap to change your mind.** If you rename a word or change a suffix, you rebuild
   the lexicon and regenerate the corpus in hours. Version the lexicon (`v0.1`, `v0.2`…)
@@ -69,7 +69,7 @@ language"*, which is a legitimate and interesting question. Frame it that way.
 ## Repository layout (target)
 
 ```
-dammaz/
+klazan/
 ├── PLAN.md                    this file
 ├── README.md
 ├── spec/
@@ -82,15 +82,15 @@ dammaz/
 ├── references/
 │   ├── sources.md             links + structural notes on Khazalid/Zharralid
 │   └── raw/                   (gitignored) local copies of the fan lexicons
-├── src/dammaz/
+├── src/klazan/
 │   ├── phonology.py           phonotactic rules, syllabifier, legality checks
 │   ├── wordgen.py             candidate-root generator + "sounds dwarvish" scorer
 │   ├── lexicon.py             load/validate/compile YAML → build/lexicon.json
 │   ├── morphology.py          plural, tense, derivation suffixes (+ inverse)
-│   ├── loan.py                deterministic English→Dammaz loanword rule
-│   ├── translate.py           English → Dammaz (spaCy-based)
-│   ├── gloss.py               Dammaz → interlinear English gloss (for validation)
-│   └── validate.py            "is this valid Dammaz?" checker
+│   ├── loan.py                deterministic English→Klazan loanword rule
+│   ├── translate.py           English → Klazan (spaCy-based)
+│   ├── gloss.py               Klazan → interlinear English gloss (for validation)
+│   └── validate.py            "is this valid Klazan?" checker
 ├── tools/
 │   ├── coverage.py            lemma-frequency + coverage report over a corpus
 │   ├── review.py              batch review of proposed words (CSV in/out)
@@ -100,13 +100,13 @@ dammaz/
 ```
 
 The package is pip-installable (uv, Python ≥3.12, matching dwarfgpt). dwarfgpt
-consumes it as a path dependency (`uv add --editable ../dammaz`).
+consumes it as a path dependency (`uv add --editable ../klazan`).
 
 ---
 
 ## Phase 1: Phonology and orthography (week 1)
 
-**Deliverables:** `spec/phonology.md`, `src/dammaz/phonology.py`, `src/dammaz/wordgen.py`
+**Deliverables:** `spec/phonology.md`, `src/klazan/phonology.py`, `src/klazan/wordgen.py`
 
 1. **Measure the sources.** Tokenize the Khazalid and Zharralid word lists from
    `references/raw/`. Compute letter and digraph frequencies, onset and coda cluster
@@ -128,7 +128,7 @@ consumes it as a path dependency (`uv add --editable ../dammaz`).
    - legality (phonotactics)
    - **dwarvishness**: character-trigram log-likelihood under a model trained on the
      Khazalid+Zharralid lists
-   - **distinctness**: edit distance ≥2 from every existing Dammaz word (≥3 for
+   - **distinctness**: edit distance ≥2 from every existing Klazan word (≥3 for
      the 500 most frequent words)
    - **not accidentally English**: reject candidates that are English words, or close
      to them, and anything offensive
@@ -176,7 +176,7 @@ marked *TBD* get chosen in Phase 3:
 **Pronouns** (no case; object = subject form)
 - 1sg `or`, 2sg *TBD*, 3sg `ek` (one pronoun for he/she/it, like Finnish *hän*),
   1pl `ut`, 2pl `af`, 3pl `um`. These are Khazalid function words, adapted.
-- The English gender distinction is dropped on the Dammaz side. This is intentional
+- The English gender distinction is dropped on the Klazan side. This is intentional
   and simple to learn, but lossy on round-trip.
 
 **Verbs** (one regular conjugation; no person/number agreement)
@@ -222,7 +222,7 @@ a draft word list, and none of them requires a judgment call the spec doesn't co
 **Entry format** (YAML, one entry per sense):
 
 ```yaml
-- dz: grun
+- kz: grun
   en: forge
   pos: VERB
   tier: core
@@ -249,7 +249,7 @@ coverage. Rough expectations:
 - TinyStories: about 1.5K lemmas gives about 98%. This is the first corpus.
 - Simple-English Wikipedia or filtered FineWeb-EDU: about 5K for 95%, plus the loan fallback
 
-**Polysemy:** one Dammaz word per (English lemma, POS) by default. Only
+**Polysemy:** one Klazan word per (English lemma, POS) by default. Only
 high-frequency, genuinely distinct senses get split, and only where spaCy POS
 separates them. Real word-sense disambiguation is out of scope for v1.
 
@@ -266,7 +266,7 @@ core 500 are approved by you.
 
 **Deliverables:** `translate.py`, `gloss.py`, `validate.py`, golden test set
 
-Pipeline for English → Dammaz, using the spaCy `en_core_web_trf` parse (or `_sm`
+Pipeline for English → Klazan, using the spaCy `en_core_web_trf` parse (or `_sm`
 for speed at corpus scale; benchmark both):
 
 1. **Parse**: tokens, lemmas, POS, morphology (Tense, Number, Aspect), dependencies.
@@ -304,8 +304,8 @@ with `_sm` + `nlp.pipe` across cores).
 
 ## Phase 5: Corpus generation (handoff to dwarfgpt)
 
-**Deliverable:** versioned, validated Dammaz shards that dwarfgpt's tokenizer and
-pretraining phases consume, plus parallel en/dz pairs for SFT.
+**Deliverable:** versioned, validated Klazan shards that dwarfgpt's tokenizer and
+pretraining phases consume, plus parallel en/kz pairs for SFT.
 
 **How to run it on any machine:** [`docs/corpus_runbook.md`](docs/corpus_runbook.md).
 In short:
@@ -340,18 +340,18 @@ fingerprint.
 
   | Path | Contents |
   |---|---|
-  | `packed/dz/{train,val}/shard_*.parquet` | A `text` column, row groups of 1024, the nanochat pretraining layout. |
-  | `packed/parallel/{train,val}.jsonl` | `{id, en, dz}` pairs |
+  | `packed/kz/{train,val}/shard_*.parquet` | A `text` column, row groups of 1024, the nanochat pretraining layout. |
+  | `packed/parallel/{train,val}.jsonl` | `{id, en, kz}` pairs |
   | `pack_manifest.json` | fingerprint, git commit, input SHA-256, filters, counts |
   | `REPORT.md` | stats, plus the top 100 loans. That's the worklist for an optional lexicon batch 3. |
 
-- **Volume:** dwarfgpt's target of 30–80M Dammaz tokens is roughly the first
+- **Volume:** dwarfgpt's target of 30–80M Klazan tokens is roughly the first
   15–40% of the packed train split. The mix ratio is chosen on the dwarfgpt side.
 
 ### 5b. Dwarf-genre English (not built yet; needs an API budget decision)
 
 Claude writes short English texts in the dwarf genres, and they're then translated
-deterministically, so no model ever writes Dammaz. The genres are the 9 buckets from
+deterministically, so no model ever writes Klazan. The genres are the 9 buckets from
 the dwarfgpt plan: mining, lineages, oaths/curses, sagas, songs, smithing, riddles,
 greetings and chronicles.
 
@@ -378,7 +378,7 @@ A corpus is tied to one fingerprint. The workflow is:
 
 1. finish any lexicon edits
 2. commit and push
-3. note `python -m dammaz.lexicon fingerprint`
+3. note `python -m klazan.lexicon fingerprint`
 4. run
 
 `corpus.py translate` refuses to add shards made with a different fingerprint to an
@@ -393,7 +393,7 @@ These are generated from the lexicon and translator, so they stay in sync automa
 - 1-page grammar cheat sheet (from `grammar.md`)
 - Anki deck of the function + core words (`export_anki.py`)
 - Phrasebook: greetings, oaths, insults, toasts, drinking songs
-- Graded readers: TinyStories in Dammaz with an interlinear gloss toggle
+- Graded readers: TinyStories in Klazan with an interlinear gloss toggle
 
 ---
 
@@ -402,14 +402,14 @@ These are generated from the lexicon and translator, so they stay in sync automa
 | dwarfgpt phase | Change |
 |---|---|
 | 0: Sentence Maker port | **Retired.** Tag the last NKh commit (e.g. `nkh-final`) and move `khuzdul_translator/`, the `.xlsm` files and NKh `data/` to an `archive/` folder or leave them on a branch. The nanochat-baseline half of Phase 0 is unchanged. |
-| 1: Corpus assembly | **Replaced** by Dammaz Phases 1–3. The seed corpus is no longer needed. |
-| 2: Translator pipeline | **Stage A only** = `dammaz.translate`. Stage B (LLM naturalization) and Stage C (cross-provider round-trip) are dropped. New gate: Phase 4 gates above instead of BLEU ≥25. |
-| 3: Synthetic data | Becomes Dammaz Phase 5. API spend drops from ~$80 to ~$20–60 (English dwarf-genre text only). |
+| 1: Corpus assembly | **Replaced** by Klazan Phases 1–3. The seed corpus is no longer needed. |
+| 2: Translator pipeline | **Stage A only** = `klazan.translate`. Stage B (LLM naturalization) and Stage C (cross-provider round-trip) are dropped. New gate: Phase 4 gates above instead of BLEU ≥25. |
+| 3: Synthetic data | Becomes Klazan Phase 5. API spend drops from ~$80 to ~$20–60 (English dwarf-genre text only). |
 | 4: Tokenizer | Unchanged. The ASCII orthography and regular suffixes should compress well, so recheck the ≥4.0 chars/token target. |
 | 5: Training runs | Unchanged (control, 5/10/20% mix, SFT, optional d26). |
-| 6: Eval harness | Layer 2 (grammar checker) becomes `dammaz.validate`, which is exact. Layer 3 (LLM judge) is dropped, since no LLM knows Dammaz; use a **gloss-based** check instead. Layer 4 round-trip: model translates EN→DZ and is scored against `dammaz.translate` output (exact match / chrF), which works because the reference translator is deterministic. |
+| 6: Eval harness | Layer 2 (grammar checker) becomes `klazan.validate`, which is exact. Layer 3 (LLM judge) is dropped, since no LLM knows Klazan; use a **gloss-based** check instead. Layer 4 round-trip: model translates EN→KZ and is scored against `klazan.translate` output (exact match / chrF), which works because the reference translator is deterministic. |
 | 7: Human eval | Shrinks to *you* (the only speaker) plus maybe a few Warhammer-fan friends reading glossed samples. |
-| 8: Writeup | Reframe as "a small LM learns a synthetic, English-adjacent dwarf language". Include an ablation on how many Dammaz tokens it takes to reach X% exact-match translation. |
+| 8: Writeup | Reframe as "a small LM learns a synthetic, English-adjacent dwarf language". Include an ablation on how many Klazan tokens it takes to reach X% exact-match translation. |
 
 ---
 
@@ -440,10 +440,11 @@ These are generated from the lexicon and translator, so they stay in sync automa
 
 ## Open questions (non-blocking; decide as we go)
 
-1. **Name of the language.** "Dammaz" (Khazalid for *grudge*) as a working name is
-   fun but is itself a GW word. Consider an invented name built from our own lexicon
-   (e.g. `<our word for dwarf>` + `lid`/tongue-style suffix) for the public release.
-2. **Runes.** Should there be a Dammaz rune script (display-only), and should it
+1. ~~**Name of the language.**~~ **Decided 2026-09-28: Klazan.** The working name
+   was *Dammaz*, which is Khazalid for *grudge* and a well-known GW word. The new
+   name comes from our own lexicon: `klazandof` is *word*, so `klazan` reads as
+   "the word". `dammaz` stays in the lexicon as the borrowed word for *grudge*.
+2. **Runes.** Should there be a Klazan rune script (display-only), and should it
    reuse the Klinkarun idea?
 3. **Dwarf-genre budget** (Phase 5b): how much API spend, and a separate shard set or not.
 4. **Transformer parser.** `en_core_web_trf` would fix the small model's rarer tagging

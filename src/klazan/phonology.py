@@ -1,6 +1,6 @@
 """Orthographic segmentation and word shape analysis.
 
-Dammaz is written in plain ASCII. A *segment* is one sound as spelled: a single
+Klazan is written in plain ASCII. A *segment* is one sound as spelled: a single
 letter, or one of the digraphs in ``DIGRAPHS`` (``kh`` = one sound, not k+h).
 
 Every word decomposes into a **shape**::
@@ -10,7 +10,7 @@ Every word decomposes into a **shape**::
 
 Clusters may be empty. Vowel runs (``ai``, ``ua``) count as one nucleus.
 The same segmenter is used to analyze the Khazalid/Zharralid source words
-and to generate / validate Dammaz words.
+and to generate / validate Klazan words.
 """
 
 from __future__ import annotations
@@ -102,7 +102,7 @@ def shape(word: str) -> Shape:
 
 
 # ---------------------------------------------------------------------------
-# Normative Dammaz phonotactics (data/phonology.yaml)
+# Normative Klazan phonotactics (data/phonology.yaml)
 # ---------------------------------------------------------------------------
 
 def _clusters(spec_lists: list) -> frozenset[str]:
@@ -154,7 +154,7 @@ class Spec:
 
 @cache
 def spec() -> Spec:
-    raw = yaml.safe_load(resources.files("dammaz.data").joinpath("phonology.yaml")
+    raw = yaml.safe_load(resources.files("klazan.data").joinpath("phonology.yaml")
                          .read_text(encoding="utf-8"))
     return Spec(
         raw=raw,
@@ -169,7 +169,7 @@ def spec() -> Spec:
 
 
 def check_root(word: str) -> list[str]:
-    """Return the list of phonotactic violations for a native Dammaz root
+    """Return the list of phonotactic violations for a native Klazan root
     (empty list = legal). Borrowed words and suffixed forms are not checked here."""
     sp = spec()
     problems: list[str] = []

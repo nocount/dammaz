@@ -1,16 +1,16 @@
-# Dammaz function words: the closed class that spec/grammar.md refers to.
+# Klazan function words: the closed class that spec/grammar.md refers to.
 #
 # STATUS: draft v0.1. Forms may change freely until the lexicon v1.0 freeze.
 #
 # Fields:
-#   dz      the Dammaz form
+#   kz      the Klazan form
 #   en      English equivalents the translator maps FROM (first = gloss)
 #   cat     grammatical category (see grammar.md)
 #   origin  invented | borrowed | derived
 #   from    for borrowed: source language + original meaning
 #   notes   optional
 #
-# Invented forms must pass dammaz.phonology.check_root; borrowed and derived
+# Invented forms must pass klazan.phonology.check_root; borrowed and derived
 # forms are exempt (tests/test_function_words.py). Function words are
 # hand-picked, so they are NOT subject to the "is an English word" filter
 # ("bin", "a" and "og" are English strings too).
@@ -20,149 +20,149 @@ status: draft
 
 entries:
   # --- articles & numerals-as-determiners -------------------------------------
-  - {dz: ta,  en: [the],            cat: article, origin: borrowed, from: "Zharralid ta 'the'"}
-  - {dz: un,  en: [a, an, one],     cat: article, origin: borrowed, from: "Khazalid un 'and' (repurposed)",
+  - {kz: ta,  en: [the],            cat: article, origin: borrowed, from: "Zharralid ta 'the'"}
+  - {kz: un,  en: [a, an, one],     cat: article, origin: borrowed, from: "Khazalid un 'and' (repurposed)",
      notes: "also the numeral 1"}
 
   # --- personal pronouns (no case: I = me, we = us, ...) ------------------------
-  - {dz: or,  en: [I, me],                      cat: pronoun, origin: borrowed, from: "Khazalid or 'I'"}
-  - {dz: uz,  en: [you],                        cat: pronoun, origin: borrowed, from: "Zharralid uz(um) 'you'",
+  - {kz: or,  en: [I, me],                      cat: pronoun, origin: borrowed, from: "Khazalid or 'I'"}
+  - {kz: uz,  en: [you],                        cat: pronoun, origin: borrowed, from: "Zharralid uz(um) 'you'",
      notes: "singular you"}
-  - {dz: ek,  en: [he, she, it, him, her],      cat: pronoun, origin: borrowed, from: "Khazalid ek 'he/she/it'"}
-  - {dz: ut,  en: [we, us],                     cat: pronoun, origin: borrowed, from: "Khazalid ut 'we'"}
-  - {dz: af,  en: [you all, y'all],             cat: pronoun, origin: borrowed, from: "Khazalid af 'you (pl)'"}
-  - {dz: uzar, en: [you (formal)],              cat: pronoun, origin: derived,
+  - {kz: ek,  en: [he, she, it, him, her],      cat: pronoun, origin: borrowed, from: "Khazalid ek 'he/she/it'"}
+  - {kz: ut,  en: [we, us],                     cat: pronoun, origin: borrowed, from: "Khazalid ut 'we'"}
+  - {kz: af,  en: [you all, y'all],             cat: pronoun, origin: borrowed, from: "Khazalid af 'you (pl)'"}
+  - {kz: uzar, en: [you (formal)],              cat: pronoun, origin: derived,
      notes: "uz + CMP 'greater you'; singular and plural, like German Sie (grammar.md 4.1)"}
-  - {dz: um,  en: [they, them],                 cat: pronoun, origin: borrowed, from: "Khazalid um 'them'"}
-  - {dz: keb, en: [self],                       cat: pronoun, origin: invented,
+  - {kz: um,  en: [they, them],                 cat: pronoun, origin: borrowed, from: "Khazalid um 'them'"}
+  - {kz: keb, en: [self],                       cat: pronoun, origin: invented,
      notes: "reflexive = possessive + keb: ora keb 'myself'"}
 
   # possessives: pronoun + POSS (-a). Also used alone: 'ta az zu ora' = the axe is mine
-  - {dz: ora, en: [my, mine],             cat: possessive, origin: derived}
-  - {dz: uza, en: [your, yours],          cat: possessive, origin: derived}
-  - {dz: uzara, en: [your (formal), yours (formal)], cat: possessive, origin: derived}
-  - {dz: eka, en: [his, her, hers, its],  cat: possessive, origin: derived}
-  - {dz: uta, en: [our, ours],            cat: possessive, origin: derived}
-  - {dz: afa, en: [your (pl)],            cat: possessive, origin: derived}
-  - {dz: uma, en: [their, theirs],        cat: possessive, origin: derived}
+  - {kz: ora, en: [my, mine],             cat: possessive, origin: derived}
+  - {kz: uza, en: [your, yours],          cat: possessive, origin: derived}
+  - {kz: uzara, en: [your (formal), yours (formal)], cat: possessive, origin: derived}
+  - {kz: eka, en: [his, her, hers, its],  cat: possessive, origin: derived}
+  - {kz: uta, en: [our, ours],            cat: possessive, origin: derived}
+  - {kz: afa, en: [your (pl)],            cat: possessive, origin: derived}
+  - {kz: uma, en: [their, theirs],        cat: possessive, origin: derived}
 
   # --- correlative bases (determiners on their own; + suffixes -> table) -------
-  - {dz: zid, en: [this, these],          cat: determiner, origin: invented}
-  - {dz: zuk, en: [that, those],          cat: determiner, origin: invented}
-  - {dz: wor, en: [which, what],          cat: determiner, origin: invented, notes: "question series"}
-  - {dz: sal, en: [some, any, either],            cat: determiner, origin: invented}
-  - {dz: gom, en: [all, every, each],     cat: determiner, origin: invented}
-  - {dz: nar, en: ["no", none, neither, nor],             cat: determiner, origin: borrowed, from: "Khazalid nar 'no, not'"}
+  - {kz: zid, en: [this, these],          cat: determiner, origin: invented}
+  - {kz: zuk, en: [that, those],          cat: determiner, origin: invented}
+  - {kz: wor, en: [which, what],          cat: determiner, origin: invented, notes: "question series"}
+  - {kz: sal, en: [some, any, either],            cat: determiner, origin: invented}
+  - {kz: gom, en: [all, every, each],     cat: determiner, origin: invented}
+  - {kz: nar, en: ["no", none, neither, nor],             cat: determiner, origin: borrowed, from: "Khazalid nar 'no, not'"}
 
   # correlatives (derived; see grammar.md §5 table). Listed so the translator can map them.
-  - {dz: zidak, en: [this thing],               cat: correlative, origin: derived}
-  - {dz: zukak, en: [that thing],               cat: correlative, origin: derived}
-  - {dz: worak, en: [what],                     cat: correlative, origin: derived}
-  - {dz: salak, en: [something, anything],      cat: correlative, origin: derived}
-  - {dz: gomak, en: [everything, whatever],               cat: correlative, origin: derived}
-  - {dz: narak, en: [nothing],                  cat: correlative, origin: derived}
-  - {dz: zidki, en: [this one (person)],        cat: correlative, origin: derived}
-  - {dz: zukki, en: [that one (person)],        cat: correlative, origin: derived}
-  - {dz: worki, en: [who, whom],                cat: correlative, origin: derived}
-  - {dz: salki, en: [someone, somebody, anyone, anybody], cat: correlative, origin: derived}
-  - {dz: gomki, en: [everyone, everybody, whoever],      cat: correlative, origin: derived}
-  - {dz: narki, en: [nobody, no one],           cat: correlative, origin: derived}
-  - {dz: zidaz, en: [here],                     cat: correlative, origin: derived}
-  - {dz: zukaz, en: [there],                    cat: correlative, origin: derived}
-  - {dz: woraz, en: [where],                    cat: correlative, origin: derived}
-  - {dz: salaz, en: [somewhere, anywhere],      cat: correlative, origin: derived}
-  - {dz: gomaz, en: [everywhere, wherever],               cat: correlative, origin: derived}
-  - {dz: naraz, en: [nowhere],                  cat: correlative, origin: derived}
-  - {dz: zidur, en: [now],                      cat: correlative, origin: derived}
-  - {dz: zukur, en: [then],                     cat: correlative, origin: derived}
-  - {dz: worur, en: [when, while, whilst, once (conj)],              cat: correlative, origin: derived}
-  - {dz: salur, en: [sometime, sometimes, ever], cat: correlative, origin: derived}
-  - {dz: gomur, en: [always, whenever],                   cat: correlative, origin: derived}
-  - {dz: narur, en: [never],                    cat: correlative, origin: derived}
-  - {dz: zidul, en: [like this, thus],          cat: correlative, origin: derived}
-  - {dz: zukul, en: [like that, so (manner), such],   cat: correlative, origin: derived}
-  - {dz: worul, en: [how],                      cat: correlative, origin: derived}
-  - {dz: salul, en: [somehow],                  cat: correlative, origin: derived}
-  - {dz: gomul, en: [in every way],             cat: correlative, origin: derived}
-  - {dz: narul, en: [in no way, not at all],    cat: correlative, origin: derived}
-  - {dz: woros, en: [why],                      cat: correlative, origin: derived}
-  - {dz: zukos, en: [so, therefore],            cat: correlative, origin: derived}
+  - {kz: zidak, en: [this thing],               cat: correlative, origin: derived}
+  - {kz: zukak, en: [that thing],               cat: correlative, origin: derived}
+  - {kz: worak, en: [what],                     cat: correlative, origin: derived}
+  - {kz: salak, en: [something, anything],      cat: correlative, origin: derived}
+  - {kz: gomak, en: [everything, whatever],               cat: correlative, origin: derived}
+  - {kz: narak, en: [nothing],                  cat: correlative, origin: derived}
+  - {kz: zidki, en: [this one (person)],        cat: correlative, origin: derived}
+  - {kz: zukki, en: [that one (person)],        cat: correlative, origin: derived}
+  - {kz: worki, en: [who, whom],                cat: correlative, origin: derived}
+  - {kz: salki, en: [someone, somebody, anyone, anybody], cat: correlative, origin: derived}
+  - {kz: gomki, en: [everyone, everybody, whoever],      cat: correlative, origin: derived}
+  - {kz: narki, en: [nobody, no one],           cat: correlative, origin: derived}
+  - {kz: zidaz, en: [here],                     cat: correlative, origin: derived}
+  - {kz: zukaz, en: [there],                    cat: correlative, origin: derived}
+  - {kz: woraz, en: [where],                    cat: correlative, origin: derived}
+  - {kz: salaz, en: [somewhere, anywhere],      cat: correlative, origin: derived}
+  - {kz: gomaz, en: [everywhere, wherever],               cat: correlative, origin: derived}
+  - {kz: naraz, en: [nowhere],                  cat: correlative, origin: derived}
+  - {kz: zidur, en: [now],                      cat: correlative, origin: derived}
+  - {kz: zukur, en: [then],                     cat: correlative, origin: derived}
+  - {kz: worur, en: [when, while, whilst, once (conj)],              cat: correlative, origin: derived}
+  - {kz: salur, en: [sometime, sometimes, ever], cat: correlative, origin: derived}
+  - {kz: gomur, en: [always, whenever],                   cat: correlative, origin: derived}
+  - {kz: narur, en: [never],                    cat: correlative, origin: derived}
+  - {kz: zidul, en: [like this, thus],          cat: correlative, origin: derived}
+  - {kz: zukul, en: [like that, so (manner), such],   cat: correlative, origin: derived}
+  - {kz: worul, en: [how],                      cat: correlative, origin: derived}
+  - {kz: salul, en: [somehow],                  cat: correlative, origin: derived}
+  - {kz: gomul, en: [in every way],             cat: correlative, origin: derived}
+  - {kz: narul, en: [in no way, not at all],    cat: correlative, origin: derived}
+  - {kz: woros, en: [why],                      cat: correlative, origin: derived}
+  - {kz: zukos, en: [so, therefore],            cat: correlative, origin: derived}
 
   # --- quantifiers --------------------------------------------------------------
-  - {dz: drur,   en: [many, much, a lot of],  cat: quantifier, origin: invented}
-  - {dz: kud,    en: [few, "a little (amount)"],  cat: quantifier, origin: invented}
-  - {dz: drurar, en: [more],                  cat: quantifier, origin: derived, notes: "drur + CMP"}
-  - {dz: kudar,  en: [fewer, less],           cat: quantifier, origin: derived, notes: "kud + CMP"}
-  - {dz: hil,    en: [other, another, else],  cat: quantifier, origin: invented, notes: "another = un hil"}
-  - {dz: thol,   en: [both],                  cat: quantifier, origin: invented}
+  - {kz: drur,   en: [many, much, a lot of],  cat: quantifier, origin: invented}
+  - {kz: kud,    en: [few, "a little (amount)"],  cat: quantifier, origin: invented}
+  - {kz: drurar, en: [more],                  cat: quantifier, origin: derived, notes: "drur + CMP"}
+  - {kz: kudar,  en: [fewer, less],           cat: quantifier, origin: derived, notes: "kud + CMP"}
+  - {kz: hil,    en: [other, another, else],  cat: quantifier, origin: invented, notes: "another = un hil"}
+  - {kz: thol,   en: [both],                  cat: quantifier, origin: invented}
 
   # --- numerals (base 10; see grammar.md §9) ------------------------------------
-  - {dz: tuf,   en: [two],      cat: numeral, origin: invented}
-  - {dz: thra,  en: [three],    cat: numeral, origin: invented}
-  - {dz: kag,   en: [four],     cat: numeral, origin: invented}
-  - {dz: vam,   en: [five],     cat: numeral, origin: invented}
-  - {dz: sib,   en: [six],      cat: numeral, origin: invented}
-  - {dz: mok,   en: [seven],    cat: numeral, origin: invented}
-  - {dz: gir,   en: [eight],    cat: numeral, origin: invented}
-  - {dz: nund,  en: [nine],     cat: numeral, origin: invented}
-  - {dz: zer,   en: [ten],      cat: numeral, origin: invented}
-  - {dz: kunk,  en: [hundred],  cat: numeral, origin: invented}
-  - {dz: thrul, en: [thousand], cat: numeral, origin: invented}
+  - {kz: tuf,   en: [two],      cat: numeral, origin: invented}
+  - {kz: thra,  en: [three],    cat: numeral, origin: invented}
+  - {kz: kag,   en: [four],     cat: numeral, origin: invented}
+  - {kz: vam,   en: [five],     cat: numeral, origin: invented}
+  - {kz: sib,   en: [six],      cat: numeral, origin: invented}
+  - {kz: mok,   en: [seven],    cat: numeral, origin: invented}
+  - {kz: gir,   en: [eight],    cat: numeral, origin: invented}
+  - {kz: nund,  en: [nine],     cat: numeral, origin: invented}
+  - {kz: zer,   en: [ten],      cat: numeral, origin: invented}
+  - {kz: kunk,  en: [hundred],  cat: numeral, origin: invented}
+  - {kz: thrul, en: [thousand], cat: numeral, origin: invented}
 
   # --- prepositions ---------------------------------------------------------------
-  - {dz: a,      en: [of],                                 cat: preposition, origin: borrowed, from: "Khazalid a 'of, with, to'"}
-  - {dz: bin,    en: [in, "on", at, into, onto, inside, upon, during, within],     cat: preposition, origin: borrowed, from: "Khazalid bin 'in, on, beside'"}
-  - {dz: dra,    en: [to, toward, towards, onwards, for, in order to],       cat: preposition, origin: invented,
+  - {kz: a,      en: [of],                                 cat: preposition, origin: borrowed, from: "Khazalid a 'of, with, to'"}
+  - {kz: bin,    en: [in, "on", at, into, onto, inside, upon, during, within],     cat: preposition, origin: borrowed, from: "Khazalid bin 'in, on, beside'"}
+  - {kz: dra,    en: [to, toward, towards, onwards, for, in order to],       cat: preposition, origin: invented,
      notes: "direction, recipient, beneficiary, purpose"}
-  - {dz: rof,    en: [from, by (agent), than, out of, "off", since],     cat: preposition, origin: invented}
-  - {dz: zol,    en: [with],                               cat: preposition, origin: invented}
-  - {dz: narzol, en: [without, except],                            cat: preposition, origin: derived, notes: "nar + zol"}
-  - {dz: unga,   en: [under, beneath, below, down, underneath],              cat: preposition, origin: invented}
-  - {dz: khro,   en: [over, above, on top of, up, atop, beyond],             cat: preposition, origin: invented}
-  - {dz: gez,    en: [before],                             cat: preposition, origin: invented}
-  - {dz: rul,    en: [after],                              cat: preposition, origin: invented}
-  - {dz: thruth, en: [through, across, along, throughout],                    cat: preposition, origin: invented}
-  - {dz: bre,    en: [near, by, beside, next to, next, past, alongside],          cat: preposition, origin: invented}
-  - {dz: koz,    en: [about, concerning],                  cat: preposition, origin: invented}
-  - {dz: mank,   en: [between, among, amongst],                     cat: preposition, origin: invented}
-  - {dz: korl,   en: [around],                             cat: preposition, origin: invented}
-  - {dz: gurd,   en: [behind],                             cat: preposition, origin: invented}
-  - {dz: vang,   en: [against, despite],                            cat: preposition, origin: invented}
-  - {dz: lak,    en: [like, as],                           cat: preposition, origin: invented}
+  - {kz: rof,    en: [from, by (agent), than, out of, "off", since],     cat: preposition, origin: invented}
+  - {kz: zol,    en: [with],                               cat: preposition, origin: invented}
+  - {kz: narzol, en: [without, except],                            cat: preposition, origin: derived, notes: "nar + zol"}
+  - {kz: unga,   en: [under, beneath, below, down, underneath],              cat: preposition, origin: invented}
+  - {kz: khro,   en: [over, above, on top of, up, atop, beyond],             cat: preposition, origin: invented}
+  - {kz: gez,    en: [before],                             cat: preposition, origin: invented}
+  - {kz: rul,    en: [after],                              cat: preposition, origin: invented}
+  - {kz: thruth, en: [through, across, along, throughout],                    cat: preposition, origin: invented}
+  - {kz: bre,    en: [near, by, beside, next to, next, past, alongside],          cat: preposition, origin: invented}
+  - {kz: koz,    en: [about, concerning],                  cat: preposition, origin: invented}
+  - {kz: mank,   en: [between, among, amongst],                     cat: preposition, origin: invented}
+  - {kz: korl,   en: [around],                             cat: preposition, origin: invented}
+  - {kz: gurd,   en: [behind],                             cat: preposition, origin: invented}
+  - {kz: vang,   en: [against, despite],                            cat: preposition, origin: invented}
+  - {kz: lak,    en: [like, as],                           cat: preposition, origin: invented}
 
   # --- directional particles (also used as adverbs: 'go out', 'come back') -------
-  - {dz: vot,    en: [out, outside],                       cat: preposition, origin: invented}
-  - {dz: dwok,   en: [back],                               cat: preposition, origin: invented,
+  - {kz: vot,    en: [out, outside],                       cat: preposition, origin: invented}
+  - {kz: dwok,   en: [back],                               cat: preposition, origin: invented,
      notes: "return direction: 'came back' = vunad dwok"}
-  - {dz: frol,   en: [away],                               cat: preposition, origin: invented}
+  - {kz: frol,   en: [away],                               cat: preposition, origin: invented}
 
   # --- conjunctions ---------------------------------------------------------------
-  - {dz: og,   en: [and, plus],             cat: conjunction, origin: invented}
-  - {dz: ba,   en: [but, though, although, yet],             cat: conjunction, origin: borrowed, from: "Zharralid ba 'but'"}
-  - {dz: vel,  en: [or],              cat: conjunction, origin: invented}
-  - {dz: os,   en: [because, cause, "'cause"],         cat: conjunction, origin: invented}
-  - {dz: mur,  en: [if, whether],     cat: conjunction, origin: invented,
+  - {kz: og,   en: [and, plus],             cat: conjunction, origin: invented}
+  - {kz: ba,   en: [but, though, although, yet],             cat: conjunction, origin: borrowed, from: "Zharralid ba 'but'"}
+  - {kz: vel,  en: [or],              cat: conjunction, origin: invented}
+  - {kz: os,   en: [because, cause, "'cause"],         cat: conjunction, origin: invented}
+  - {kz: mur,  en: [if, whether],     cat: conjunction, origin: invented,
      notes: "was dun until 2026-09-27: one letter from vun (come)"}
-  - {dz: tand, en: [until, till],           cat: conjunction, origin: invented}
-  - {dz: zo,   en: [that, who, which], cat: conjunction, origin: invented,
+  - {kz: tand, en: [until, till],           cat: conjunction, origin: invented}
+  - {kz: zo,   en: [that, who, which], cat: conjunction, origin: invented,
      notes: "relativizer + complementizer (like Romance que)"}
 
   # --- particles ------------------------------------------------------------------
-  - {dz: wan,  en: [yes/no question], cat: particle, origin: borrowed, from: "Khazalid wan 'question marker'"}
-  - {dz: an,   en: [will, shall],     cat: particle, origin: borrowed, from: "Khazalid an 'will'"}
-  - {dz: sar,  en: [would, might, may, could (hypothetical)], cat: particle, origin: borrowed,
+  - {kz: wan,  en: [yes/no question], cat: particle, origin: borrowed, from: "Khazalid wan 'question marker'"}
+  - {kz: an,   en: [will, shall],     cat: particle, origin: borrowed, from: "Khazalid an 'will'"}
+  - {kz: sar,  en: [would, might, may, could (hypothetical)], cat: particle, origin: borrowed,
      from: "Khazalid sar 'may, might'"}
-  - {dz: nai,  en: [not],             cat: particle, origin: borrowed, from: "Khazalid nai 'no, not'"}
-  - {dz: grak, en: [very, so (degree)], cat: particle, origin: invented}
-  - {dz: ai,   en: ["yes"],             cat: interjection, origin: borrowed, from: "Khazalid ai 'yes'"}
-  - {dz: na,   en: ["no (answer)"],   cat: interjection, origin: borrowed, from: "Khazalid/Zharralid na 'no'"}
+  - {kz: nai,  en: [not],             cat: particle, origin: borrowed, from: "Khazalid nai 'no, not'"}
+  - {kz: grak, en: [very, so (degree)], cat: particle, origin: invented}
+  - {kz: ai,   en: ["yes"],             cat: interjection, origin: borrowed, from: "Khazalid ai 'yes'"}
+  - {kz: na,   en: ["no (answer)"],   cat: interjection, origin: borrowed, from: "Khazalid/Zharralid na 'no'"}
 
   # --- grammatical verbs ----------------------------------------------------------
-  - {dz: zu,   en: [be, is, am, are, was, were], cat: verb, origin: borrowed, from: "Zharralid zu 'is'"}
-  - {dz: harg, en: [have, own],       cat: verb, origin: invented}
-  - {dz: throk, en: [can, be able to], cat: verb, origin: invented,
+  - {kz: zu,   en: [be, is, am, are, was, were], cat: verb, origin: borrowed, from: "Zharralid zu 'is'"}
+  - {kz: harg, en: [have, own],       cat: verb, origin: invented}
+  - {kz: throk, en: [can, be able to], cat: verb, origin: invented,
      notes: "was khal until 2026-09-27: one letter from khaz"}
-  - {dz: dret, en: [must, have to, need to], cat: verb, origin: invented}
-  - {dz: narg, en: [want],            cat: verb, origin: invented}
-  - {dz: zhaf, en: [let, allow],      cat: verb, origin: invented,
+  - {kz: dret, en: [must, have to, need to], cat: verb, origin: invented}
+  - {kz: narg, en: [want],            cat: verb, origin: invented}
+  - {kz: zhaf, en: [let, allow],      cat: verb, origin: invented,
      notes: "let's V = ut V and let me V = or an V are grammar (6.8); zhaf is let = allow"}

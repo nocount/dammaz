@@ -1,4 +1,4 @@
-"""Golden tests: every ```dz example in spec/grammar.md that has an English line
+"""Golden tests: every ```kz example in spec/grammar.md that has an English line
 must be produced by the translator from that English.
 
 The spec's examples use the placeholder vocabulary (samples/vocab_v0.yaml);
@@ -14,9 +14,9 @@ import pytest
 
 spacy = pytest.importorskip("spacy")
 
-from dammaz.lexicon import function_words, load_content  # noqa: E402
-from dammaz.morphology import SUFFIXES, inflect  # noqa: E402
-from dammaz.translate import Translator  # noqa: E402
+from klazan.lexicon import function_words, load_content  # noqa: E402
+from klazan.morphology import SUFFIXES, inflect  # noqa: E402
+from klazan.translate import Translator  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 GRAMMAR = (ROOT / "spec" / "grammar.md").read_text(encoding="utf-8")
@@ -25,7 +25,7 @@ PUNCT = ".,!?;:\"“”()"
 BY_POS: dict[str, dict[str, str]] = {}
 for e in load_content():
     for lemma, pos in e.senses:
-        BY_POS.setdefault(lemma, {}).setdefault(pos, e.dz)
+        BY_POS.setdefault(lemma, {}).setdefault(pos, e.kz)
 # which part of speech a gloss tag implies (forge-PST is the verb, not the smithy)
 TAG_POS = {"PST": "VERB", "PROG": "VERB", "AGT": "VERB", "PLACE": "VERB", "CRAFT": "VERB",
            "PL": "NOUN", "DIM": "NOUN", "VBZ": "NOUN", "LIKE": "NOUN",
@@ -46,7 +46,7 @@ LEMMAS: dict[str, str] = {}
 for w in function_words():
     for en in w.en:
         if " " not in en:
-            LEMMAS.setdefault(en, w.dz)
+            LEMMAS.setdefault(en, w.kz)
 LEMMAS |= {"Q": "wan", "FUT": "an", "COND": "sar", "NEG": "nai", "REL": "zo"}
 
 # Examples whose English is deliberately ambiguous or needs context the
@@ -57,11 +57,11 @@ KNOWN_GAPS: dict[str, str] = {
 }
 
 
-def _expected(dz: str, gloss: str) -> str | None:
-    """Rewrite the spec's Dammaz line into the current lexicon via its gloss."""
-    dz_toks, gl_toks = dz.split(), gloss.split()
+def _expected(kz: str, gloss: str) -> str | None:
+    """Rewrite the spec's Klazan line into the current lexicon via its gloss."""
+    kz_toks, gl_toks = kz.split(), gloss.split()
     out = []
-    for tok, gl in zip(dz_toks, gl_toks):
+    for tok, gl in zip(kz_toks, gl_toks):
         core = tok.strip(PUNCT)
         pre, post = tok[:len(tok) - len(tok.lstrip(PUNCT))], tok[len(tok.rstrip(PUNCT)):]
         glc = gl.strip(PUNCT)
@@ -75,7 +75,7 @@ def _expected(dz: str, gloss: str) -> str | None:
             word = inflect(root, *parts[1:])
         elif len(parts) > 1:                                  # two-ten compound numeral
             word = "-".join(LEMMAS[p] for p in parts)
-        elif (lw := lemma_word(glc, [])) and core.lower() not in {w.dz for w in function_words()}:
+        elif (lw := lemma_word(glc, [])) and core.lower() not in {w.kz for w in function_words()}:
             word = lw
         else:
             word = core.lower()
@@ -87,7 +87,7 @@ def _expected(dz: str, gloss: str) -> str | None:
 
 def _cases():
     cases = []
-    for block in re.findall(r"```dz\n(.*?)```", GRAMMAR, re.S):
+    for block in re.findall(r"```kz\n(.*?)```", GRAMMAR, re.S):
         lines = [l.strip() for l in block.strip().splitlines() if l.strip()]
         if len(lines) < 3:
             continue
@@ -101,11 +101,11 @@ def translator():
     return Translator()
 
 
-@pytest.mark.parametrize("english, dz, gloss", _cases())
-def test_grammar_example(translator, english, dz, gloss):
+@pytest.mark.parametrize("english, kz, gloss", _cases())
+def test_grammar_example(translator, english, kz, gloss):
     if english in KNOWN_GAPS:
         pytest.xfail(KNOWN_GAPS[english])
-    expected = _expected(dz, gloss)
+    expected = _expected(kz, gloss)
     if expected is None:
         pytest.skip("uses a placeholder word that is not in the lexicon yet")
     assert translator.translate(english) == expected

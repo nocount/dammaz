@@ -26,7 +26,7 @@ then at most one of CMP/ORD, then at most one inflection (PL/PST/PROG).
 
 from __future__ import annotations
 
-from dammaz.phonology import VOWELS, segment, spec
+from klazan.phonology import VOWELS, segment, spec
 
 # tag -> (form, gloss label, slot). Several tags may share a form.
 SUFFIXES: dict[str, tuple[str, str, str]] = {

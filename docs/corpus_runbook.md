@@ -1,4 +1,4 @@
-# Runbook: generating the Dammaz corpus on another machine
+# Runbook: generating the Klazan corpus on another machine
 
 This is for running Phase 5 on a different workstation (e.g. the desktop): a fresh
 checkout, the TinyStories download, a resumable multi-core translation run, and
@@ -9,7 +9,7 @@ Windows, Linux and macOS.
 
 | | |
 |---|---|
-| Git access | to `github.com/nocount/dammaz` |
+| Git access | to `github.com/nocount/klazan` |
 | [uv](https://docs.astral.sh/uv/) | Python ≥3.12. It was developed on 3.14, and uv installs Python if it's missing. |
 | Disk | about 15 GB free: 2.2 GB input, ~6 GB translation shards, ~5 GB packed output |
 | CPU | Throughput is ~10K English words/s per worker. The full TinyStories train split (~470M words) takes roughly 2–3 hours on 8 workers. |
@@ -25,7 +25,7 @@ every lexicon change first. Then note the fingerprint so you can confirm the des
 has the same language:
 
 ```bash
-uv run python -m dammaz.lexicon fingerprint
+uv run python -m klazan.lexicon fingerprint
 ```
 
 At the time of writing (1,155 content words, batch 2 + *next* → `brik` applied)
@@ -35,11 +35,11 @@ whenever the translator changes.
 ## 1. Set up the checkout
 
 ```bash
-git clone https://github.com/nocount/dammaz.git
+git clone https://github.com/nocount/klazan.git
 ```
 
 ```bash
-cd dammaz
+cd klazan
 ```
 
 ```bash
@@ -52,11 +52,11 @@ pyarrow (the `corpus` group).
 Then check that the machine matches the laptop:
 
 ```bash
-uv run python -m dammaz.lexicon fingerprint
+uv run python -m klazan.lexicon fingerprint
 ```
 
 ```bash
-uv run python -m dammaz.lexicon check
+uv run python -m klazan.lexicon check
 ```
 
 ```bash
@@ -116,7 +116,7 @@ uv run --group nlp python tools/corpus.py translate data/raw/TinyStoriesV2-GPT4-
 - **Version safety:** if the lexicon or translator changes between runs, `translate`
   refuses to add shards to this directory, rather than silently mixing two versions
   of the language. Use a new `--out`.
-- **Only need a slice?** Add `--max-stories N`. dwarfgpt's target of 30–80M Dammaz
+- **Only need a slice?** Add `--max-stories N`. dwarfgpt's target of 30–80M Klazan
   tokens is ~15–40% of the train split, but translating everything is only a few
   hours, and `pack` lets you choose later.
 
@@ -141,8 +141,8 @@ Exact duplicates (normalized English) are always removed.
 
 | Path | Contents |
 |---|---|
-| `dz/train/shard_*.parquet`, `dz/val/shard_*.parquet` | A single `text` column of Dammaz stories, zstd, row groups of 1024. This is the layout nanochat's pretraining loader reads (it iterates row groups and takes the `text` column). |
-| `parallel/train.jsonl`, `parallel/val.jsonl` | `{"id", "en", "dz"}` pairs for SFT and translation evals |
+| `kz/train/shard_*.parquet`, `kz/val/shard_*.parquet` | A single `text` column of Klazan stories, zstd, row groups of 1024. This is the layout nanochat's pretraining loader reads (it iterates row groups and takes the `text` column). |
+| `parallel/train.jsonl`, `parallel/val.jsonl` | `{"id", "en", "kz"}` pairs for SFT and translation evals |
 | `pack_manifest.json` | fingerprint, git commit, input hash, filters, counts |
 | `REPORT.md` | summary, plus the 100 most frequent loans. That list is the input for the next lexicon batch. |
 
@@ -152,14 +152,14 @@ Exact duplicates (normalized English) are always removed.
 2. Every word validates:
 
    ```bash
-   uv run python -m dammaz.validate data/corpus/tinystories/packed/parallel/val.jsonl
+   uv run python -m klazan.validate data/corpus/tinystories/packed/parallel/val.jsonl
    ```
 
    It should report no `UNKNOWN` line.
 3. Read ~20 random stories with glosses (the plan's audit step):
 
    ```bash
-   uv run python -m dammaz.gloss "<paste a Dammaz paragraph>"
+   uv run python -m klazan.gloss "<paste a Klazan paragraph>"
    ```
 
 ## 7. Hand off to dwarfgpt

@@ -1,8 +1,8 @@
-"""Is this valid Dammaz? Every word must be a lexicon word (+ legal suffixes), a
+"""Is this valid Klazan? Every word must be a lexicon word (+ legal suffixes), a
 loan, a name or a number. Anything else is a translator bug.
 
-    uv run python -m dammaz.validate data/dz/sample300.jsonl      # JSONL with a "dz" field
-    uv run python -m dammaz.validate "Ta dawi dhal drashad un az krang."
+    uv run python -m klazan.validate data/kz/sample300.jsonl      # JSONL with a "kz" field
+    uv run python -m klazan.validate "Ta dawi dhal drashad un az krang."
 """
 
 from __future__ import annotations
@@ -14,7 +14,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from dammaz.gloss import Glosser
+from klazan.gloss import Glosser
 
 
 @dataclass
@@ -62,7 +62,7 @@ def main() -> None:
     path = Path(arg)
     if arg and path.exists():
         for line in path.open(encoding="utf-8"):
-            validate_text(json.loads(line)["dz"], g, rep)
+            validate_text(json.loads(line)["kz"], g, rep)
     else:
         validate_text(arg or sys.stdin.read(), g, rep)
     print(rep.summary())

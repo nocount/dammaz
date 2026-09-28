@@ -1,7 +1,7 @@
 import pytest
 
-from dammaz.phonology import check_root
-from dammaz.wordgen import NearIndex, WordGen
+from klazan.phonology import check_root
+from klazan.wordgen import NearIndex, WordGen
 
 
 @pytest.fixture(scope="module")

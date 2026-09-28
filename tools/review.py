@@ -5,12 +5,12 @@
 
 **propose** takes the next ``--n`` uncovered senses from the frequency worklist
 (lexicon/targets/<target>_lemmas.tsv), adds the seeds' dwarf-genre extras and
-any sense a derived seed depends on, and assigns each one a Dammaz word:
+any sense a derived seed depends on, and assigns each one a Klazan word:
 
     1. a seed from lexicon/review/seeds.yaml (fixed, derived, or shared synonym)
     2. the same word as the lemma's other part of speech (help/VERB = help/NOUN),
        unless the lemma is listed as a homonym
-    3. a fresh root from dammaz.wordgen: 1 syllable for the ~150 most frequent
+    3. a fresh root from klazan.wordgen: 1 syllable for the ~150 most frequent
        senses, mostly 2 for rarer ones; plus 3 alternatives
 
 The batch is validated as if accepted, then written as CSV (opens in Excel).
@@ -41,11 +41,11 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from dammaz.lexicon import (LEXICON_DIR, PARADIGM, Entry,  # noqa: E402
+from klazan.lexicon import (LEXICON_DIR, PARADIGM, Entry,  # noqa: E402
                             function_words, load_content, validate)
-from dammaz.morphology import inflect  # noqa: E402
-from dammaz.phonology import check_root  # noqa: E402
-from dammaz.wordgen import PROFANE_EXACT, PROFANE_SUBSTR, WordGen, _english  # noqa: E402
+from klazan.morphology import inflect  # noqa: E402
+from klazan.phonology import check_root  # noqa: E402
+from klazan.wordgen import PROFANE_EXACT, PROFANE_SUBSTR, WordGen, _english  # noqa: E402
 
 SEEDS = LEXICON_DIR / "review" / "seeds.yaml"
 CORRECTIONS = LEXICON_DIR / "targets" / "corrections.yaml"
@@ -129,11 +129,11 @@ def propose(n: int, out: Path, target: str, seed: int) -> None:
     homonyms = set(seeds.get("homonyms") or [])
 
     lexicon = load_content()
-    covered: dict[Sense, str] = {s: e.dz for e in lexicon for s in e.senses}
+    covered: dict[Sense, str] = {s: e.kz for e in lexicon for s in e.senses}
     corr = yaml.safe_load(CORRECTIONS.read_text(encoding="utf-8"))
     for k in corr.get("function") or []:              # handled by function words
         covered[_sense(k)] = "(function)"
-    fixed_words = {w.dz for w in function_words()} | {e.dz for e in lexicon}
+    fixed_words = {w.kz for w in function_words()} | {e.kz for e in lexicon}
 
     # -- which senses go in this batch -----------------------------------------
     selected: list[Sense] = []
@@ -163,8 +163,8 @@ def propose(n: int, out: Path, target: str, seed: int) -> None:
     prop: dict[Sense, dict] = {}
     for s in selected:                       # 1. fixed seeds
         sd = seed_senses.get(s)
-        if sd and "dz" in sd:
-            prop[s] = {"proposed": sd["dz"], "origin": sd["origin"],
+        if sd and "kz" in sd:
+            prop[s] = {"proposed": sd["kz"], "origin": sd["origin"],
                        "from_or_base": sd.get("from", ""),
                        "note": "sound check v0" if sd["origin"] == "invented" else ""}
 
@@ -190,9 +190,9 @@ def propose(n: int, out: Path, target: str, seed: int) -> None:
         group_pos[share_with.get(s, s)].add(s[1])
     guard = FormGuard()
     for w in function_words():
-        guard.words.add(w.dz)
+        guard.words.add(w.kz)
     for e in lexicon:
-        guard.add(e.dz, e.pos)
+        guard.add(e.kz, e.pos)
     for s, p in prop.items():
         guard.add(p["proposed"], group_pos[s] or {s[1]})
     for s in selected:
@@ -237,7 +237,7 @@ def propose(n: int, out: Path, target: str, seed: int) -> None:
                                "from_or_base": base, "note": f"{root}+{'+'.join(tags)}"}
     # Alternatives were generated before later words were assigned; replace any
     # that now clash with a final proposal, so every listed alternative is safe.
-    from dammaz.wordgen import NearIndex
+    from klazan.wordgen import NearIndex
     finals = NearIndex(p["proposed"] for p in prop.values() if p["origin"] != "derived")
     final_set = {p["proposed"] for p in prop.values()}
 
@@ -296,13 +296,13 @@ def propose(n: int, out: Path, target: str, seed: int) -> None:
 
 def merge(existing: list[Entry], rows: list[tuple[Sense, str, str, str]], word_of,
           tier: str = "core") -> list[Entry]:
-    """Merge (sense, dz, origin, from_or_base) rows into the existing entries.
+    """Merge (sense, kz, origin, from_or_base) rows into the existing entries.
     Senses whose word already exists are added to that entry; the rest become
     new entries in ``tier``."""
     from dataclasses import replace
-    by_dz: dict[str, dict] = {}
-    for s, dz, origin, fb in rows:
-        e = by_dz.setdefault(dz, {"senses": [], "origin": None, "source": "", "base": ""})
+    by_kz: dict[str, dict] = {}
+    for s, kz, origin, fb in rows:
+        e = by_kz.setdefault(kz, {"senses": [], "origin": None, "source": "", "base": ""})
         e["senses"].append(s)
         if origin == "shared":
             continue
@@ -315,12 +315,12 @@ def merge(existing: list[Entry], rows: list[tuple[Sense, str, str, str]], word_o
             e["base"] = "+".join([root, *tags])
     out: list[Entry] = []
     for old in existing:
-        if old.dz in by_dz:
-            add = [x for x in by_dz.pop(old.dz)["senses"] if x not in old.senses]
+        if old.kz in by_kz:
+            add = [x for x in by_kz.pop(old.kz)["senses"] if x not in old.senses]
             old = replace(old, senses=old.senses + tuple(add))
         out.append(old)
-    for dz, e in by_dz.items():
-        out.append(Entry(dz=dz, senses=tuple(e["senses"]), origin=e["origin"] or "invented",
+    for kz, e in by_kz.items():
+        out.append(Entry(kz=kz, senses=tuple(e["senses"]), origin=e["origin"] or "invented",
                          tier=tier, source=e["source"], base=e["base"]))
     return out
 
@@ -331,7 +331,7 @@ def merge(existing: list[Entry], rows: list[tuple[Sense, str, str, str]], word_o
 
 def apply(path: Path, into: str, dry_run: bool = False) -> None:
     rows = list(csv.DictReader(path.open(encoding="utf-8-sig")))
-    final: dict[Sense, tuple[str, str, str]] = {}      # sense -> (dz, origin, from_or_base)
+    final: dict[Sense, tuple[str, str, str]] = {}      # sense -> (kz, origin, from_or_base)
     rejected = 0
     for r in rows:
         s = (r["english"], r["pos"])
@@ -350,14 +350,14 @@ def apply(path: Path, into: str, dry_run: bool = False) -> None:
                 raise SystemExit(f"{_key(s)}: custom word {d!r} breaks the rules: {problems}")
             final[s] = (d, "invented", "")
 
-    covered = {s: e.dz for e in load_content() for s in e.senses}
+    covered = {s: e.kz for e in load_content() for s in e.senses}
 
     def word_of(s: Sense) -> str | None:
         return final[s][0] if s in final else covered.get(s)
 
     # re-resolve shared + derived against the final choices
     for _ in range(3):
-        for s, (dz, origin, fb) in list(final.items()):
+        for s, (kz, origin, fb) in list(final.items()):
             if origin == "shared" and fb.startswith("@"):
                 ref = word_of(_sense(fb[1:]))
                 if ref is None:
@@ -385,8 +385,8 @@ def apply(path: Path, into: str, dry_run: bool = False) -> None:
               f"({len(rep.warnings)} warnings, {rejected} rejected); nothing written")
         return
     target = LEXICON_DIR / f"{into}.yaml"
-    header = [f"# Dammaz content lexicon: {into}. Edit freely; validate with",
-              "#   uv run python -m dammaz.lexicon check",
+    header = [f"# Klazan content lexicon: {into}. Edit freely; validate with",
+              "#   uv run python -m klazan.lexicon check",
               "# en: lemma/POS senses. origin: invented | borrowed (from) | derived (base).",
               "", "entries:"]
     body = [_fmt(e) for e in merged if e.tier == into]
@@ -401,7 +401,7 @@ def _q(s: str) -> str:
 
 def _fmt(e: Entry) -> str:
     en = ", ".join(_q(f"{l}/{p}") for l, p in e.senses)
-    parts = [f"dz: {e.dz}", f"en: [{en}]", f"origin: {e.origin}"]
+    parts = [f"kz: {e.kz}", f"en: [{en}]", f"origin: {e.origin}"]
     if e.source:
         parts.append(f"from: {_q(e.source)}")
     if e.base:

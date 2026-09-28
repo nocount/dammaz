@@ -1,4 +1,4 @@
-"""Dammaz -> interlinear English gloss, by morphological analysis.
+"""Klazan -> interlinear English gloss, by morphological analysis.
 
     >>> Glosser().gloss_word("drashkin")
     'forge-AGT-PL'
@@ -11,7 +11,7 @@ re-deriving them, and fewer suffixes beat more.
 
 CLI::
 
-    uv run python -m dammaz.gloss "Ta dawi dhal drashad un az krang."
+    uv run python -m klazan.gloss "Ta dawi dhal drashad un az krang."
 """
 
 from __future__ import annotations
@@ -21,10 +21,10 @@ import sys
 from dataclasses import dataclass
 from functools import cached_property
 
-from dammaz.lexicon import function_words, load_content
-from dammaz.loan import LOAN_ENDINGS
-from dammaz.morphology import SUFFIXES, inflect
-from dammaz.phonology import VOWELS
+from klazan.lexicon import function_words, load_content
+from klazan.loan import LOAN_ENDINGS
+from klazan.morphology import SUFFIXES, inflect
+from klazan.phonology import VOWELS
 
 PARTICLE_GLOSS = {"wan": "Q", "an": "FUT", "sar": "COND", "nai": "NEG", "zo": "REL",
                   "zu": "be", "uzar": "you.FML", "uzara": "your.FML"}
@@ -53,20 +53,20 @@ class Glosser:
     def glosses(self) -> dict[str, str]:
         g: dict[str, str] = {}
         for w in function_words():
-            g[w.dz] = PARTICLE_GLOSS.get(w.dz, w.en[0].split(" (")[0].replace(" ", "."))
+            g[w.kz] = PARTICLE_GLOSS.get(w.kz, w.en[0].split(" (")[0].replace(" ", "."))
         for e in load_content():
-            g[e.dz] = e.senses[0][0].replace(" ", ".")
+            g[e.kz] = e.senses[0][0].replace(" ", ".")
         return g
 
     @cached_property
     def uninflectable(self) -> set[str]:
         """Function words that never take a suffix (zo, ta, bin, wan...)."""
-        return {w.dz for w in function_words()
+        return {w.kz for w in function_words()
                 if w.cat in ("conjunction", "particle", "preposition", "article", "interjection")}
 
     @cached_property
     def lexicalized(self) -> set[str]:
-        return {e.dz for e in load_content() if e.origin == "derived"}
+        return {e.kz for e in load_content() if e.origin == "derived"}
 
     def analyses(self, word: str) -> list[tuple[str, tuple[str, ...]]]:
         """Every (root, tags) with inflect(root, *tags) == word."""
@@ -115,7 +115,7 @@ class Glosser:
             root, tags = min(cands, key=lambda a: (len(a[1]) - (a[0] in self.lexicalized), a[0]))
             return Analysis(root, tags, "word")
         if token[:1].isupper():
-            # capitalized and not a Dammaz word: a name, unless (sentence-initially)
+            # capitalized and not a Klazan word: a name, unless (sentence-initially)
             # it carries a loan class ending
             loan = self._loan(low, short_ok=False) if sentence_initial else None
             return loan or Analysis(token, (), "name")
@@ -144,7 +144,7 @@ class Glosser:
         return self.analyze(token, sentence_initial).gloss(self.glosses)
 
     def gloss_text(self, text: str) -> list[tuple[str, str]]:
-        """[(token, gloss)] for every word of a Dammaz text (punctuation kept)."""
+        """[(token, gloss)] for every word of a Klazan text (punctuation kept)."""
         out = []
         initial = True
         for tok in re.findall(r"[\w\-]+|[^\w\s]", text):
@@ -158,7 +158,7 @@ class Glosser:
 
 
 def interlinear(text: str, width: int = 100) -> str:
-    """Two aligned lines (Dammaz over gloss), wrapped at ``width``."""
+    """Two aligned lines (Klazan over gloss), wrapped at ``width``."""
     pairs = [p for p in Glosser().gloss_text(text) if re.match(r"\w", p[0])]
     lines, top, bot = [], "", ""
     for w, g in pairs:

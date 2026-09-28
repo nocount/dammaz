@@ -1,8 +1,8 @@
 import pytest
 
-from dammaz.gloss import Glosser
-from dammaz.lexicon import load_content, paradigm
-from dammaz.validate import validate_text
+from klazan.gloss import Glosser
+from klazan.lexicon import load_content, paradigm
+from klazan.validate import validate_text
 
 
 @pytest.fixture(scope="module")
@@ -25,7 +25,7 @@ def test_gloss_words(g, word, gloss):
 
 def test_lexicalized_derivation_beats_rederiving(g):
     smith = next(e for e in load_content() if ("smith", "NOUN") in e.senses)
-    assert g.gloss_word(smith.dz + ("n" if smith.dz[-1] in "aeiou" else "i")) == "smith-PL"
+    assert g.gloss_word(smith.kz + ("n" if smith.kz[-1] in "aeiou" else "i")) == "smith-PL"
 
 
 def test_every_paradigm_form_analyzes_back(g):
@@ -33,8 +33,8 @@ def test_every_paradigm_form_analyzes_back(g):
     bad = []
     for e in load_content():
         for form, tags in paradigm(e).items():
-            if (e.dz, tags) not in g.analyses(form):
-                bad.append((e.dz, tags, form))
+            if (e.kz, tags) not in g.analyses(form):
+                bad.append((e.kz, tags, form))
     assert not bad, bad[:10]
 
 
@@ -53,7 +53,7 @@ def test_validate_text():
 
 def test_translator_output_validates():
     spacy = pytest.importorskip("spacy")  # noqa: F841
-    from dammaz.translate import Translator
+    from klazan.translate import Translator
     t = Translator()
     text = ('Once upon a time, there was a little girl named Lily. She loved her puppy. '
             '"Can we play in the park?" she asked. "Yes, we can," said Dad.')

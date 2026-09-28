@@ -1,4 +1,4 @@
-"""Build the Dammaz training corpus for dwarfgpt (PLAN.md Phase 5).
+"""Build the Klazan training corpus for dwarfgpt (PLAN.md Phase 5).
 
 Three steps, each safe to re-run:
 
@@ -16,7 +16,7 @@ Three steps, each safe to re-run:
 (shard k = stories k*S .. k*S+S-1, so shard contents never depend on worker
 count). Each shard is written atomically (``.tmp`` then rename), so an
 interrupted run just continues with ``translate`` again. The manifest records
-the lexicon/code fingerprint (``dammaz.lexicon.fingerprint``); shards made with
+the lexicon/code fingerprint (``klazan.lexicon.fingerprint``); shards made with
 a different fingerprint are refused unless ``--allow-mixed``.
 
 **pack** keeps stories with no unknown tokens, at most ``--max-loan-rate`` loans,
@@ -24,9 +24,9 @@ and at least ``--min-words`` words, drops exact duplicates (normalized English),
 assigns ~``--val-frac`` of stories to validation by a hash of their English
 text. It writes:
 
-    <out>/packed/dz/train/shard_00000.parquet ...   {"text": Dammaz story}
-    <out>/packed/dz/val/shard_00000.parquet
-    <out>/packed/parallel/train.jsonl, val.jsonl    {"id", "en", "dz"}
+    <out>/packed/kz/train/shard_00000.parquet ...   {"text": Klazan story}
+    <out>/packed/kz/val/shard_00000.parquet
+    <out>/packed/parallel/train.jsonl, val.jsonl    {"id", "en", "kz"}
     <out>/packed/pack_manifest.json, REPORT.md      counts, loan rate, top loans
 """
 
@@ -49,8 +49,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "tools"))
 
-from dammaz import __version__  # noqa: E402
-from dammaz.lexicon import fingerprint  # noqa: E402
+from klazan import __version__  # noqa: E402
+from klazan.lexicon import fingerprint  # noqa: E402
 
 MANIFEST = "translate_manifest.json"
 
@@ -106,7 +106,7 @@ _translator = None
 
 def _init_worker() -> None:
     global _translator
-    from dammaz.translate import Translator
+    from klazan.translate import Translator
     _translator = Translator()
     _translator.translate("Warm up.")          # load spaCy + lexicon once per worker
 
@@ -117,12 +117,12 @@ def _translate_shard(k: int, start: int, stories: list[str], out: str, source: s
     tmp = path.with_suffix(".jsonl.tmp")
     words = loans = unknown = 0
     with tmp.open("w", encoding="utf-8") as f:
-        for j, (en, (dz, st)) in enumerate(zip(stories, _translator.translate_many(stories))):
+        for j, (en, (kz, st)) in enumerate(zip(stories, _translator.translate_many(stories))):
             words += st.tokens
             loans += st.loans
             unknown += st.unknown
             f.write(json.dumps({
-                "id": f"{source}-{start + j}", "en": en, "dz": dz,
+                "id": f"{source}-{start + j}", "en": en, "kz": kz,
                 "words": st.tokens, "loans": st.loans, "loan_rate": round(st.loan_rate, 4),
                 "unknown": st.unknown, "names": st.names,
                 "loan_words": sorted(st.loan_words.elements()),
@@ -149,7 +149,7 @@ def cmd_translate(args) -> None:
             raise SystemExit(f"shard size must stay {manifest['shard_size']} for this output dir")
     else:
         manifest = {"source": args.source, "input": input_info(args.input),
-                    "fingerprint": fp, "dammaz_version": __version__, "git": git_info(),
+                    "fingerprint": fp, "klazan_version": __version__, "git": git_info(),
                     "shard_size": args.shard_size, "host": platform.node(),
                     "started": datetime.now(timezone.utc).isoformat(), "shards": {}}
 
@@ -219,7 +219,7 @@ def summary(out: Path) -> str:
     loans = sum(s["loans"] for s in shards)
     unknown = sum(s["unknown"] for s in shards)
     secs = sum(s["seconds"] for s in shards)
-    return (f"{out}: {len(m['shards'])} shards, {stories:,} stories, {words:,} Dammaz words, "
+    return (f"{out}: {len(m['shards'])} shards, {stories:,} stories, {words:,} Klazan words, "
             f"loans {loans / max(words, 1):.2%}, unknown {unknown:,}, "
             f"{secs / 3600:.2f} worker-hours; fingerprint {m['fingerprint']}")
 
@@ -305,7 +305,7 @@ def cmd_pack(args) -> None:
                 for line in f:
                     yield json.loads(line)
 
-    pq_out = {s: ParquetShards(dst / "dz" / s, args.rows_per_file) for s in ("train", "val")}
+    pq_out = {s: ParquetShards(dst / "kz" / s, args.rows_per_file) for s in ("train", "val")}
     (dst / "parallel").mkdir(parents=True, exist_ok=True)
     par = {s: (dst / "parallel" / f"{s}.jsonl").open("w", encoding="utf-8") for s in ("train", "val")}
     counts: Counter = Counter()
@@ -314,12 +314,12 @@ def cmd_pack(args) -> None:
     loans: Counter = Counter()
     loan_words: Counter = Counter()
     for split, r in pack_records(records(), args.max_loan_rate, args.min_words, args.val_frac):
-        pq_out[split].add(r["dz"])
-        par[split].write(json.dumps({"id": r["id"], "en": r["en"], "dz": r["dz"]},
+        pq_out[split].add(r["kz"])
+        par[split].write(json.dumps({"id": r["id"], "en": r["en"], "kz": r["kz"]},
                                     ensure_ascii=False) + "\n")
         counts[split] += 1
         words[split] += r["words"]
-        chars[split] += len(r["dz"])
+        chars[split] += len(r["kz"])
         loans[split] += r["loans"]
         loan_words.update(r.get("loan_words", []))
     for w in pq_out.values():
@@ -333,16 +333,16 @@ def cmd_pack(args) -> None:
             "packed": datetime.now(timezone.utc).isoformat(),
             "filters": {"max_loan_rate": args.max_loan_rate, "min_words": args.min_words,
                         "val_frac": args.val_frac, "dedupe": "exact, normalized English"},
-            "stories": dict(counts), "dz_words": dict(words), "dz_chars": dict(chars),
+            "stories": dict(counts), "kz_words": dict(words), "kz_chars": dict(chars),
             "loan_rate": round(sum(loans.values()) / max(total_words, 1), 4),
             "dropped": dict(drops), "parquet_files": {s: w.n for s, w in pq_out.items()}}
     (dst / "pack_manifest.json").write_text(json.dumps(pack, indent=1))
     kept = sum(counts.values())
-    lines = [f"# Packed Dammaz corpus: {m['source']}", "",
+    lines = [f"# Packed Klazan corpus: {m['source']}", "",
              f"- fingerprint: `{m['fingerprint']}`, git `{(m['git'] or {}).get('commit')}`",
              f"- kept {kept:,} stories ({counts['train']:,} train / {counts['val']:,} val); "
              f"dropped {sum(drops.values()):,}: " + ", ".join(f"{k} {v:,}" for k, v in drops.items()),
-             f"- Dammaz words: {total_words:,} ({words['train']:,} train / {words['val']:,} val); "
+             f"- Klazan words: {total_words:,} ({words['train']:,} train / {words['val']:,} val); "
              f"characters {sum(chars.values()):,}",
              f"- loan rate after filtering: {pack['loan_rate']:.2%}", "",
              "## Most frequent loans (the next lexicon batch)", "",

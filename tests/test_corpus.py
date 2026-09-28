@@ -8,7 +8,7 @@ spec.loader.exec_module(corpus)
 
 
 def rec(i, en, words=50, loans=0, unknown=0):
-    return {"id": f"t-{i}", "en": en, "dz": f"dz {i}", "words": words, "loans": loans,
+    return {"id": f"t-{i}", "en": en, "kz": f"kz {i}", "words": words, "loans": loans,
             "loan_rate": loans / words, "unknown": unknown}
 
 
@@ -42,7 +42,7 @@ def test_iter_stories(tmp_path):
 
 
 def test_fingerprint_ignores_line_endings(tmp_path):
-    from dammaz.lexicon import _hash_files
+    from klazan.lexicon import _hash_files
     a, b = tmp_path / "a.yaml", tmp_path / "b.yaml"
     a.write_bytes(b"x: 1\ny: 2\n")
     b.write_bytes(b"x: 1\r\ny: 2\r\n")
