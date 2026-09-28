@@ -18,7 +18,10 @@ the dwarf old forge-PST a axe strong in the mountain
   (`dammaz.wordgen`), and made a sound-check sample
   ([`samples/sound_check_v0.md`](samples/sound_check_v0.md)).
   **Sound approved 2026-09-27.**
-- [ ] Phase 2: `spec/grammar.md`
+- [/] **Phase 2: grammar.** Draft v0.1 of [`spec/grammar.md`](spec/grammar.md),
+  with ~110 function words in [`lexicon/function.yaml`](lexicon/function.yaml)
+  and the suffix rules in `dammaz.morphology`. Every example in the spec is
+  checked by the tests. §12 decisions reviewed 2026-09-27 (formal *you* added).
 - [ ] Phase 3: lexicon
 - [ ] Phase 4: translator
 - [ ] Phase 5: corpus generation for dwarfgpt
@@ -26,10 +29,13 @@ the dwarf old forge-PST a axe strong in the mountain
 ## Layout
 
 ```
-spec/                     normative specs (+ generated analysis report)
-samples/                  sound checks and example texts
+spec/                     normative specs: phonology.md, grammar.md (+ analysis report)
+lexicon/function.yaml     function words (draft)
+samples/                  sound checks, example texts, placeholder vocab
 src/dammaz/
   phonology.py            segmenter, word-shape analysis, check_root()
+  morphology.py           suffix attachment: inflect()
+  lexicon.py              lexicon YAML loaders
   wordgen.py              root generator + dwarvishness scorer (CLI)
   data/phonology.yaml     machine-readable phonotactics + style knobs
   data/source_stats.json  aggregated source-language statistics (no word lists)

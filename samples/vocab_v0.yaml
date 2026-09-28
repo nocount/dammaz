@@ -1,0 +1,52 @@
+# Placeholder content words used in samples/ and in the examples of
+# spec/grammar.md. NOT the lexicon: these get replaced or confirmed in Phase 3.
+# tests/test_grammar_examples.py uses this to check that every grammar example
+# is built only from known words and correctly inflected.
+
+version: 0
+words:
+  # borrowed (Khazalid)
+  dwarf: dawi
+  mountain: karak
+  axe: az
+  hall: khaz
+  hammer: grund
+  king: rik
+  grudge: dammaz
+  goblin: grobi
+  elf: elgi
+  # invented (dammaz.wordgen, seed 2026)
+  old: dhal
+  strong: krang
+  deep: orn
+  big: gorz
+  dark: skom
+  forge: drash
+  drink: glok
+  remember: unguz
+  come: vun
+  see: thiz
+  speak: kend
+  make: drand
+  slay: khurk
+  give: sald
+  fight: skraf
+  go: truk
+  know: zork
+  work: krez
+  ale: bral
+  brother: zaka
+  gold: gleth
+  clan: thaluk
+  ancestor: urdak
+  enemy: skreka
+  fire: dhrak
+  tunnel: skung
+  oath: onaz
+  stone: kurm
+  iron: zath
+  song: iza
+  road: gont
+  gate: dwan
+  day: zeng
+  night: mulok

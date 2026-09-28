@@ -131,6 +131,16 @@ weights and inventory until that's true. This is the cheapest place to change co
 
 ## Phase 2: Grammar spec (week 1–2)
 
+> **Superseded (2026-09-27)** by the draft [`spec/grammar.md`](spec/grammar.md),
+> with its function words in `lexicon/function.yaml`. The main changes from the
+> sketch below:
+> - numerals go *before* the noun
+> - the past of `zu` is `zad`
+> - question words are the `wor-` series
+> - present tense is the bare root
+>
+> The sketch is kept for history.
+
 **Deliverable:** `spec/grammar.md`, the normative spec. The translator, validator,
 and glosser all implement exactly this document. Proposed contents; word forms
 marked *TBD* get chosen in Phase 3:
@@ -162,7 +172,7 @@ marked *TBD* get chosen in Phase 3:
 - Future: particle `an` + root (Khazalid). Conditional/"may": `sar` + root.
 - Perfect ("has gone") collapses to past in v1. It can be added later if missed.
 - Copula `zu` (Zharralid), conjugated regularly
-- Passive: `zu` + past form: `ta az zuad grunad` "the axe was forged"
+- Passive: `zu` + past form: `ta az zad grunad` "the axe was forged"
 - Negation: `nai` directly before the verb (Khazalid). No do-support.
 - Questions: sentence-initial particle `wan` (Khazalid) plus declarative order.
   No inversion.
