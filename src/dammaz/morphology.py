@@ -8,6 +8,8 @@
     'grundaki'
     >>> inflect("drash", "AGT", "PL")
     'drashkin'
+    >>> inflect("dawi", "DIM")
+    'dawit'
 
 Junction rules, applied one suffix at a time:
 
@@ -39,6 +41,7 @@ SUFFIXES: dict[str, tuple[str, str, str]] = {
     "TIME":   ("ur",  "TIME",   "deriv"),   # correlatives: zidur now, wanur when
     "REASON": ("os",  "REASON", "deriv"),   # correlatives: zukos therefore
     "POSS":   ("a",   "POSS",   "deriv"),   # pronoun -> possessive: or -> ora
+    "DIM":    ("it",  "DIM",    "deriv"),   # small/young/dear X: dawit little dwarf
     # degree / order
     "CMP":    ("ar",  "CMP",    "degree"),  # gorzar bigger; ta gorzar the biggest
     "ORD":    ("ik",  "ORD",    "degree"),  # tufik second

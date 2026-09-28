@@ -31,7 +31,7 @@ have one entry per word.
 | VBZ | verbalizer | TIME | time |
 | REASON | reason | POSS | possessive |
 | CMP | comparative | ORD | ordinal |
-| FML | formal (`uzar`, §4.1) | | |
+| FML | formal (`uzar`, §4.1) | DIM | diminutive (§3.7) |
 
 ---
 
@@ -75,6 +75,7 @@ Dammaz never hyphenates suffixes.
 | `-ur` | TIME | time (correlatives, §5) | `zid → zidur` now |
 | `-os` | REASON | reason (correlatives, §5) | `wor → woros` why |
 | `-a` | POSS | possessive (pronouns, §4) | `or → ora` my |
+| `-it` | DIM | small, young or dear X (§3.7) | `dawi → dawit` little dwarf |
 | `-ar` | CMP | comparative (§7) | `gorz → gorzar` bigger |
 | `-ik` | ORD | ordinal (§9) | `tuf → tufik` second |
 
@@ -181,6 +182,38 @@ e.g. `dammazkron` "grudge-book").
 
 Names pass through unchanged and keep their capital letter: `Borin`, `Lily`,
 `Karak Azgal`. They never take suffixes; possession uses `a` + name (§3.4).
+
+### 3.7 Diminutives: `-it`
+
+`-it` makes a **small, young or dear** version of a noun, like Spanish *-ito/-ita*.
+It is a derivational suffix, so the plural comes after it (`dawit → dawiti`):
+
+| Diminutive | Meaning |
+|---|---|
+| `dawi → dawit` | little dwarf, dwarf child |
+| dog → *puppy* | young animal |
+| cat → *kitten* | young animal |
+| child → *kid* | young/informal |
+| mom → *mommy* | affectionate (hypocoristic) |
+
+```dz
+Ta dawit glokad bral.
+the dwarf-DIM drink-PST ale
+"The little dwarf drank ale."
+```
+
+```dz
+Ora zakit an truk zol ut.
+I-POSS brother-DIM FUT go with we
+"My little brother will go with us."
+```
+
+**Lexicalized vs. productive.** English words that are diminutives (*puppy*, *kitten*,
+*bunny*, *mommy*) are `-it` words in the lexicon, derived from their base. The
+translator does **not** turn *little X* or *tiny X* into `-it`. Those stay as an
+adjective, so size and affection remain the writer's choice.
+
+The same stem can't also be a root: roots never end in `-it` (`phonology.md`).
 
 ---
 
@@ -351,7 +384,7 @@ be dark
 
 ### 6.4 Verb chains: modals and "want to"
 
-The Dammaz modals are ordinary verbs: `khal` "can", `dret` "must, have to",
+The Dammaz modals are ordinary verbs: `throk` "can", `dret` "must, have to",
 `narg` "want", `harg` "have". They take a **plain** verb directly, with no "to":
 
 ```dz
@@ -360,8 +393,8 @@ I want go to the mountain
 "I want to go to the mountain."
 ```
 
-**Tense is marked once, on the first verb of the chain:** `Ek khalad drash`
-"He could forge" (past ability), `Or an khal truk` "I will be able to go".
+**Tense is marked once, on the first verb of the chain:** `Ek throkad drash`
+"He could forge" (past ability), `Or an throk truk` "I will be able to go".
 *Should* is `sar dret` (would-must).
 
 **Purpose** uses `dra` + plain verb ("in order to"):
@@ -587,7 +620,7 @@ These conjunctions introduce a full clause:
 | Conjunction | Meaning |
 |---|---|
 | `os` | because |
-| `dun` | if, whether |
+| `mur` | if, whether |
 | `worur` | when, while |
 | `tand` | until |
 | `gez` | before (also a preposition) |
@@ -596,7 +629,7 @@ These conjunctions introduce a full clause:
 The clause can come before or after the main clause, as in English:
 
 ```dz
-Dun uz truk, or an truk.
+Mur uz truk, or an truk.
 if you go I FUT go
 "If you go, I will go."
 ```
@@ -663,6 +696,7 @@ the king have two-ten three axe-PL
 | *the / a, an / one* | `ta` / `un` / `un` | 3.2 |
 | adjective + noun | noun + adjective | 3.1 |
 | *X's Y*, *Y of X* | `Y a X` | 3.4 |
+| *puppy, kitten, mommy…* | base + `-it` (`slin → slinit`) | 3.7 |
 | noun-noun compound *stone gate* | `dwan a kurm` (no article) | 3.5 |
 | plural *-s* | `-i` / `-n`, always marked | 3.3 |
 | *he / she / it* | `ek` | 4 |
@@ -674,7 +708,7 @@ the king have two-ten three axe-PL
 | *went, was going, has/had gone* | `trukad` | 6.1 |
 | *will/shall go, is going to go* | `an truk` | 6.1 |
 | *would / might / may go* | `sar truk` | 6.1 |
-| *can go / could go (past ability)* | `khal truk` / `khalad truk` | 6.4 |
+| *can go / could go (past ability)* | `throk truk` / `throkad truk` | 6.4 |
 | *must go, has to go* / *should go* | `dret truk` / `sar dret truk` | 6.4 |
 | *want to go* | `narg truk` | 6.4 |
 | *(in order) to go* | `dra truk` | 6.4 |

@@ -51,8 +51,8 @@ forbidden_sequences:
   - [ng, ng]
 
 # Roots may not end in these, so inflected forms stay unambiguous
-# (plural -i, past -ad, progressive -en, agent -ki). Revisit with grammar.md.
-reserved_final_strings: [i, ad, en, ki]
+# (plural -i, past -ad, progressive -en, agent -ki, diminutive -it).
+reserved_final_strings: [i, ad, en, ki, it]
 
 # Stress: first syllable of the root, always. Suffixes are unstressed.
 stress: root-initial

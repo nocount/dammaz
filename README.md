@@ -22,7 +22,11 @@ the dwarf old forge-PST a axe strong in the mountain
   with ~110 function words in [`lexicon/function.yaml`](lexicon/function.yaml)
   and the suffix rules in `dammaz.morphology`. Every example in the spec is
   checked by the tests. §12 decisions reviewed 2026-09-27 (formal *you* added).
-- [ ] Phase 3: lexicon
+- [/] **Phase 3: lexicon.** Measured TinyStories ([`reports/coverage_tinystories.md`](reports/coverage_tinystories.md)):
+  function words + grammar alone cover 58% of word tokens, and ~1,160 content
+  senses reach the 97% gate. The validator and review tooling are built. **Waiting on:** your
+  review of [`lexicon/review/core_batch01.csv`](lexicon/review/core_batch01.csv)
+  (674 senses → 641 words; see [`lexicon/review/README.md`](lexicon/review/README.md)).
 - [ ] Phase 4: translator
 - [ ] Phase 5: corpus generation for dwarfgpt
 
@@ -30,18 +34,26 @@ the dwarf old forge-PST a axe strong in the mountain
 
 ```
 spec/                     normative specs: phonology.md, grammar.md (+ analysis report)
-lexicon/function.yaml     function words (draft)
+lexicon/
+  function.yaml           function words (draft)
+  core.yaml               content words, tier 1 (written by tools/review.py apply)
+  targets/                frequency worklists + spaCy corrections
+  review/                 seeds, review batches (CSV) and how-to
 samples/                  sound checks, example texts, placeholder vocab
 src/dammaz/
   phonology.py            segmenter, word-shape analysis, check_root()
   morphology.py           suffix attachment: inflect()
-  lexicon.py              lexicon YAML loaders
+  lexicon.py              lexicon load / validate / build / status (CLI)
+  english.py              English-side folding rules (adverbs, participles)
   wordgen.py              root generator + dwarvishness scorer (CLI)
   data/phonology.yaml     machine-readable phonotactics + style knobs
   data/source_stats.json  aggregated source-language statistics (no word lists)
 tools/
   extract_source_words.py references/raw/*.txt -> references/raw/source_words.tsv
   analyze_phonology.py    source_words.tsv -> spec/phonology_analysis.md + source_stats.json
+  coverage.py             corpus -> lemma worklist + coverage report (needs --group nlp)
+  review.py               propose review batches / apply decisions
+reports/                  generated coverage reports
 references/               source links; raw/ is gitignored (local copies only)
 tests/
 ```

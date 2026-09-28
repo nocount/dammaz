@@ -47,3 +47,18 @@ def test_inflect(root, tags, form):
 def test_bad_suffix_orders(tags):
     with pytest.raises(ValueError):
         inflect("krang", *tags)
+
+
+@pytest.mark.parametrize("root, tags, form", [
+    ("dawi", ("DIM",), "dawit"),               # elision
+    ("zaka", ("DIM",), "zakit"),
+    ("grund", ("DIM",), "grundit"),
+    ("dawi", ("DIM", "PL"), "dawiti"),         # plural after the diminutive
+])
+def test_diminutive(root, tags, form):
+    assert inflect(root, *tags) == form
+
+
+def test_roots_cannot_end_in_diminutive():
+    from dammaz.phonology import check_root
+    assert any("reserved suffix '-it'" in p for p in check_root("zakit"))

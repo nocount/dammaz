@@ -55,7 +55,7 @@ Additional constraints:
 - **Weight limit:** across a whole word, the "extra" consonants in clusters
   (cluster size minus 1) may total at most **2**. So `drekrazal` is fine, and
   `ongrondror` is too heavy.
-- **Reserved endings:** roots may not end in `-i`, `-ad`, `-en` or `-ki`,
+- **Reserved endings:** roots may not end in `-i`, `-ad`, `-en`, `-ki` or `-it`,
   because those are inflectional or agent suffixes. This keeps every inflected
   form unambiguous. The list will be revisited when `grammar.md` is written.
 

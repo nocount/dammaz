@@ -1,0 +1,31 @@
+# Fixes for spaCy (en_core_web_sm) lemma/POS errors, applied by tools/coverage.py
+# before counting. Keys and values are lemma/POS.
+
+alias:
+  swam/VERB: swim/VERB
+  shin/VERB: shine/VERB
+  scar/VERB: scare/VERB
+  cooky/NOUN: cookie/NOUN
+  clothe/NOUN: clothes/NOUN
+  carefull/ADJ: careful/ADJ
+  playing/NOUN: play/NOUN
+  living/NOUN: live/VERB           # "living room" is rare; mostly "for a living"
+  mum/NOUN: mom/NOUN
+  hi/INTJ: hello/INTJ
+  ok/INTJ: okay/INTJ
+  okay/ADJ: okay/INTJ
+  well/ADV: good/ADJ              # 'did well' = good + ADV
+
+# Not lexicon material: names mis-tagged as words, idiom fragments handled by
+# the translator's phrase table ("of course", "once upon a time").
+skip:
+  - lily/ADJ
+  - course/ADJ
+  - once/ADJ
+  - once/ADV
+
+# Senses spaCy tags with a part of speech the function-word categories don't
+# cover, but which the function words handle (counted as function, never
+# proposed for the content lexicon).
+function:
+  - all/ADV            # "all alone", "all day" -> gom
