@@ -156,8 +156,9 @@ marked *TBD* get chosen in Phase 3:
   and simple to learn, but lossy on round-trip.
 
 **Verbs** (one regular conjugation; no person/number agreement)
-- Bare root = infinitive / imperative
-- Present `-it` (Khazalid), past `-ad`, progressive `-en` (Khazalid "ongoing")
+- Bare root = present / infinitive / imperative. (Decided 2026-09-27: a present
+  `-it` on every verb got repetitive.)
+- Past `-ad`, progressive `-en` (Khazalid "ongoing")
 - Future: particle `an` + root (Khazalid). Conditional/"may": `sar` + root.
 - Perfect ("has gone") collapses to past in v1. It can be added later if missed.
 - Copula `zu` (Zharralid), conjugated regularly
