@@ -85,7 +85,7 @@ class Glosser:
                     stem = w[:-len(f)]
                     cands = {stem}
                     if f[0] in VOWELS:
-                        cands |= {stem + v for v in "aeou"}          # undo elision
+                        cands |= {stem + v for v in "aeiou"}         # undo elision
                     elif stem.endswith("a"):
                         cands.add(stem[:-1])                          # undo epenthesis
                     for c in cands:

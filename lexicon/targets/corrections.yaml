@@ -20,6 +20,9 @@ alias:
 # Not lexicon material: names mis-tagged as words, idiom fragments handled by
 # the translator's phrase table ("of course", "once upon a time").
 skip:
+  - x/NOUN                        # list markers and stray letters in book text
+  - b/NOUN
+  - o/NOUN
   - lily/ADJ
   - course/ADJ
   - once/ADJ

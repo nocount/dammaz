@@ -109,3 +109,52 @@ def test_grammar_example(translator, english, kz, gloss):
     if expected is None:
         pytest.skip("uses a placeholder word that is not in the lexicon yet")
     assert translator.translate(english) == expected
+
+
+# Curly apostrophes (common in Gutenberg and Cosmopedia text) must parse like
+# straight ones: spaCy alone drops the negation in "wasn’t" and the tense in
+# "they’ve gone".
+@pytest.mark.parametrize("straight", [
+    "I don't know. It's late, we're tired.",
+    "She wasn't there and they've gone.",
+    "The dwarf's axe isn't sharp.",
+])
+def test_curly_apostrophes_translate_like_straight(translator, straight):
+    curly = straight.replace("'", "’")
+    assert translator.translate(curly) == translator.translate(straight)
+
+
+def test_curly_quotation_marks_are_kept():
+    from klazan.english import normalize_apostrophes
+    assert normalize_apostrophes("‘Halt!’ he said, and didn’t move.") == \
+        "‘Halt!’ he said, and didn't move."
+
+
+# Early Modern English is rewritten before parsing (english.normalize_english).
+@pytest.mark.parametrize("archaic, modern", [
+    ("Thou art a fool, and thy beard is thine own.", "You are a fool, and your beard is your own."),
+    ("Where art thou going? Wilt thou come?", "Where are you going? Will you come?"),
+    ("He goeth to the hall and knoweth the way.", "He goes to the hall and knows the way."),
+    ("Thou knowest, thou sittest, what say'st thou?", "You know, you sit, what say you?"),
+    ("’Tis late; ere long they came hither.", "It is late; before long they came here."),
+    ("Standeth thou here? The kingdom is thine.", "Stand you here? The kingdom is yours."),
+    ("Thou, queen, art the fairest of them all.", "You, queen, are the fairest of them all."),
+])
+def test_archaic_english_is_modernized(archaic, modern):
+    from klazan.english import normalize_english
+    assert normalize_english(archaic) == modern
+
+
+@pytest.mark.parametrize("text", [
+    "The flowers wilt in art class.",
+    "His teeth, beneath the death mask, on the fiftieth day.",
+    "The eldest son rested in the forest; I must go.",
+])
+def test_modern_words_that_look_archaic_are_kept(text):
+    from klazan.english import normalize_english
+    assert normalize_english(text) == text
+
+
+def test_archaic_translates_like_modern(translator):
+    assert translator.translate("Thou art the king, and thou hast my axe.") == \
+        translator.translate("You are the king, and you have my axe.")

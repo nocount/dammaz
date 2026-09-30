@@ -34,7 +34,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import yaml  # noqa: E402
 
-from klazan.english import ly_base, participle_verb  # noqa: E402
+from klazan.english import ly_base, normalize_english, participle_verb  # noqa: E402
 from klazan.lexicon import function_words  # noqa: E402
 
 CORRECTIONS = ROOT / "lexicon" / "targets" / "corrections.yaml"
@@ -124,7 +124,7 @@ def main() -> None:
     examples: dict[tuple[str, str], str] = {}
     n_stories = 0
 
-    stories = iter_stories(args.corpus, args.limit)
+    stories = (normalize_english(s) for s in iter_stories(args.corpus, args.limit))
     for doc in nlp.pipe(stories, batch_size=64, n_process=args.processes):
         n_stories += 1
         for sent in doc.sents if doc.has_annotation("SENT_START") else [doc]:

@@ -33,7 +33,7 @@ from pathlib import Path
 
 import yaml
 
-from klazan.english import ly_base, participle_verb
+from klazan.english import ly_base, normalize_english, participle_verb
 from klazan.lexicon import LEXICON_DIR, function_words, load_content
 from klazan.loan import loan
 from klazan.morphology import inflect
@@ -192,7 +192,7 @@ class Translator:
 
     def translate_with_stats(self, text: str) -> tuple[str, Stats]:
         stats = Stats()
-        paras = text.split("\n")
+        paras = normalize_english(text).split("\n")
         out = []
         for para, doc in zip(paras, self.nlp.pipe(paras)):
             out.append(self._doc(doc, stats) if para.strip() else para)
@@ -202,7 +202,8 @@ class Translator:
         """Yield (klazan, stats) per input text, parsing all paragraphs of all
         texts in one spaCy pipe (much faster than one call per text)."""
         texts = list(texts)
-        paras = [(ti, p) for ti, text in enumerate(texts) for p in text.split("\n")]
+        paras = [(ti, p) for ti, text in enumerate(texts)
+                 for p in normalize_english(text).split("\n")]
         docs = self.nlp.pipe((p for _, p in paras), batch_size=batch_size, n_process=n_process)
         results: list[list[str]] = [[] for _ in texts]
         stats = [Stats() for _ in texts]

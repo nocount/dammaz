@@ -693,6 +693,14 @@ the king have two-ten three axe-PL
 
 ## 11. English → Klazan: translator summary
 
+Before parsing, the translator normalizes its English input
+(`klazan.english.normalize_english`). Curly apostrophes inside words are
+straightened (*don’t* → *don't*), because spaCy only recognizes contractions
+spelled with `'`. Early Modern English is rewritten as modern English (*thou
+art* → *you are*, *he goeth* → *he goes*, *’tis* → *it is*), because spaCy
+misreads it (*thou* as a noun, *art* as the noun *art*). The table below
+describes modern English.
+
 | English | Klazan | § |
 |---|---|---|
 | *the / a, an / one* | `ta` / `un` / `un` | 3.2 |

@@ -384,15 +384,21 @@ def apply(path: Path, into: str, dry_run: bool = False) -> None:
         print(f"dry run: {len(final)} senses -> {len(merged)} words valid "
               f"({len(rep.warnings)} warnings, {rejected} rejected); nothing written")
         return
-    target = LEXICON_DIR / f"{into}.yaml"
-    header = [f"# Klazan content lexicon: {into}. Edit freely; validate with",
-              "#   uv run python -m klazan.lexicon check",
-              "# en: lemma/POS senses. origin: invented | borrowed (from) | derived (base).",
-              "", "entries:"]
-    body = [_fmt(e) for e in merged if e.tier == into]
-    target.write_text("\n".join(header + body) + "\n", encoding="utf-8")
-    print(f"{target.relative_to(ROOT)}: now {len(body)} words; applied {len(final)} senses, "
-          f"{rejected} rejected; {len(rep.warnings)} warnings")
+    # New words go to ``into``, but a sense that shares an existing word is
+    # added to that word's entry in whatever tier it lives in, so every tier
+    # that changed is written, not only ``into``.
+    for tier in sorted({e.tier for e in merged} | {into}):
+        body = [_fmt(e) for e in merged if e.tier == tier]
+        if tier != into and body == [_fmt(e) for e in existing if e.tier == tier]:
+            continue
+        target = LEXICON_DIR / f"{tier}.yaml"
+        header = [f"# Klazan content lexicon: {tier}. Edit freely; validate with",
+                  "#   uv run python -m klazan.lexicon check",
+                  "# en: lemma/POS senses. origin: invented | borrowed (from) | derived (base).",
+                  "", "entries:"]
+        target.write_text("\n".join(header + body) + "\n", encoding="utf-8")
+        print(f"{target.parent.name}/{target.name}: now {len(body)} words")
+    print(f"applied {len(final)} senses, {rejected} rejected; {len(rep.warnings)} warnings")
 
 
 def _q(s: str) -> str:
