@@ -23,13 +23,13 @@ the dwarf old forge-PAST a axe strong in the mountain
 "The old dwarf forged a strong axe in the mountain."
 ```
 
-## Status (updated 2026-09-27)
+## Status (updated 2026-09-30)
 
 | Phase | State | Where |
 |---|---|---|
 | 1. Phonology | **Done.** Sound approved. | `spec/phonology.md`, `klazan.wordgen` |
 | 2. Grammar | **Done** (draft v0.1, all §12 decisions made; formal `uzar` and diminutive `-it` added). | `spec/grammar.md`, `lexicon/function.yaml` |
-| 3. Lexicon | **Gate met.** 1,155 content words + 113 function words, 97.08% TinyStories coverage. | `lexicon/core.yaml`, `reports/coverage_tinystories.md` |
+| 3. Lexicon | **Gate met.** 3,058 content words + 113 function words: 98.44% TinyStories coverage, and 95% on Cosmopedia's young-children stories and on fairy tales and myths (batch 3, 2026-09-30). | `lexicon/core.yaml`, `lexicon/extended.yaml`, `reports/coverage_*.md` |
 | 4. Translator | **Done.** 39/40 grammar examples exact; 0 unknown tokens; 2.65% loans before filtering; ~10K words/s per process. | `klazan.translate`, `.gloss`, `.validate`, `.loan` |
 | 5. Corpus | **Tooling built and tested; the full run is pending** (to be done on the desktop). | `tools/corpus.py`, `docs/corpus_runbook.md` |
 | 6. Learning materials | Not started. | — |

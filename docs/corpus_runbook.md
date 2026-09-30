@@ -28,9 +28,9 @@ has the same language:
 uv run python -m klazan.lexicon fingerprint
 ```
 
-At the time of writing (1,155 content words, batch 2 + *next* → `brik` applied)
-this printed `{"lexicon": "a206f4c78481", ...}`. The `code` hash also changes
-whenever the translator changes.
+At the time of writing (3,058 content words: batches 1–3, with batch 3 in
+`extended.yaml`) this printed `{"lexicon": "b3ab89a9659e", "code": "dae934647d82"}`.
+The `code` hash also changes whenever the translator changes.
 
 ## 1. Set up the checkout
 

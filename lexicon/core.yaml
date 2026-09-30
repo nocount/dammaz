@@ -22,9 +22,9 @@ entries:
   - {kz: skrum, en: ["toy/NOUN"], origin: invented}
   - {kz: skrok, en: ["together/ADV"], origin: invented}
   - {kz: sloz, en: ["help/VERB", "help/NOUN"], origin: invented}
-  - {kz: klal, en: ["like/VERB"], origin: invented}
+  - {kz: klal, en: ["like/VERB", "like/INTJ", "like/ADJ"], origin: invented}
   - {kz: glang, en: ["dog/NOUN"], origin: invented}
-  - {kz: kleg, en: ["good/ADJ"], origin: invented}
+  - {kz: kleg, en: ["good/ADJ", "good/NOUN"], origin: invented}
   - {kz: vun, en: ["come/VERB"], origin: invented}
   - {kz: flan, en: ["cat/NOUN"], origin: invented}
   - {kz: droz, en: ["feel/VERB"], origin: invented}
@@ -37,25 +37,25 @@ entries:
   - {kz: grer, en: ["sad/ADJ"], origin: invented}
   - {kz: khrat, en: ["get/VERB"], origin: invented}
   - {kz: glind, en: ["take/VERB"], origin: invented}
-  - {kz: guzk, en: ["run/VERB"], origin: invented}
+  - {kz: guzk, en: ["run/VERB", "run/NOUN"], origin: invented}
   - {kz: zork, en: ["know/VERB"], origin: invented}
   - {kz: zink, en: ["ask/VERB"], origin: invented}
   - {kz: weg, en: ["fun/NOUN", "fun/ADJ"], origin: invented}
-  - {kz: khalgaz, en: ["park/NOUN"], origin: derived, base: "khalg+PLACE"}
+  - {kz: khalgaz, en: ["park/NOUN", "playground/NOUN"], origin: derived, base: "khalg+PLACE"}
   - {kz: thring, en: ["smile/VERB", "smile/NOUN"], origin: invented}
   - {kz: stut, en: ["start/VERB"], origin: invented}
-  - {kz: skat, en: ["try/VERB"], origin: invented}
+  - {kz: skat, en: ["try/VERB", "try/NOUN"], origin: invented}
   - {kz: gril, en: ["think/VERB"], origin: invented}
   - {kz: smin, en: ["new/ADJ"], origin: invented}
   - {kz: shak, en: ["small/ADJ"], origin: invented}
   - {kz: kruth, en: ["thing/NOUN"], origin: invented}
   - {kz: grarz, en: ["put/VERB"], origin: invented}
-  - {kz: threb, en: ["live/VERB"], origin: invented}
+  - {kz: threb, en: ["live/VERB", "live/ADJ"], origin: invented}
   - {kz: klond, en: ["give/VERB"], origin: invented}
   - {kz: kvold, en: ["car/NOUN"], origin: invented}
   - {kz: flarm, en: ["scare/VERB"], origin: invented}
   - {kz: throsh, en: ["again/ADV"], origin: invented}
-  - {kz: dhrin, en: ["thank/VERB"], origin: invented}
+  - {kz: dhrin, en: ["thank/VERB", "thank/NOUN"], origin: invented}
   - {kz: grosh, en: ["eat/VERB"], origin: invented}
   - {kz: wazk, en: ["house/NOUN"], origin: invented}
   - {kz: stroth, en: ["learn/VERB"], origin: invented}
@@ -65,16 +65,16 @@ entries:
   - {kz: briz, en: ["lot/NOUN"], origin: invented}
   - {kz: nug, en: ["walk/VERB", "walk/NOUN"], origin: invented}
   - {kz: milg, en: ["tell/VERB"], origin: invented}
-  - {kz: umgi, en: ["man/NOUN", "human/NOUN"], origin: borrowed, from: "Khazalid umgi 'humans, manlings'"}
+  - {kz: umgi, en: ["man/NOUN", "human/NOUN", "human/ADJ"], origin: borrowed, from: "Khazalid umgi 'humans, manlings'"}
   - {kz: drarg, en: ["become/VERB"], origin: invented}
-  - {kz: zurl, en: ["red/ADJ"], origin: invented}
-  - {kz: bazh, en: ["share/VERB"], origin: invented}
+  - {kz: zurl, en: ["red/ADJ", "red/NOUN"], origin: invented}
+  - {kz: bazh, en: ["share/VERB", "share/NOUN"], origin: invented}
   - {kz: skrir, en: ["decide/VERB"], origin: invented}
   - {kz: skuz, en: ["home/ADV", "home/NOUN"], origin: invented}
   - {kz: krab, en: ["room/NOUN"], origin: invented}
   - {kz: dhrard, en: ["water/NOUN"], origin: invented}
   - {kz: runt, en: ["excite/VERB"], origin: invented}
-  - {kz: nurk, en: ["long/ADJ"], origin: invented}
+  - {kz: nurk, en: ["long/ADJ", "long/VERB"], origin: invented}
   - {kz: smab, en: ["nice/ADJ"], origin: invented}
   - {kz: fle, en: ["just/ADJ"], origin: invented}
   - {kz: drirm, en: ["fast/ADJ"], origin: invented}
@@ -92,12 +92,12 @@ entries:
   - {kz: shadankashrak, en: ["careful/ADJ"], origin: derived, base: "shadankash+LIKE"}
   - {kz: smez, en: ["sorry/ADJ", "sorry/INTJ"], origin: invented}
   - {kz: vash, en: ["keep/VERB"], origin: invented}
-  - {kz: brot, en: ["stop/VERB"], origin: invented}
-  - {kz: vald, en: ["need/VERB"], origin: invented}
+  - {kz: brot, en: ["stop/VERB", "stop/NOUN"], origin: invented}
+  - {kz: vald, en: ["need/VERB", "need/NOUN"], origin: invented}
   - {kz: varz, en: ["fish/NOUN"], origin: invented}
   - {kz: kurm, en: ["rock/NOUN", "stone/NOUN"], origin: invented}
   - {kz: dwar, en: ["sit/VERB"], origin: invented}
-  - {kz: dwald, en: ["use/VERB"], origin: invented}
+  - {kz: dwald, en: ["use/VERB", "use/NOUN"], origin: invented}
   - {kz: stuzk, en: ["food/NOUN"], origin: invented}
   - {kz: thrand, en: ["sky/NOUN"], origin: invented}
   - {kz: skrel, en: ["hello/INTJ"], origin: invented}
@@ -106,11 +106,11 @@ entries:
   - {kz: gakig, en: ["listen/VERB"], origin: invented}
   - {kz: damil, en: ["flower/NOUN"], origin: invented}
   - {kz: thralg, en: ["hug/VERB", "hug/NOUN"], origin: invented}
-  - {kz: dhruz, en: ["hand/NOUN"], origin: invented}
+  - {kz: dhruz, en: ["hand/NOUN", "hand/VERB"], origin: invented}
   - {kz: garn, en: ["high/ADJ"], origin: invented}
   - {kz: tharoz, en: ["cake/NOUN"], origin: invented}
   - {kz: kokflu, en: ["special/ADJ"], origin: invented}
-  - {kz: khrazh, en: ["anymore/ADV"], origin: invented}
+  - {kz: khrazh, en: ["anymore/ADV", "anymore/ADJ"], origin: invented}
   - {kz: dwong, en: ["sudden/ADJ"], origin: invented}
   - {kz: drazhel, en: ["even/ADJ"], origin: invented}
   - {kz: skrash, en: ["bug/NOUN"], origin: invented}
@@ -121,13 +121,13 @@ entries:
   - {kz: dwuz, en: ["cry/VERB", "cry/NOUN"], origin: invented}
   - {kz: erkuk, en: ["bad/ADJ"], origin: invented}
   - {kz: dinda, en: ["soon/ADV"], origin: invented}
-  - {kz: kend, en: ["talk/VERB", "speak/VERB"], origin: invented}
+  - {kz: kend, en: ["talk/VERB", "speak/VERB", "talk/NOUN"], origin: invented}
   - {kz: brard, en: ["game/NOUN"], origin: invented}
   - {kz: stro, en: ["fall/VERB"], origin: invented}
   - {kz: gakram, en: ["surprise/VERB", "surprise/NOUN"], origin: invented}
   - {kz: krez, en: ["work/VERB", "work/NOUN"], origin: invented}
   - {kz: warnark, en: ["ground/NOUN"], origin: invented}
-  - {kz: grelg, en: ["break/VERB"], origin: invented}
+  - {kz: grelg, en: ["break/VERB", "break/NOUN"], origin: invented}
   - {kz: kvak, en: ["shiny/ADJ"], origin: invented}
   - {kz: dronk, en: ["proud/ADJ"], origin: invented}
   - {kz: gizag, en: ["door/NOUN", "gate/NOUN"], origin: invented}
@@ -137,14 +137,14 @@ entries:
   - {kz: benk, en: ["story/NOUN"], origin: invented}
   - {kz: khrun, en: ["wait/VERB"], origin: invented}
   - {kz: galg, en: ["unexpected/ADJ"], origin: invented}
-  - {kz: vith, en: ["end/NOUN"], origin: invented}
+  - {kz: vith, en: ["end/NOUN", "end/VERB"], origin: invented}
   - {kz: skoth, en: ["well/ADJ"], origin: invented}
-  - {kz: treng, en: ["call/VERB"], origin: invented}
+  - {kz: treng, en: ["call/VERB", "call/NOUN"], origin: invented}
   - {kz: glunk, en: ["bear/NOUN"], origin: invented}
   - {kz: komathaz, en: ["garden/NOUN"], origin: derived, base: "komath+PLACE"}
   - {kz: wazkath, en: ["loud/ADJ"], origin: invented}
   - {kz: gading, en: ["still/ADV"], origin: invented}
-  - {kz: dugin, en: ["place/NOUN"], origin: invented}
+  - {kz: dugin, en: ["place/NOUN", "place/VERB"], origin: invented}
   - {kz: threnk, en: ["family/NOUN"], origin: invented}
   - {kz: budroz, en: ["blue/ADJ"], origin: invented}
   - {kz: sonkhruz, en: ["kind/ADJ"], origin: invented}
@@ -158,15 +158,15 @@ entries:
   - {kz: bolak, en: ["boat/NOUN"], origin: invented}
   - {kz: gekun, en: ["noise/NOUN"], origin: invented}
   - {kz: grurl, en: ["reach/VERB"], origin: invented}
-  - {kz: sazon, en: ["move/VERB"], origin: invented}
+  - {kz: sazon, en: ["move/VERB", "move/NOUN"], origin: invented}
   - {kz: grozbon, en: ["picture/NOUN"], origin: invented}
   - {kz: treth, en: ["lose/VERB"], origin: invented}
   - {kz: nangan, en: ["beautiful/ADJ"], origin: invented}
   - {kz: izash, en: ["sing/VERB"], origin: derived, base: "iza+VBZ"}
   - {kz: flizol, en: ["hop/VERB"], origin: invented}
-  - {kz: glaraz, en: ["please/INTJ"], origin: invented}
+  - {kz: glaraz, en: ["please/INTJ", "please/VERB"], origin: invented}
   - {kz: rikas, en: ["frog/NOUN"], origin: invented}
-  - {kz: khazon, en: ["hold/VERB"], origin: invented}
+  - {kz: khazon, en: ["hold/VERB", "hold/NOUN"], origin: invented}
   - {kz: skilg, en: ["soft/ADJ"], origin: invented}
   - {kz: huzh, en: ["do/VERB"], origin: invented}
   - {kz: drarol, en: ["town/NOUN"], origin: invented}
@@ -187,8 +187,8 @@ entries:
   - {kz: frazk, en: ["stick/NOUN"], origin: invented}
   - {kz: zabniz, en: ["brave/ADJ"], origin: invented}
   - {kz: krongnul, en: ["hole/NOUN"], origin: invented}
-  - {kz: vorog, en: ["warm/ADJ"], origin: invented}
-  - {kz: flork, en: ["face/NOUN"], origin: invented}
+  - {kz: vorog, en: ["warm/ADJ", "warm/VERB"], origin: invented}
+  - {kz: flork, en: ["face/NOUN", "face/VERB"], origin: invented}
   - {kz: grith, en: ["also/ADV"], origin: invented}
   - {kz: thrizkol, en: ["magic/ADJ", "magical/ADJ", "magic/NOUN"], origin: invented}
   - {kz: dwengurn, en: ["swim/VERB"], origin: invented}
@@ -197,35 +197,35 @@ entries:
   - {kz: kalund, en: ["fix/VERB"], origin: invented}
   - {kz: zhankrak, en: ["sunny/ADJ"], origin: derived, base: "zhank+LIKE"}
   - {kz: brantaz, en: ["turn/VERB", "turn/NOUN"], origin: invented}
-  - {kz: wern, en: ["green/ADJ"], origin: invented}
+  - {kz: wern, en: ["green/ADJ", "green/NOUN"], origin: invented}
   - {kz: kongunk, en: ["slide/NOUN", "slide/VERB"], origin: invented}
   - {kz: dhrarkha, en: ["dance/VERB", "dance/NOUN"], origin: invented}
   - {kz: kangril, en: ["apple/NOUN"], origin: invented}
   - {kz: drizk, en: ["clean/VERB", "clean/ADJ"], origin: invented}
   - {kz: droth, en: ["funny/ADJ"], origin: invented}
-  - {kz: hormaz, en: ["store/NOUN", "shop/NOUN"], origin: derived, base: "horm+PLACE"}
+  - {kz: hormaz, en: ["store/NOUN", "shop/NOUN", "store/VERB"], origin: derived, base: "horm+PLACE"}
   - {kz: kronurn, en: ["squirrel/NOUN"], origin: invented}
   - {kz: lamkhrun, en: ["wear/VERB"], origin: invented}
   - {kz: strun, en: ["tire/VERB"], origin: invented}
-  - {kz: grizu, en: ["touch/VERB"], origin: invented}
+  - {kz: grizu, en: ["touch/VERB", "touch/NOUN"], origin: invented}
   - {kz: bonda, en: ["eye/NOUN"], origin: invented}
   - {kz: klebak, en: ["bed/NOUN"], origin: invented}
   - {kz: gunom, en: ["maybe/ADV"], origin: invented}
   - {kz: kardit, en: ["mommy/NOUN"], origin: derived, base: "kard+DIM"}
   - {kz: unguz, en: ["remember/VERB"], origin: invented}
-  - {kz: briba, en: ["leave/VERB"], origin: invented}
+  - {kz: briba, en: ["leave/VERB", "leave/NOUN"], origin: invented}
   - {kz: drurel, en: ["party/NOUN"], origin: invented}
   - {kz: kurbold, en: ["pull/VERB"], origin: invented}
   - {kz: grirn, en: ["spot/NOUN", "spot/VERB"], origin: invented}
   - {kz: stong, en: ["pond/NOUN"], origin: invented}
   - {kz: skrakash, en: ["ice/NOUN"], origin: invented}
   - {kz: dwergaz, en: ["kitchen/NOUN"], origin: derived, base: "dwerg+PLACE"}
-  - {kz: klatash, en: ["color/NOUN"], origin: invented}
+  - {kz: klatash, en: ["color/NOUN", "color/VERB"], origin: invented}
   - {kz: drerl, en: ["follow/VERB"], origin: invented}
   - {kz: skramal, en: ["throw/VERB"], origin: invented}
   - {kz: throrg, en: ["final/ADJ"], origin: invented}
   - {kz: klish, en: ["agree/VERB"], origin: invented}
-  - {kz: tarl, en: ["head/NOUN"], origin: invented}
+  - {kz: tarl, en: ["head/NOUN", "head/VERB"], origin: invented}
   - {kz: komath, en: ["grow/VERB"], origin: invented}
   - {kz: kagam, en: ["wish/VERB", "wish/NOUN"], origin: invented}
   - {kz: nukwal, en: ["enjoy/VERB"], origin: invented}
@@ -239,18 +239,18 @@ entries:
   - {kz: gakflof, en: ["important/ADJ"], origin: invented}
   - {kz: nokflal, en: ["bright/ADJ"], origin: invented}
   - {kz: smuk, en: ["grab/VERB"], origin: invented}
-  - {kz: defraz, en: ["favorite/ADJ"], origin: invented}
+  - {kz: defraz, en: ["favorite/ADJ", "favorite/NOUN"], origin: invented}
   - {kz: kingdrol, en: ["wow/INTJ"], origin: invented}
   - {kz: horm, en: ["buy/VERB"], origin: invented}
   - {kz: grent, en: ["tall/ADJ"], origin: invented}
   - {kz: drib, en: ["bring/VERB"], origin: invented}
   - {kz: datrok, en: ["tail/NOUN"], origin: invented}
   - {kz: thrim, en: ["moral/NOUN"], origin: invented}
-  - {kz: skush, en: ["block/NOUN"], origin: invented}
+  - {kz: skush, en: ["block/NOUN", "block/VERB"], origin: invented}
   - {kz: umdhaz, en: ["cookie/NOUN"], origin: invented}
   - {kz: skarn, en: ["floor/NOUN"], origin: invented}
   - {kz: kvuzk, en: ["top/NOUN"], origin: invented}
-  - {kz: frirk, en: ["cold/ADJ"], origin: invented}
+  - {kz: frirk, en: ["cold/ADJ", "cold/NOUN"], origin: invented}
   - {kz: irek, en: ["cream/NOUN"], origin: invented}
   - {kz: stirk, en: ["lady/NOUN"], origin: invented}
   - {kz: mulok, en: ["night/NOUN"], origin: invented}
@@ -262,7 +262,7 @@ entries:
   - {kz: staz, en: ["draw/VERB"], origin: invented}
   - {kz: sharl, en: ["grass/NOUN"], origin: invented}
   - {kz: grolk, en: ["voice/NOUN"], origin: invented}
-  - {kz: khralk, en: ["far/ADJ"], origin: invented}
+  - {kz: khralk, en: ["far/ADJ", "far/ADV"], origin: invented}
   - {kz: skreng, en: ["yellow/ADJ"], origin: invented}
   - {kz: klath, en: ["different/ADJ"], origin: invented}
   - {kz: thrirna, en: ["read/VERB"], origin: invented}
@@ -270,7 +270,7 @@ entries:
   - {kz: dhreth, en: ["hungry/ADJ"], origin: invented}
   - {kz: gratam, en: ["explore/VERB"], origin: invented}
   - {kz: glakint, en: ["adventure/NOUN"], origin: invented}
-  - {kz: thrizk, en: ["blow/VERB"], origin: invented}
+  - {kz: thrizk, en: ["blow/VERB", "blow/NOUN"], origin: invented}
   - {kz: khriz, en: ["lion/NOUN"], origin: invented}
   - {kz: grumrak, en: ["friendly/ADJ"], origin: derived, base: "grum+LIKE"}
   - {kz: thazk, en: ["ready/ADJ"], origin: invented}
@@ -278,9 +278,9 @@ entries:
   - {kz: fram, en: ["full/ADJ"], origin: invented}
   - {kz: daslam, en: ["hot/ADJ"], origin: invented}
   - {kz: azharm, en: ["forget/VERB"], origin: invented}
-  - {kz: mungrol, en: ["train/NOUN"], origin: invented}
+  - {kz: mungrol, en: ["train/NOUN", "train/VERB"], origin: invented}
   - {kz: barm, en: ["clap/VERB"], origin: invented}
-  - {kz: gotrar, en: ["dress/NOUN"], origin: invented}
+  - {kz: gotrar, en: ["dress/NOUN", "dress/VERB"], origin: invented}
   - {kz: hokthaz, en: ["stick/VERB"], origin: invented}
   - {kz: glenaz, en: ["wet/ADJ"], origin: invented}
   - {kz: dhruld, en: ["sweet/ADJ"], origin: invented}
@@ -295,19 +295,19 @@ entries:
   - {kz: nuzak, en: ["amaze/VERB"], origin: invented}
   - {kz: thragra, en: ["race/NOUN", "race/VERB"], origin: invented}
   - {kz: gruzh, en: ["rain/NOUN", "rain/VERB"], origin: invented}
-  - {kz: zushukral, en: ["sound/NOUN", "sound/VERB"], origin: invented}
+  - {kz: zushukral, en: ["sound/NOUN", "sound/VERB", "sound/ADJ"], origin: invented}
   - {kz: azoz, en: ["baby/NOUN"], origin: invented}
   - {kz: angumska, en: ["wise/ADJ"], origin: invented}
   - {kz: unrug, en: ["roll/VERB"], origin: invented}
   - {kz: gebund, en: ["owl/NOUN"], origin: invented}
-  - {kz: krashal, en: ["star/NOUN"], origin: invented}
-  - {kz: grald, en: ["slow/ADJ"], origin: invented}
+  - {kz: krashal, en: ["star/NOUN", "star/VERB"], origin: invented}
+  - {kz: grald, en: ["slow/ADJ", "slow/VERB"], origin: invented}
   - {kz: nozhanrok, en: ["glad/ADJ"], origin: invented}
   - {kz: krulg, en: ["fruit/NOUN"], origin: invented}
   - {kz: grintaz, en: ["mess/NOUN"], origin: invented}
   - {kz: onuldral, en: ["moment/NOUN"], origin: invented}
   - {kz: vokthra, en: ["notice/VERB"], origin: invented}
-  - {kz: khrush, en: ["sleep/VERB"], origin: invented}
+  - {kz: khrush, en: ["sleep/VERB", "sleep/NOUN"], origin: invented}
   - {kz: ikatok, en: ["promise/VERB"], origin: invented}
   - {kz: bunkarozh, en: ["shake/VERB"], origin: invented}
   - {kz: drazat, en: ["join/VERB"], origin: invented}
@@ -316,7 +316,7 @@ entries:
   - {kz: vogwa, en: ["finish/VERB"], origin: invented}
   - {kz: thint, en: ["nest/NOUN"], origin: invented}
   - {kz: flarmarak, en: ["scary/ADJ"], origin: derived, base: "flarm+LIKE"}
-  - {kz: skraf, en: ["fight/VERB"], origin: invented}
+  - {kz: skraf, en: ["fight/VERB", "fight/NOUN"], origin: invented}
   - {kz: uzdok, en: ["reply/VERB"], origin: invented}
   - {kz: azan, en: ["quick/ADJ"], origin: invented}
   - {kz: thrarm, en: ["branch/NOUN"], origin: invented}
@@ -336,9 +336,9 @@ entries:
   - {kz: dhriruz, en: ["build/VERB"], origin: invented}
   - {kz: kunra, en: ["wall/NOUN"], origin: invented}
   - {kz: nold, en: ["job/NOUN"], origin: invented}
-  - {kz: zeza, en: ["tower/NOUN"], origin: invented}
-  - {kz: grangru, en: ["pink/ADJ"], origin: invented}
-  - {kz: wazizkolg, en: ["treat/NOUN"], origin: invented}
+  - {kz: zeza, en: ["tower/NOUN", "tower/VERB"], origin: invented}
+  - {kz: grangru, en: ["pink/ADJ", "pink/NOUN"], origin: invented}
+  - {kz: wazizkolg, en: ["treat/NOUN", "treat/VERB"], origin: invented}
   - {kz: smazhuk, en: ["today/NOUN"], origin: invented}
   - {kz: khrazengnon, en: ["hair/NOUN"], origin: invented}
   - {kz: ozdob, en: ["castle/NOUN"], origin: invented}
@@ -362,14 +362,14 @@ entries:
   - {kz: klazandof, en: ["word/NOUN"], origin: invented}
   - {kz: orn, en: ["deep/ADJ"], origin: invented}
   - {kz: grorokik, en: ["shoe/NOUN"], origin: invented}
-  - {kz: drezh, en: ["plant/NOUN"], origin: invented}
+  - {kz: drezh, en: ["plant/NOUN", "plant/VERB"], origin: invented}
   - {kz: zaskar, en: ["bee/NOUN"], origin: invented}
   - {kz: fleng, en: ["white/ADJ"], origin: invented}
   - {kz: dwath, en: ["world/NOUN"], origin: invented}
   - {kz: thath, en: ["save/VERB"], origin: invented}
   - {kz: gunkunog, en: ["clothes/NOUN"], origin: invented}
   - {kz: druluz, en: ["bark/VERB"], origin: invented}
-  - {kz: grotaz, en: ["wrong/ADJ"], origin: invented}
+  - {kz: grotaz, en: ["wrong/ADJ", "wrong/NOUN"], origin: invented}
   - {kz: skabra, en: ["button/NOUN"], origin: invented}
   - {kz: zerbud, en: ["bit/NOUN"], origin: invented}
   - {kz: angnez, en: ["wag/VERB"], origin: invented}
@@ -384,10 +384,10 @@ entries:
   - {kz: klarururg, en: ["teach/VERB"], origin: invented}
   - {kz: zamdug, en: ["carry/VERB"], origin: invented}
   - {kz: frakras, en: ["field/NOUN"], origin: invented}
-  - {kz: grinboz, en: ["stand/VERB"], origin: invented}
-  - {kz: glok, en: ["drink/VERB"], origin: invented}
-  - {kz: borild, en: ["drop/VERB"], origin: invented}
-  - {kz: skint, en: ["key/NOUN"], origin: invented}
+  - {kz: grinboz, en: ["stand/VERB", "stand/NOUN"], origin: invented}
+  - {kz: glok, en: ["drink/VERB", "drink/NOUN"], origin: invented}
+  - {kz: borild, en: ["drop/VERB", "drop/NOUN"], origin: invented}
+  - {kz: skint, en: ["key/NOUN", "key/ADJ"], origin: invented}
   - {kz: taska, en: ["gift/NOUN"], origin: invented}
   - {kz: smark, en: ["snack/NOUN"], origin: invented}
   - {kz: weth, en: ["paint/VERB", "paint/NOUN"], origin: invented}
@@ -399,7 +399,7 @@ entries:
   - {kz: klenk, en: ["monster/NOUN"], origin: invented}
   - {kz: trark, en: ["river/NOUN"], origin: invented}
   - {kz: skulk, en: ["dinner/NOUN"], origin: invented}
-  - {kz: rongdran, en: ["round/ADJ"], origin: invented}
+  - {kz: rongdran, en: ["round/ADJ", "round/VERB", "round/NOUN"], origin: invented}
   - {kz: stid, en: ["bike/NOUN"], origin: invented}
   - {kz: izulgre, en: ["smart/ADJ"], origin: invented}
   - {kz: dununk, en: ["bottle/NOUN"], origin: invented}
@@ -409,7 +409,7 @@ entries:
   - {kz: bingnel, en: ["monkey/NOUN"], origin: invented}
   - {kz: nanrik, en: ["miss/VERB"], origin: invented}
   - {kz: drakk, en: ["dragon/NOUN"], origin: borrowed, from: "Khazalid drakk 'dragon'"}
-  - {kz: dendak, en: ["count/VERB"], origin: invented}
+  - {kz: dendak, en: ["count/VERB", "count/NOUN"], origin: invented}
   - {kz: frurn, en: ["realize/VERB"], origin: invented}
   - {kz: duzon, en: ["fairy/NOUN"], origin: invented}
   - {kz: kvirm, en: ["kite/NOUN"], origin: invented}
@@ -423,9 +423,9 @@ entries:
   - {kz: shadankash, en: ["care/VERB", "care/NOUN"], origin: invented}
   - {kz: zongiran, en: ["puddle/NOUN"], origin: invented}
   - {kz: skazazal, en: ["ride/VERB", "ride/NOUN"], origin: invented}
-  - {kz: trorz, en: ["arm/NOUN"], origin: invented}
+  - {kz: trorz, en: ["arm/NOUN", "arm/VERB"], origin: invented}
   - {kz: shant, en: ["brown/ADJ"], origin: invented}
-  - {kz: guzhrazk, en: ["plan/NOUN"], origin: invented}
+  - {kz: guzhrazk, en: ["plan/NOUN", "plan/VERB"], origin: invented}
   - {kz: guzatal, en: ["cow/NOUN"], origin: invented}
   - {kz: bulgrel, en: ["mud/NOUN"], origin: invented}
   - {kz: kliku, en: ["letter/NOUN"], origin: invented}
@@ -435,13 +435,13 @@ entries:
   - {kz: rardrok, en: ["light/NOUN"], origin: invented}
   - {kz: razgak, en: ["perfect/ADJ"], origin: invented}
   - {kz: khronk, en: ["instead/ADV"], origin: invented}
-  - {kz: krurd, en: ["shape/NOUN"], origin: invented}
+  - {kz: krurd, en: ["shape/NOUN", "shape/VERB"], origin: invented}
   - {kz: denbal, en: ["dream/NOUN", "dream/VERB"], origin: invented}
   - {kz: atronbul, en: ["egg/NOUN"], origin: invented}
   - {kz: grangok, en: ["rest/VERB"], origin: invented}
-  - {kz: gruzkas, en: ["set/VERB"], origin: invented}
+  - {kz: gruzkas, en: ["set/VERB", "set/NOUN"], origin: invented}
   - {kz: krobul, en: ["plane/NOUN"], origin: invented}
-  - {kz: skogruka, en: ["visit/VERB"], origin: invented}
+  - {kz: skogruka, en: ["visit/VERB", "visit/NOUN"], origin: invented}
   - {kz: dankan, en: ["candy/NOUN"], origin: invented}
   - {kz: indung, en: ["jar/NOUN"], origin: invented}
   - {kz: nuzhra, en: ["side/NOUN"], origin: invented}
@@ -456,7 +456,7 @@ entries:
   - {kz: dwenk, en: ["crab/NOUN"], origin: invented}
   - {kz: throld, en: ["wash/VERB"], origin: invented}
   - {kz: vulk, en: ["paw/NOUN"], origin: invented}
-  - {kz: dwerg, en: ["cook/VERB"], origin: invented}
+  - {kz: dwerg, en: ["cook/VERB", "cook/NOUN"], origin: invented}
   - {kz: nongit, en: ["daddy/NOUN"], origin: derived, base: "nong+DIM"}
   - {kz: hargaki, en: ["owner/NOUN"], origin: derived, base: "harg+AGT"}
   - {kz: gudil, en: ["dry/ADJ", "dry/VERB"], origin: invented}
@@ -465,8 +465,8 @@ entries:
   - {kz: khrind, en: ["believe/VERB"], origin: invented}
   - {kz: grulfal, en: ["pot/NOUN"], origin: invented}
   - {kz: ongak, en: ["morning/NOUN"], origin: invented}
-  - {kz: grazkom, en: ["taste/VERB"], origin: invented}
-  - {kz: glundam, en: ["point/VERB"], origin: invented}
+  - {kz: grazkom, en: ["taste/VERB", "taste/NOUN"], origin: invented}
+  - {kz: glundam, en: ["point/VERB", "point/NOUN"], origin: invented}
   - {kz: grarirnu, en: ["sack/NOUN"], origin: invented}
   - {kz: flund, en: ["dig/VERB"], origin: invented}
   - {kz: strothaz, en: ["school/NOUN"], origin: derived, base: "stroth+PLACE"}
@@ -478,16 +478,16 @@ entries:
   - {kz: banra, en: ["cheer/VERB"], origin: invented}
   - {kz: gorarin, en: ["lake/NOUN"], origin: invented}
   - {kz: zaldom, en: ["shell/NOUN"], origin: invented}
-  - {kz: kandrak, en: ["change/VERB"], origin: invented}
+  - {kz: kandrak, en: ["change/VERB", "change/NOUN"], origin: invented}
   - {kz: flerl, en: ["mad/ADJ"], origin: invented}
   - {kz: dukun, en: ["blanket/NOUN"], origin: invented}
   - {kz: eradak, en: ["money/NOUN"], origin: invented}
-  - {kz: kongoz, en: ["welcome/ADJ"], origin: invented}
+  - {kz: kongoz, en: ["welcome/ADJ", "welcome/VERB"], origin: invented}
   - {kz: grukwalol, en: ["smell/VERB", "smell/NOUN"], origin: invented}
   - {kz: flont, en: ["music/NOUN"], origin: invented}
   - {kz: dozonar, en: ["treasure/NOUN"], origin: invented}
   - {kz: thront, en: ["same/ADJ"], origin: invented}
-  - {kz: trorku, en: ["mix/VERB"], origin: invented}
+  - {kz: trorku, en: ["mix/VERB", "mix/NOUN"], origin: invented}
   - {kz: rekwazkar, en: ["pile/NOUN"], origin: invented}
   - {kz: kaket, en: ["bone/NOUN"], origin: invented}
   - {kz: omwanuk, en: ["cute/ADJ"], origin: invented}
@@ -505,7 +505,7 @@ entries:
   - {kz: khalatrard, en: ["seed/NOUN"], origin: invented}
   - {kz: grazong, en: ["most/ADJ"], origin: invented}
   - {kz: inkog, en: ["birthday/NOUN"], origin: invented}
-  - {kz: dirkhan, en: ["wonder/VERB"], origin: invented}
+  - {kz: dirkhan, en: ["wonder/VERB", "wonder/NOUN"], origin: invented}
   - {kz: damukol, en: ["arrive/VERB"], origin: invented}
   - {kz: bolet, en: ["milk/NOUN"], origin: invented}
   - {kz: khunga, en: ["fence/NOUN"], origin: invented}
@@ -542,7 +542,7 @@ entries:
   - {kz: wurerand, en: ["dirt/NOUN"], origin: invented}
   - {kz: durland, en: ["lucky/ADJ"], origin: invented}
   - {kz: khunuz, en: ["storm/NOUN"], origin: invented}
-  - {kz: flink, en: ["search/VERB"], origin: invented}
+  - {kz: flink, en: ["search/VERB", "search/NOUN"], origin: invented}
   - {kz: drold, en: ["village/NOUN"], origin: invented}
   - {kz: dinu, en: ["card/NOUN"], origin: invented}
   - {kz: grabirul, en: ["spoon/NOUN"], origin: invented}
@@ -567,15 +567,15 @@ entries:
   - {kz: dhrathgash, en: ["yell/VERB"], origin: invented}
   - {kz: giruk, en: ["true/ADJ"], origin: invented}
   - {kz: khroth, en: ["bus/NOUN"], origin: invented}
-  - {kz: nogoz, en: ["patient/ADJ"], origin: invented}
-  - {kz: drakwab, en: ["seat/NOUN"], origin: invented}
+  - {kz: nogoz, en: ["patient/ADJ", "patient/NOUN"], origin: invented}
+  - {kz: drakwab, en: ["seat/NOUN", "seat/VERB"], origin: invented}
   - {kz: wangrar, en: ["trip/NOUN"], origin: invented}
   - {kz: belag, en: ["snow/NOUN"], origin: invented}
-  - {kz: tuld, en: ["course/ADV"], origin: invented}
+  - {kz: tuld, en: ["course/ADV", "course/NOUN"], origin: invented}
   - {kz: lundal, en: ["cheese/NOUN"], origin: invented}
   - {kz: dhrorm, en: ["number/NOUN"], origin: invented}
-  - {kz: dikagrok, en: ["sail/VERB"], origin: invented}
-  - {kz: soluz, en: ["free/ADJ"], origin: invented}
+  - {kz: dikagrok, en: ["sail/VERB", "sail/NOUN"], origin: invented}
+  - {kz: soluz, en: ["free/ADJ", "free/VERB"], origin: invented}
   - {kz: hamdon, en: ["bite/VERB", "bite/NOUN"], origin: invented}
   - {kz: zurord, en: ["moon/NOUN"], origin: invented}
   - {kz: ongungrok, en: ["worm/NOUN"], origin: invented}
@@ -606,11 +606,11 @@ entries:
   - {kz: drash, en: ["forge/VERB"], origin: invented}
   - {kz: flundaz, en: ["mine/NOUN"], origin: derived, base: "flund+PLACE"}
   - {kz: flundaki, en: ["miner/NOUN"], origin: derived, base: "flund+AGT"}
-  - {kz: gleth, en: ["gold/NOUN"], origin: invented}
-  - {kz: domgung, en: ["silver/NOUN"], origin: invented}
+  - {kz: gleth, en: ["gold/NOUN", "gold/ADJ"], origin: invented}
+  - {kz: domgung, en: ["silver/NOUN", "silver/ADJ"], origin: invented}
   - {kz: zath, en: ["iron/NOUN"], origin: invented}
   - {kz: brakhgin, en: ["steel/NOUN"], origin: invented}
-  - {kz: bral, en: ["ale/NOUN"], origin: invented}
+  - {kz: bral, en: ["ale/NOUN", "beer/NOUN"], origin: invented}
   - {kz: dronat, en: ["brew/VERB"], origin: invented}
   - {kz: bralaz, en: ["tavern/NOUN"], origin: derived, base: "bral+PLACE"}
   - {kz: vabkaz, en: ["feast/NOUN"], origin: invented}
@@ -634,9 +634,9 @@ entries:
   - {kz: dwund, en: ["war/NOUN"], origin: invented}
   - {kz: woninkuz, en: ["battle/NOUN"], origin: invented}
   - {kz: skreka, en: ["enemy/NOUN"], origin: invented}
-  - {kz: ungno, en: ["honor/NOUN"], origin: invented}
+  - {kz: ungno, en: ["honor/NOUN", "honor/VERB"], origin: invented}
   - {kz: skrafki, en: ["warrior/NOUN"], origin: derived, base: "skraf+AGT"}
-  - {kz: khurk, en: ["slay/VERB"], origin: invented}
+  - {kz: khurk, en: ["slay/VERB", "kill/VERB"], origin: invented}
   - {kz: krangak, en: ["strength/NOUN"], origin: derived, base: "krang+THING"}
   - {kz: skomak, en: ["darkness/NOUN"], origin: derived, base: "skom+THING"}
   - {kz: khaz, en: ["hall/NOUN"], origin: borrowed, from: "Khazalid khaz 'underground hall'"}
@@ -657,7 +657,7 @@ entries:
   - {kz: zizkuk, en: ["lemon/NOUN"], origin: invented}
   - {kz: glash, en: ["hey/INTJ"], origin: invented}
   - {kz: ulkhrak, en: ["chew/VERB"], origin: invented}
-  - {kz: azbeg, en: ["fancy/ADJ"], origin: invented}
+  - {kz: azbeg, en: ["fancy/ADJ", "fancy/VERB", "fancy/NOUN"], origin: invented}
   - {kz: watzon, en: ["lead/VERB"], origin: invented}
   - {kz: hunrafdu, en: ["grateful/ADJ"], origin: invented}
   - {kz: bongkuta, en: ["helpful/ADJ"], origin: invented}
@@ -668,21 +668,21 @@ entries:
   - {kz: zush, en: ["healthy/ADJ"], origin: invented}
   - {kz: korbuk, en: ["organize/VERB"], origin: invented}
   - {kz: kolol, en: ["confuse/VERB"], origin: invented}
-  - {kz: vongna, en: ["cover/VERB"], origin: invented}
+  - {kz: vongna, en: ["cover/VERB", "cover/NOUN"], origin: invented}
   - {kz: skuzhrangas, en: ["appear/VERB"], origin: invented}
   - {kz: bumbu, en: ["trick/NOUN"], origin: invented}
   - {kz: zazulg, en: ["rest/NOUN"], origin: invented}
   - {kz: trolg, en: ["pillow/NOUN"], origin: invented}
-  - {kz: smath, en: ["part/NOUN"], origin: invented}
-  - {kz: kranrol, en: ["whole/ADJ"], origin: invented}
+  - {kz: smath, en: ["part/NOUN", "part/VERB"], origin: invented}
+  - {kz: kranrol, en: ["whole/ADJ", "whole/NOUN"], origin: invented}
   - {kz: brirl, en: ["elderly/ADJ"], origin: invented}
   - {kz: walkhrod, en: ["selfish/ADJ"], origin: invented}
-  - {kz: atakba, en: ["answer/VERB"], origin: invented}
-  - {kz: andud, en: ["puzzle/NOUN"], origin: invented}
+  - {kz: atakba, en: ["answer/VERB", "answer/NOUN"], origin: invented}
+  - {kz: andud, en: ["puzzle/NOUN", "puzzle/VERB"], origin: invented}
   - {kz: vif, en: ["ladder/NOUN"], origin: invented}
   - {kz: glegrarof, en: ["skip/VERB"], origin: invented}
   - {kz: duntar, en: ["phone/NOUN"], origin: invented}
-  - {kz: gunar, en: ["last/ADJ"], origin: invented}
+  - {kz: gunar, en: ["last/ADJ", "last/VERB"], origin: invented}
   - {kz: erbonak, en: ["messy/ADJ"], origin: invented}
   - {kz: urkhurn, en: ["weak/ADJ"], origin: invented}
   - {kz: kornur, en: ["fair/ADJ"], origin: invented}
@@ -715,9 +715,9 @@ entries:
   - {kz: khakagik, en: ["ok/ADJ"], origin: invented}
   - {kz: mudrez, en: ["explain/VERB"], origin: invented}
   - {kz: urdrenguth, en: ["stir/VERB"], origin: invented}
-  - {kz: soral, en: ["back/NOUN"], origin: invented}
+  - {kz: soral, en: ["back/NOUN", "back/ADJ"], origin: invented}
   - {kz: krugrim, en: ["mistake/NOUN"], origin: invented}
-  - {kz: grukok, en: ["note/NOUN"], origin: invented}
+  - {kz: grukok, en: ["note/NOUN", "note/VERB"], origin: invented}
   - {kz: vobak, en: ["glass/NOUN"], origin: invented}
   - {kz: oldru, en: ["trouble/NOUN", "trouble/VERB"], origin: invented}
   - {kz: zirim, en: ["team/NOUN"], origin: invented}
@@ -726,9 +726,9 @@ entries:
   - {kz: akokak, en: ["whistle/VERB", "whistle/NOUN"], origin: invented}
   - {kz: dumbub, en: ["bossy/ADJ"], origin: invented}
   - {kz: slord, en: ["scissor/NOUN"], origin: invented}
-  - {kz: khudu, en: ["fit/VERB"], origin: invented}
-  - {kz: daba, en: ["rich/ADJ"], origin: invented}
-  - {kz: skalanga, en: ["giant/NOUN"], origin: invented}
+  - {kz: khudu, en: ["fit/VERB", "fit/ADJ"], origin: invented}
+  - {kz: daba, en: ["rich/ADJ", "rich/NOUN"], origin: invented}
+  - {kz: skalanga, en: ["giant/NOUN", "giant/ADJ"], origin: invented}
   - {kz: slelg, en: ["stretch/VERB"], origin: invented}
   - {kz: kizkund, en: ["tv/NOUN"], origin: invented}
   - {kz: klirl, en: ["chicken/NOUN"], origin: invented}
@@ -739,7 +739,7 @@ entries:
   - {kz: smorm, en: ["lovely/ADJ"], origin: invented}
   - {kz: grinot, en: ["gather/VERB"], origin: invented}
   - {kz: skurolbal, en: ["sheep/NOUN"], origin: invented}
-  - {kz: gleb, en: ["practice/VERB"], origin: invented}
+  - {kz: gleb, en: ["practice/VERB", "practice/NOUN"], origin: invented}
   - {kz: khreg, en: ["cage/NOUN"], origin: invented}
   - {kz: dumindrat, en: ["sugar/NOUN"], origin: invented}
   - {kz: balkok, en: ["sell/VERB"], origin: invented}
@@ -749,11 +749,11 @@ entries:
   - {kz: kvant, en: ["large/ADJ"], origin: invented}
   - {kz: thraguz, en: ["hang/VERB"], origin: invented}
   - {kz: tirn, en: ["invite/VERB"], origin: invented}
-  - {kz: skrazangik, en: ["return/VERB"], origin: invented}
-  - {kz: duth, en: ["study/VERB"], origin: invented}
+  - {kz: skrazangik, en: ["return/VERB", "return/NOUN"], origin: invented}
+  - {kz: duth, en: ["study/VERB", "study/NOUN"], origin: invented}
   - {kz: gagdhan, en: ["dinosaur/NOUN"], origin: invented}
   - {kz: krern, en: ["backyard/NOUN"], origin: invented}
-  - {kz: dikvul, en: ["hope/VERB"], origin: invented}
+  - {kz: dikvul, en: ["hope/VERB", "hope/NOUN"], origin: invented}
   - {kz: uzkal, en: ["ship/NOUN"], origin: invented}
   - {kz: khruzk, en: ["slip/VERB"], origin: invented}
   - {kz: strish, en: ["send/VERB"], origin: invented}
@@ -775,7 +775,7 @@ entries:
   - {kz: azarlak, en: ["flag/NOUN"], origin: invented}
   - {kz: zakik, en: ["pizza/NOUN"], origin: invented}
   - {kz: akozbaz, en: ["lamp/NOUN"], origin: invented}
-  - {kz: grabshang, en: ["trust/VERB"], origin: invented}
+  - {kz: grabshang, en: ["trust/VERB", "trust/NOUN"], origin: invented}
   - {kz: nela, en: ["tidy/ADJ"], origin: invented}
   - {kz: shum, en: ["wrap/VERB"], origin: invented}
   - {kz: kruvel, en: ["daughter/NOUN"], origin: invented}
@@ -786,10 +786,10 @@ entries:
   - {kz: smos, en: ["woman/NOUN"], origin: invented}
   - {kz: bugra, en: ["tomorrow/NOUN"], origin: invented}
   - {kz: dantak, en: ["grape/NOUN"], origin: invented}
-  - {kz: khrunok, en: ["journey/NOUN"], origin: invented}
+  - {kz: khrunok, en: ["journey/NOUN", "journey/VERB"], origin: invented}
   - {kz: zhulg, en: ["glue/NOUN"], origin: invented}
   - {kz: rinofrul, en: ["goat/NOUN"], origin: invented}
-  - {kz: kazkuzk, en: ["sort/VERB"], origin: invented}
+  - {kz: kazkuzk, en: ["sort/VERB", "sort/NOUN"], origin: invented}
   - {kz: mozun, en: ["unique/ADJ"], origin: invented}
   - {kz: drornuk, en: ["expensive/ADJ"], origin: invented}
   - {kz: khrurg, en: ["brush/NOUN"], origin: invented}
@@ -804,7 +804,7 @@ entries:
   - {kz: adrumgog, en: ["frighten/VERB"], origin: invented}
   - {kz: lizatuk, en: ["weird/ADJ"], origin: invented}
   - {kz: urathdra, en: ["afraid/ADJ"], origin: invented}
-  - {kz: lurn, en: ["act/VERB"], origin: invented}
+  - {kz: lurn, en: ["act/VERB", "act/NOUN"], origin: invented}
   - {kz: gruzke, en: ["sword/NOUN"], origin: invented}
   - {kz: gramus, en: ["prince/NOUN"], origin: invented}
   - {kz: inkil, en: ["corner/NOUN"], origin: invented}
@@ -815,7 +815,7 @@ entries:
   - {kz: skraram, en: ["nervous/ADJ"], origin: invented}
   - {kz: graker, en: ["eager/ADJ"], origin: invented}
   - {kz: kvelg, en: ["light/ADJ"], origin: invented}
-  - {kz: khrerk, en: ["question/NOUN"], origin: invented}
+  - {kz: khrerk, en: ["question/NOUN", "question/VERB"], origin: invented}
   - {kz: grankak, en: ["incredible/ADJ"], origin: invented}
   - {kz: dulkhral, en: ["orange/NOUN", "orange/ADJ"], origin: invented}
   - {kz: glanda, en: ["calm/ADJ"], origin: invented}
@@ -827,7 +827,7 @@ entries:
   - {kz: kamuk, en: ["steal/VERB"], origin: invented}
   - {kz: sorwar, en: ["wipe/VERB"], origin: invented}
   - {kz: nabol, en: ["bath/NOUN"], origin: invented}
-  - {kz: kakthrol, en: ["measure/VERB"], origin: invented}
+  - {kz: kakthrol, en: ["measure/VERB", "measure/NOUN"], origin: invented}
   - {kz: gogrik, en: ["jeep/NOUN"], origin: invented}
   - {kz: grurore, en: ["fan/NOUN"], origin: invented}
   - {kz: grakragon, en: ["useful/ADJ"], origin: invented}
@@ -869,7 +869,7 @@ entries:
   - {kz: dhrozuf, en: ["bean/NOUN"], origin: invented}
   - {kz: kralonk, en: ["chocolate/NOUN"], origin: invented}
   - {kz: degok, en: ["wagon/NOUN"], origin: invented}
-  - {kz: zotzak, en: ["mind/VERB"], origin: invented}
+  - {kz: zotzak, en: ["mind/VERB", "mind/NOUN"], origin: invented}
   - {kz: kuzunin, en: ["rough/ADJ"], origin: invented}
   - {kz: drangaz, en: ["candle/NOUN"], origin: invented}
   - {kz: gunkaz, en: ["neck/NOUN"], origin: invented}
@@ -906,7 +906,7 @@ entries:
   - {kz: glard, en: ["whisper/VERB"], origin: invented}
   - {kz: kruzhra, en: ["pain/NOUN"], origin: invented}
   - {kz: zobnaru, en: ["shadow/NOUN"], origin: invented}
-  - {kz: klothgan, en: ["ruin/VERB"], origin: invented}
+  - {kz: klothgan, en: ["ruin/VERB", "ruin/NOUN"], origin: invented}
   - {kz: zungar, en: ["market/NOUN"], origin: invented}
   - {kz: dosh, en: ["guitar/NOUN"], origin: invented}
   - {kz: mirm, en: ["destroy/VERB"], origin: invented}
@@ -920,7 +920,7 @@ entries:
   - {kz: khrugek, en: ["body/NOUN"], origin: invented}
   - {kz: glankung, en: ["relieve/VERB"], origin: invented}
   - {kz: vangrorn, en: ["prize/NOUN"], origin: invented}
-  - {kz: wobal, en: ["matter/ADV"], origin: invented}
+  - {kz: wobal, en: ["matter/ADV", "matter/NOUN", "matter/VERB"], origin: invented}
   - {kz: gurkhu, en: ["terrible/ADJ"], origin: invented}
   - {kz: ekarbok, en: ["drawing/NOUN"], origin: invented}
   - {kz: garangol, en: ["salad/NOUN"], origin: invented}
@@ -947,8 +947,8 @@ entries:
   - {kz: khuroz, en: ["soar/VERB"], origin: invented}
   - {kz: bankale, en: ["ending/NOUN"], origin: invented}
   - {kz: glaruk, en: ["mighty/ADJ"], origin: invented}
-  - {kz: bundan, en: ["present/NOUN"], origin: invented}
-  - {kz: uzkunglun, en: ["escape/VERB"], origin: invented}
+  - {kz: bundan, en: ["present/NOUN", "present/ADJ", "present/VERB"], origin: invented}
+  - {kz: uzkunglun, en: ["escape/VERB", "escape/NOUN"], origin: invented}
   - {kz: klunarn, en: ["peach/NOUN"], origin: invented}
   - {kz: nogan, en: ["giggle/VERB"], origin: invented}
   - {kz: skrere, en: ["space/NOUN"], origin: invented}
@@ -959,19 +959,19 @@ entries:
   - {kz: urkhan, en: ["hay/NOUN"], origin: invented}
   - {kz: grarek, en: ["thoughtful/ADJ"], origin: invented}
   - {kz: drogagdhol, en: ["pepper/NOUN"], origin: invented}
-  - {kz: thralal, en: ["fat/ADJ"], origin: invented}
+  - {kz: thralal, en: ["fat/ADJ", "fat/NOUN"], origin: invented}
   - {kz: besh, en: ["peek/VERB"], origin: invented}
   - {kz: ureg, en: ["suit/NOUN"], origin: invented}
-  - {kz: zangnan, en: ["ring/NOUN"], origin: invented}
-  - {kz: zakflular, en: ["sigh/VERB"], origin: invented}
+  - {kz: zangnan, en: ["ring/NOUN", "ring/VERB"], origin: invented}
+  - {kz: zakflular, en: ["sigh/VERB", "sigh/NOUN"], origin: invented}
   - {kz: kugok, en: ["island/NOUN"], origin: invented}
   - {kz: kalizuk, en: ["decorate/VERB"], origin: invented}
   - {kz: dhrish, en: ["relax/VERB"], origin: invented}
   - {kz: gagagund, en: ["muffin/NOUN"], origin: invented}
-  - {kz: bagrak, en: ["balance/VERB"], origin: invented}
+  - {kz: bagrak, en: ["balance/VERB", "balance/NOUN"], origin: invented}
   - {kz: kardru, en: ["pebble/NOUN"], origin: invented}
   - {kz: nonrungan, en: ["clumsy/ADJ"], origin: invented}
-  - {kz: lilazdag, en: ["travel/VERB"], origin: invented}
+  - {kz: lilazdag, en: ["travel/VERB", "travel/NOUN"], origin: invented}
   - {kz: gratosh, en: ["uncomfortable/ADJ"], origin: invented}
   - {kz: gazerun, en: ["’/VERB"], origin: invented}
   - {kz: ozdorang, en: ["scale/NOUN"], origin: invented}
@@ -1075,8 +1075,8 @@ entries:
   - {kz: sakata, en: ["ignorant/ADJ"], origin: invented}
   - {kz: migoz, en: ["temple/NOUN"], origin: invented}
   - {kz: wafkhaz, en: ["glove/NOUN"], origin: invented}
-  - {kz: khaldurong, en: ["scatter/VERB"], origin: invented}
-  - {kz: dhrulaz, en: ["square/NOUN"], origin: invented}
+  - {kz: khaldurong, en: ["scatter/VERB", "scatter/NOUN"], origin: invented}
+  - {kz: dhrulaz, en: ["square/NOUN", "square/ADJ"], origin: invented}
   - {kz: dwurariz, en: ["leopard/NOUN"], origin: invented}
   - {kz: brunbumiz, en: ["bury/VERB"], origin: invented}
   - {kz: kangthaz, en: ["hoop/NOUN"], origin: invented}
@@ -1103,7 +1103,7 @@ entries:
   - {kz: werkha, en: ["trumpet/NOUN"], origin: invented}
   - {kz: stel, en: ["alligator/NOUN"], origin: invented}
   - {kz: dumal, en: ["miserable/ADJ"], origin: invented}
-  - {kz: dogor, en: ["middle/NOUN"], origin: invented}
+  - {kz: dogor, en: ["middle/NOUN", "middle/ADJ"], origin: invented}
   - {kz: goralku, en: ["stage/NOUN"], origin: invented}
   - {kz: skraturosh, en: ["bloom/VERB"], origin: invented}
   - {kz: organkin, en: ["toast/NOUN"], origin: invented}
@@ -1145,7 +1145,7 @@ entries:
   - {kz: gugandun, en: ["brick/NOUN"], origin: invented}
   - {kz: khaku, en: ["butter/NOUN"], origin: invented}
   - {kz: kurkhag, en: ["shore/NOUN"], origin: invented}
-  - {kz: rokon, en: ["forward/ADV"], origin: invented}
+  - {kz: rokon, en: ["forward/ADV", "forward/ADJ"], origin: invented}
   - {kz: wekrat, en: ["polish/VERB"], origin: invented}
   - {kz: shavarlulg, en: ["mill/NOUN"], origin: invented}
   - {kz: barik, en: ["pin/NOUN"], origin: invented}

@@ -26,10 +26,13 @@ the dwarf old forge-PST a axe strong in the mountain
   with ~110 function words in [`lexicon/function.yaml`](lexicon/function.yaml)
   and the suffix rules in `klazan.morphology`. Every example in the spec is
   checked by the tests. §12 decisions reviewed 2026-09-27 (formal *you* added).
-- [x] **Phase 3: lexicon.** 1,155 content words + 113 function words;
-  **97.08%** TinyStories token coverage (the gate), from two reviewed batches
+- [x] **Phase 3: lexicon.** 3,058 content words (1,155 in `core.yaml`, 1,903 in
+  `extended.yaml`) + 113 function words, from three reviewed batches. TinyStories
+  token coverage is **98.44%** (the gate was 97%). Batch 3 (2026-09-30) reached
+  past children's stories: **95%** on Cosmopedia's young-children stories and on
+  public-domain fairy tales and myths
   ([`reports/coverage_tinystories.md`](reports/coverage_tinystories.md),
-  [`lexicon/review/README.md`](lexicon/review/README.md)).
+  `reports/coverage_cand_*.md`, [`lexicon/review/README.md`](lexicon/review/README.md)).
 - [x] **Phase 4: translator.** `klazan.translate` (English → Klazan on spaCy
   parses), `klazan.gloss` (Klazan → interlinear gloss), `klazan.validate`, and
   the loanword fallback `klazan.loan`. Every example in `spec/grammar.md` is a
@@ -49,6 +52,7 @@ lexicon/
   function.yaml           function words (draft)
   phrases.yaml            multi-word expressions (once upon a time, a lot of...)
   core.yaml               content words, tier 1 (written by tools/review.py apply)
+  extended.yaml           content words, tier 2: the long tail beyond TinyStories
   targets/                frequency worklists + spaCy corrections
   review/                 seeds, review batches (CSV) and how-to
 samples/                  sound checks, example texts, placeholder vocab
@@ -56,7 +60,8 @@ src/klazan/
   phonology.py            segmenter, word-shape analysis, check_root()
   morphology.py           suffix attachment: inflect()
   lexicon.py              lexicon load / validate / build / status (CLI)
-  english.py              English-side folding rules (adverbs, participles)
+  english.py              English-side rules: input normalization (apostrophes, archaic
+                          English), adverb and participle folding
   translate.py            English -> Klazan translator (CLI)
   gloss.py                Klazan -> interlinear gloss (CLI)
   validate.py             every word known / loan / name / number? (CLI)
@@ -69,6 +74,7 @@ tools/
   analyze_phonology.py    source_words.tsv -> spec/phonology_analysis.md + source_stats.json
   coverage.py             corpus -> lemma worklist + coverage report (needs --group nlp)
   review.py               propose review batches / apply decisions
+  merge_targets.py        several corpora's worklists -> one review target
   translate_corpus.py     quick sample: corpus -> parallel en/kz JSONL + loan summary
   fetch_data.py           download TinyStories into data/raw/ (resumable, hashed)
   corpus.py               Phase 5: translate (sharded, resumable) / report / pack
